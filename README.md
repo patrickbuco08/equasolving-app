@@ -12,7 +12,7 @@
 <li>composer install</li>
 <li>cp .env.example .env</li>
 <li>import the equasolve.sql in XAMPP</li>
-<li>iphp artisan serve</li>
+<li>php artisan serve</li>
 <li>open the app: http://127.0.0.1:8000/</li>
 </ul>
 
