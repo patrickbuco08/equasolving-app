@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'is_welcome_tutorial_finished', 'is_pvp_tutorial_finished', 'in_game'
     ];
 
     /**
@@ -37,4 +37,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function gamebackgrounds()
+    {
+        return $this->hasMany(GameBackground::class);
+    }
+
+    public function classicModeDetails()
+    {
+        return $this->hasOne(UserClassicModeDetail::class);
+    }
+
+    public function pvpModeDetails()
+    {
+        return $this->hasOne(UserPVPModeDetail::class);
+    }
+
+    public function matches()
+    {
+        return $this->hasMany(Match::class);
+    }
+
 }
