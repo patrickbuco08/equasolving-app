@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\FakeDataController;
 
 /*
@@ -15,9 +16,17 @@ use App\Http\Controllers\FakeDataController;
 */
 
 Route::get('/', function ($id = 1) {
-    return "hello";
+    return view('welcome');
 });
 
 Route::get('/generate-data', [FakeDataController::class, 'index']);
+
+Route::controller(DefaultController::class)->group(function () {
+    Route::get('user-profile', 'userProfile');
+    Route::get('match-history', 'matchHistory');
+    Route::get('settings', 'settings');
+    Route::get('classic', 'classic');
+    Route::get('pvp', 'pvp');
+});
 
 
