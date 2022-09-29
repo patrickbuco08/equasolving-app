@@ -1,7 +1,7 @@
 (() => {
 
     let timer = {
-        minutes: 1,
+        minutes: 0,
         seconds: 30,
     };
 
@@ -43,16 +43,6 @@
         }
     }
 
-    function isGameOver() {
-        return timer.minutes <= 0 && timer.seconds <= 0;
-    }
-
-    function setGameOver() {
-        $('div.timer').html(`Game Over`);
-        clearInterval(timerLoop);
-        console.log('END')
-    }
-
     function addTime(additionalTime = 3) {
         if ((additionalTime + timer.seconds >= 60)) {
             timer = {
@@ -69,11 +59,6 @@
     }
 
     function deductTime(deductionTime = 3) {
-        if ((timer.seconds - deductionTime) < 0 && timer.minutes == 0) {
-            setGameOver()
-            return;
-        }
-
         if ((timer.seconds - deductionTime) < 0) {
             timer = {
                 ...timer,
@@ -88,6 +73,16 @@
             }
             console.log('sec false', timer.seconds)
         }
+    }
+
+    function isGameOver() {
+        return timer.minutes <= 0 && timer.seconds <= 0;
+    }
+
+    function setGameOver() {
+        $('div.timer').html(`Game Over`);
+        clearInterval(timerLoop);
+        console.log('END From set game cover')
     }
 
     function reRunTimer() {
@@ -106,7 +101,15 @@
 
     $('button#deduct-time').click(function (e) {
         e.preventDefault();
-        deductTime(3);
+
+        const deductionTime = 3;
+
+        if ((timer.seconds - deductionTime) < 0 && timer.minutes == 0) {
+            setGameOver();
+            return;
+        }
+
+        deductTime(deductionTime);
         reRunTimer();
         createDisplay();
     });
