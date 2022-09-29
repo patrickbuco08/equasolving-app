@@ -1,12 +1,14 @@
 @extends('layouts.app', ['title' => 'Classic'])
 
+@section('styles')
+    {{-- CSS Here --}}
+@endsection
+
 @section('content')
-{{-- css style here --}}
-
 {{-- HTML here --}}
-<p>Hello</p>
+<p>Classic</p>
+@endsection
 
-<script>
-    alert('classic section')
-</script>
+@section('scripts')
+<script src=""></script>
 @endsection

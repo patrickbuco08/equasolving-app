@@ -1,12 +1,14 @@
 @extends('layouts.app', ['title' => 'User Profile'])
 
+@section('styles')
+    {{-- CSS Here --}}
+@endsection
+
 @section('content')
-{{-- css style here --}}
-
 {{-- HTML here --}}
-<p>Hello</p>
+<p>User Profile</p>
+@endsection
 
-<script>
-    alert('match history-section')
-</script>
+@section('scripts')
+<script src=""></script>
 @endsection

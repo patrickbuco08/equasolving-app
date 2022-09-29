@@ -1,12 +1,19 @@
 @extends('layouts.app', ['title' => 'PVP'])
 
+@section('styles')
+{{-- CSS Here --}}
+@endsection
+
 @section('content')
-{{-- css style here --}}
-
 {{-- HTML here --}}
-<p>Hello</p>
+<p>PvP</p>
 
-<script>
-    alert('PVP section')
-</script>
+<div class="timer"></div>
+<button id="add-time">trigger correct answer</button>
+<button id="deduct-time">trigger wrong answer</button>
+
+@endsection
+
+@section('scripts')
+<script src="./js/timer.js" type="module"></script>
 @endsection

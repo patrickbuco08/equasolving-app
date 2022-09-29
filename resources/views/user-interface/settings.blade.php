@@ -1,12 +1,14 @@
 @extends('layouts.app', ['title' => 'Settings'])
 
+@section('styles')
+    {{-- CSS Here --}}
+@endsection
+
 @section('content')
-{{-- css style here --}}
-
 {{-- HTML here --}}
-<p>Hello</p>
+<p>Settings</p>
+@endsection
 
-<script>
-    alert('settings')
-</script>
+@section('scripts')
+<script src=""></script>
 @endsection

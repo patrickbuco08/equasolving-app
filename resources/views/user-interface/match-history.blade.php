@@ -1,13 +1,14 @@
 @extends('layouts.app', ['title' => 'Match History'])
 
+@section('styles')
+    {{-- CSS Here --}}
+@endsection
 
 @section('content')
-{{-- css style here --}}
-
 {{-- HTML here --}}
-<p>Hello</p>
+<p>Match History</p>
+@endsection
 
-<script>
-    alert('match history section')
-</script>
+@section('scripts')
+<script src=""></script>
 @endsection
