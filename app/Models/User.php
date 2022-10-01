@@ -38,7 +38,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function gamebackgrounds()
+    public function ownedBackgrounds()
     {
         return $this->hasMany(GameBackground::class);
     }
@@ -55,7 +55,8 @@ class User extends Authenticatable
 
     public function matches()
     {
-        return $this->hasMany(Match::class);
+        // return $this->hasMany(Match::class, 'id', 'user_id');
+        return $this->hasMany(MatchParticipant::class);
     }
 
 }

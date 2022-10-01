@@ -14,4 +14,8 @@ class UserClassicModeDetail extends Model
     protected $fillable = [
         'user_id', 'current_level', 'trophies'
     ];
+
+    protected $hidden = [
+        'user_id', 'created_at', 'updated_at'
+    ];
 }

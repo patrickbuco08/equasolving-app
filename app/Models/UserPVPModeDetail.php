@@ -15,4 +15,8 @@ class UserPVPModeDetail extends Model
         'user_id', 'total_matches', 'winrate', 'mmr'
     ];
 
+    protected $hidden = [
+        'user_id', 'created_at', 'updated_at'
+    ];
+
 }

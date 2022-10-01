@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\FakeDataController;
+use App\Http\Controllers\Auth\SocialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +21,17 @@ Route::get('/', function ($id = 1) {
     return view('welcome');
 });
 
+// social login -> socialite
+Route::get('google-login', [SocialController::class, 'loginWithGoogle'])->name('google.login');
+Route::any('google/callback', [SocialController::class, 'callbackFromGoogle'])->name('google.callback');
+
 Route::get('/generate-data', [FakeDataController::class, 'index']);
+
+Route::prefix('user')->group(function () {
+    Route::name('user.')->group(function(){
+        Route::get('/{user}', [UserController::class, 'getUser'])->name('get');
+    });
+});
 
 Route::controller(DefaultController::class)->group(function () {
     Route::get('user-profile', 'userProfile');
