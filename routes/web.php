@@ -30,6 +30,7 @@ Route::get('/generate-data', [FakeDataController::class, 'index']);
 Route::prefix('user')->group(function () {
     Route::name('user.')->group(function(){
         Route::get('/{user}', [UserController::class, 'getUser'])->name('get');
+        Route::get('/match-history/{user}', [UserController::class, 'getMatchHistory'])->name('match-history');
     });
 });
 

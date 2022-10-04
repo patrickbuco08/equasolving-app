@@ -22,4 +22,17 @@ class UserController extends Controller
 
         return $user;
     }
+
+    public function getMatchHistory(User $user){
+        $user->load([
+            'matches',
+            'matches.details',
+            'matches.details.enemy',
+            'matches.details.enemy.user' => function($query){
+                $query->select('id', 'name', 'email');
+            }]);
+
+        return $user;
+    }
+
 }
