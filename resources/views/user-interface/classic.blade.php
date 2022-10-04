@@ -6,7 +6,5 @@
 {{-- HTML here --}}
 <p>Hello</p>
 
-<script>
-    alert('classic section')
-</script>
+
 @endsection

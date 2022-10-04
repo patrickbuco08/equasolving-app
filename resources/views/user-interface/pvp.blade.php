@@ -7,6 +7,5 @@
 <p>Hello</p>
 
 <script>
-    alert('PVP section')
 </script>
 @endsection
