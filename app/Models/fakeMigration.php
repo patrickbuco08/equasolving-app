@@ -27,7 +27,7 @@ class CreateData extends Migration
             foreach ($fakeUsers as $fakeUser) {
                 $user = User::create($fakeUser['data']);
 
-                $user->gamebackgrounds()->createMany($fakeUser['background']);
+                $user->ownedBackgrounds()->createMany($fakeUser['background']);
 
                 $user->classicModeDetails()->create([
                     'current_level' => rand(0, 100),
@@ -58,15 +58,13 @@ class CreateData extends Migration
 
     public function generateMatches($id = 1)
     {
-        $userIDs = [1, 2, 3, 4];
+        $userCollection = collect([1, 2, 3, 4]);
      
-        $key = array_search($id, $userIDs, true);
-        if ($key !== false) {
-            array_splice($userIDs, $key, 1);
-        }
+        $filtered = $userCollection->reject(function ($value, $key) use($id) {
+            return $value == $id;
+        });
 
         $match = Match::create();
-
         $match->participants()->createMany([
             [
                 'user_id' => $id,
@@ -74,7 +72,7 @@ class CreateData extends Migration
                 'status' => true
             ],
             [
-                'user_id' => $userIDs[rand(0, 2)],
+                'user_id' => $filtered->all()->random(),
                 'score' => rand(0, 100),
                 'status' => false
             ]

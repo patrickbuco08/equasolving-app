@@ -15,9 +15,17 @@ class MatchParticipant extends Model
         'user_id', 'score', 'status'
     ];
 
+    protected $hidden = [
+        'id', 'match_id', 'created_at', 'updated_at'
+    ];
+
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function details()
+    {
+        return $this->belongsTo(Match::class, 'match_id', 'id');
+    }
 }

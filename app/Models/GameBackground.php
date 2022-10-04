@@ -15,9 +15,13 @@ class GameBackground extends Model
         'background_id', 'activated'
     ];
 
-    public function background()
+    protected $hidden = [
+        'user_id', 'created_at', 'updated_at'
+    ];
+
+    public function details()
     {
-        return $this->hasOne(Background::class);
+        return $this->hasOne(Background::class, 'id', 'background_id');
     }
 
 }

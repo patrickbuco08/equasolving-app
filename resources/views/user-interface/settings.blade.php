@@ -1,8 +1,10 @@
 @extends('layouts.app', ['title' => 'Settings'])
 
-@section('content')
-{{-- css style here --}}
+@section('styles')
+    {{-- CSS Here --}}
+@endsection
 
+@section('content')
 {{-- HTML here --}}
 <h1>Settings</h1>
 <div>

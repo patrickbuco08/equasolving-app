@@ -13,4 +13,9 @@ class Match extends Model
     {
         return $this->hasMany(MatchParticipant::class);
     }
+
+    public function enemy()
+    {
+        return $this->hasOne(MatchParticipant::class)->where('user_id', '!=', 3);
+    }
 }

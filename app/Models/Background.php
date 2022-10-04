@@ -13,4 +13,8 @@ class Background extends Model
         'name', 'photo', 'price'
     ];
 
+    protected $hidden = [
+        'created_at', 'updated_at'
+    ];
+
 }
