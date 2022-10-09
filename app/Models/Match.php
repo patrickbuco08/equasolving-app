@@ -17,13 +17,6 @@ class Match extends Model
         return $this->hasMany(MatchParticipant::class);
     }
 
-    public function carbonDate()
-    {
-        return $this->created_at;
-        // $result = Carbon::createFromFormat('m/d/Y', $date)->diffForHumans();
-    }
-
-
     public function enemy()
     {
         return $this->hasOne(MatchParticipant::class)->where('user_id', '!=', 3);

@@ -41,7 +41,7 @@ class UserController extends Controller
         $matches = Match::whereHas('participants', function($query) use($id){
             $query->where('user_id', $id);
         })->get();
-        return $matches->load('participants', 'carbonDate', 'participants.user:id,name,email');
+        return $matches->load('participants', 'participants.user:id,name,email');
     }
 
 
