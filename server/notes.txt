@@ -1,0 +1,22 @@
+find match
+matched user
+game start
+
+just send the current time to reconnected user
+
+my problem
+how to implement set time out in each room
+
+solution #1 (not working)
+-after joining the room
+
+solution #2
+https://stackoverflow.com/questions/65398315/countdown-server-side-best-practices
+-start the game, clicked or triggered in client
+-then, set interval in server with roomID
+-everytime, the user wants to reconnect, just get the current countdown in server
+-then display the time in client side
+-you can do this after joining the room.
+problem #1
+-emit game end
+-add function in the object or manual function but pano ka magpapasa ng data?

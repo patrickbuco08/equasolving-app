@@ -31,6 +31,7 @@ Route::prefix('user')->group(function () {
     Route::name('user.')->group(function(){
         Route::get('/{user}', [UserController::class, 'getUser'])->name('get');
         Route::get('/match-history/{user}', [UserController::class, 'getMatchHistory'])->name('match-history');
+        Route::get('/match-history-v2/{user}', [UserController::class, 'getMatchHistoryv2'])->name('match-history-2');
     });
 });
 
