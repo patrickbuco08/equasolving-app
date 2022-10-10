@@ -17,6 +17,8 @@
     <button id="btnButtonSfx">Button SFX</button>
     <button id="btnLoseSfx">Lose SFX</button>
     <button id="btnWinSfx">Win SFX</button>
+    <button id="btnWrongSfx">Wrong Ans SFX</button>
+    <button id="btnCorrectSfx">Correct Ans SFX</button>
     <button id="btnPvpSfx">Pvp SFX</button>
     <button id="btnMenuSfx">Menu SFX</button>
     <button id="btnStopSfx">Stop</button>
@@ -27,7 +29,7 @@
   </audio>
 <audio id="button_sfx">
 </audio>
-<audio id="winlose_sfx">
+<audio id="other_sfx">
 </audio>
 </div>
 
@@ -53,7 +55,7 @@ $(document).ready(function(){
     
     $("#btnSfxOnOff").on('click', function(){
     var sfxBtn = $('#button_sfx'); 
-    var sfxWL = $('#winlose_sfx');
+    var sfxWL = $('#other_sfx');
     if(sfxBtn[0].volume == 1.0)
     {
         sfxBtn[0].volume = 0;
@@ -74,6 +76,7 @@ $(document).ready(function(){
 </script>
 <script>
   $(document).ready(function(){
+    if()
     function bgSfxPlay(obj, src){
       obj[0].src = src; 
       obj.animate({volume: 1}, 500, 'swing', function() {
@@ -119,15 +122,27 @@ $(document).ready(function(){
     });
 
     $("#btnLoseSfx").click(function(){
-      var obj = $('#winlose_sfx');
+      var obj = $('#other_sfx');
       obj[0].src = '{{ asset('sfx/lose_sfx.mp3') }}'; 
       obj[0].play();
     });
 
     $("#btnWinSfx").click(function(){
-      var obj = $('#winlose_sfx');
+      var obj = $('#other_sfx');
       
       obj[0].src = '{{ asset('sfx/win_sfx.mp3') }}'; 
+      obj[0].play();
+    });
+    $("#btnWrongSfx").click(function(){
+      var obj = $('#other_sfx');
+      obj[0].src = '{{ asset('sfx/wrong_sfx.mp3') }}'; 
+      obj[0].play();
+    });
+
+    $("#btnCorrectSfx").click(function(){
+      var obj = $('#other_sfx');
+      
+      obj[0].src = '{{ asset('sfx/correct_sfx.mp3') }}'; 
       obj[0].play();
     });
 

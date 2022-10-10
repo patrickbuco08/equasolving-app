@@ -5,3 +5,12 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+.lose-status{
+  color: red;
+}
+.draw-status{
+  color: darkgoldenrod;
+}
+.win-status{
+  color: green;
+}
