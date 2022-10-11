@@ -8,6 +8,10 @@
     <meta name="google-signin-client_id" content="{{env('GOOGLE_APP_ID')}}">
     <title>{{ $title ?? 'EquaSolve' }}</title>
     <link rel="stylesheet" href="{{ asset('css/background.css') }}">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
+    crossorigin="anonymous">
     @yield('styles')
 </head>
 <body>
