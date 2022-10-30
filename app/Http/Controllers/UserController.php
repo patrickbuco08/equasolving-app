@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function getUser(User $user){
+        $sql = "SELECT * FROM users where ?";
+
+        $users = User::get();
+
         $user->load([
             'ownedBackgrounds',
             'ownedBackgrounds.details',

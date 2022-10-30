@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class DefaultController extends Controller
 {
+    public function index()
+    {
+        return view('user-interface.welcome');
+    }
+
     public function userProfile()
     {
         return view('user-interface.user-profile');

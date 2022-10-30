@@ -1,10 +1,6 @@
-@extends('layouts.app', ['title' => 'Classic'])
 
-@section('styles')
 <link rel="stylesheet" href="{{ asset('css/classic/style.css') }}">
-@endsection
 
-@section('content')
 <section>
     <div class="timer">
         <span id="timer">1:30</span>
@@ -13,11 +9,9 @@
     <div class="reset">
         <button>Reset</button>
     </div>
-        <button>back</button>
+        <button id="back">back</button>
 </section>
-@endsection
 
-@section('scripts')
 <script type="module">
     import {equation, timer} from '/js/classic/utils.js'
     (() => {
@@ -28,7 +22,7 @@
         timer.init();
         equation.generateDOM()
 
-        $(document).on('click', 'div.equation', function () {
+        $(document).on('click', 'div.equation', function () { 
             if($(this).hasClass('active')){
                 return
             }
@@ -59,8 +53,13 @@
             e.preventDefault();
             $('div.equation').removeClass('active');
             equation.answers = []
-        });         
+        });     
+        
+        $('button#back').click(function (e) { 
+            e.preventDefault();
+            $('div#root').html('hi');
+            // turn off interval
+        });
 
     })();
 </script>
-@endsection

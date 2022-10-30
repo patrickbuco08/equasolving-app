@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClassicController;
 use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\FakeDataController;
 use App\Http\Controllers\Auth\SocialController;
@@ -22,6 +23,7 @@ Route::get('/', function ($id = 1) {
 });
 
 // social login -> socialite
+//much better if javascript login
 Route::get('google-login', [SocialController::class, 'loginWithGoogle'])->name('google.login');
 Route::any('google/callback', [SocialController::class, 'callbackFromGoogle'])->name('google.callback');
 
@@ -35,7 +37,12 @@ Route::prefix('user')->group(function () {
     });
 });
 
+Route::prefix('skeleton')->group(function(){
+    Route::get('/classic', [ClassicController::class, 'index']);
+});
+
 Route::controller(DefaultController::class)->group(function () {
+    Route::get('/', 'index');
     Route::get('user-profile', 'userProfile');
     Route::get('match-history', 'matchHistory');
     Route::get('settings', 'settings');

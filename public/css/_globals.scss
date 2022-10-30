@@ -1,0 +1,95 @@
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+body {
+    height: 100%;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+h1,h2,h3,h4,h5,h6,p,span, a {
+    font-family: 'Arial', 'sans-serif';
+}
+
+p {
+    font-size: $font-xxs;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+color: #000;
+opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+color: #000;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+color: #000;
+}
+
+// Hide
+
+.hide {
+    display: none!important;
+}
+
+// Flex box
+
+.flex {
+    display: flex;
+
+    &-jc-se {
+        justify-content: space-evenly;
+    }
+
+    &-jc-fe {
+        justify-content: flex-end;
+    }
+
+    &-jc-fs {
+        justify-content: flex-start;
+    }
+
+    &-jc-sb {
+        justify-content: space-between;
+    }
+
+    &-jc-c {
+        justify-content: center;
+    }
+
+    &-ai-c {
+        align-items: center;
+    }
+
+    &-ai-fs {
+        align-items: flex-start;
+    }
+
+    &-ai-fe {
+        align-items: flex-end;
+    }
+
+    &-vert {
+        flex-direction: column;
+    }
+
+    &-hori {
+        flex-direction: row;
+    }
+}
+
+// Grid box
+
+.grid {
+    display: grid;
+}
+
+
