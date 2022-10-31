@@ -49,6 +49,17 @@ body section .timer {
   transition: 0.5s;
   animation-duration: 3s;
 }
+body section .level {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #8C5638;
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+  transition: 0.5s;
+  animation-duration: 3s;
+}
 
 body section .timer.full-screen {
   height: 100%;
@@ -64,7 +75,7 @@ body section .equation-container {
   margin-bottom: 1rem;
 }
 
-body section .equation-container .equation {
+body section .equation {
   font-size: 2rem;
   cursor: pointer;
   width: 49%;
@@ -74,6 +85,38 @@ body section .equation-container .equation {
   justify-content: center;
   align-items: center;
   border-radius: .5rem;
+}
+
+body section .menu {
+  font-size: 2rem;
+  cursor: pointer;
+  width: 30%;
+  height: 10rem;
+  background-color: #8C5638;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: .5rem;
+}
+
+body section .menu-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 1rem;
+}
+
+body section .menu button {
+  cursor: pointer;
+  border-radius: .5rem;
+  font-size: 5rem;
+  background-color: #8C5638;
+  color: white;
+  border: 0;
+  width: 100%;
+  padding: 1rem;
 }
 
 body section .equation-container .equation:hover {
@@ -106,4 +149,5 @@ body section .reset button:hover {
   background-color: #A76B50;
   transition: all 300ms ease;
 }
+
 /*# sourceMappingURL=style.css.map */
