@@ -1,5 +1,7 @@
 export const equation = {
     answers: [],
+    level: 0,
+    countArr: 0,
     operations: ['addition', 'subtraction', 'multiplication', 'division'],
     setAnswer: function (answer) {
         this.answers.push(answer)
@@ -43,8 +45,14 @@ export const equation = {
         return numbers;
     },
     randomOperation: function () {
-        const rand = Math.random() * this.operations.length | 0;
-        return this.operations[rand];
+        if(this.level + 1 <= 10){
+            const rand = Math.random() * (this.operations.length - 2) | 0;
+            return this.operations[rand];
+        }
+        else {
+            const rand = Math.random() * this.operations.length | 0;
+            return this.operations[rand];
+        }
     },
     randomNumber: function (min, max) {
         min = Math.ceil(min);
@@ -59,14 +67,27 @@ export const equation = {
 
         switch (operation) {
             case 'addition':
-                a = this.randomNumber(9, 90);
-                b = this.randomNumber(9, 90);
+                if(this.level + 1 <= 5){
+                    a = this.randomNumber(1, 9);
+                    b = this.randomNumber(1, 9);
+                }
+                else {
+                    a = this.randomNumber(9, 90);
+                    b = this.randomNumber(9, 90);
+                }
+                
                 answer = a + b;
                 break;
 
             case 'subtraction':
-                a = this.randomNumber(10, 99);
-                b = this.randomNumber(a > 10 ? 10 : 0, a);
+                if(this.level + 1 <= 5){
+                    a = this.randomNumber(1, 9);
+                    b = this.randomNumber(a > 1 ? 1 : 0, a);
+                }
+                else {
+                    a = this.randomNumber(10, 99);
+                    b = this.randomNumber(a > 10 ? 10 : 0, a);
+                }
                 answer = a - b;
                 break;
 
@@ -107,6 +128,7 @@ export const equation = {
     generateDOM: function () {
         let equations = [],
             numberOfEquation = 4,
+            htmlDOMLvl = '',
             htmlDOM = '';
 
         while (numberOfEquation) {
@@ -134,17 +156,20 @@ export const equation = {
                     operation = '/';
                     break;
             }
-            htmlDOM += `<div class="equation" data-answer=${equation.answer} >${equation.a}${operation}${equation.b}=???</div>`;
+            htmlDOM += `<div class="equation" data-answer=${equation.answer} >${equation.a}${operation}${equation.b}=?</div>`;
         });
         this.answers = []
         $('div.equation-container').html(htmlDOM);
+        this.level++;
+        htmlDOMLvl = 'Level: '+ this.level;
+        $('div.level').html(htmlDOMLvl);
     }
 
 }
 
 export const timer = {
     minutes: 0,
-    seconds: 60,
+    seconds: 20,
     timerLoop: null,
     init: function () {
         const countDownTimer = this.countDownTimer.bind(this);
@@ -156,7 +181,20 @@ export const timer = {
         clearInterval(this.timerLoop);
         const countDownTimer = this.countDownTimer.bind(this);
         this.timerLoop = setInterval(countDownTimer, 1000);
-        timer.createDisplay();
+        this.createDisplay();
+    },
+    pause: function () {
+        clearInterval(this.timerLoop);
+        clearInterval(gameTimer.timerLoop);
+        console.log("game pause");
+    },
+    continue: function () {
+        this.init();
+        gameTimer.init();
+    },
+    quit: function () {
+        this.minutes = 0;
+        this.seconds = 0;
     },
     countDownTimer: function () {
         let newSeconds = this.minutes * 60 + this.seconds;
@@ -191,6 +229,8 @@ export const timer = {
     setGameOver: function () {
         $('div.equation-container').remove();
         $('div.reset').remove();
+        $('div.level').remove();
+        $('div.menu-container').remove();
         $('div.timer').addClass('full-screen animated zoomIn').one('animationend AnimationEnd mozAnimationEnd webkitAnimationEnd', function () {
             $('div.timer').removeClass('animated zoomIn');
             $('div.timer').addClass('animated hinge');
@@ -198,8 +238,11 @@ export const timer = {
         // setTimeout(() => { 
 
         //  }, 3000)
-        $('div span#timer').text(`Game Over`);
+        gameTimer.trophyCount();
+        $('div span#timer').text(`Game Over, +` + gameTimer.trophy + ' Trophyicon');
         clearInterval(this.timerLoop);
+        clearInterval(gameTimer.timerLoop);
+        gameTimer.trophyCount();
         console.log('END From set game cover')
     },
     addTime: function (additionalTime = 3) {
@@ -230,6 +273,57 @@ export const timer = {
         }
         timer.run();
     }
+
+};
+
+export const gameTimer = {
+    minutes: 0,
+    seconds: 0,
+    trophy: 0,
+    timerLoop: null,
+    init: function () {
+        const countUpTimer = this.countUpTimer.bind(this);
+
+        this.timerLoop = setInterval(countUpTimer, 1000);
+        this.countUpTimer();
+    },
+    run: function () {
+        clearInterval(this.timerLoop);
+        const countUpTimer = this.countUpTimer.bind(this);
+        this.timerLoop = setInterval(countUpTimer, 1000);
+        timer.createDisplay();
+    },
+    countUpTimer: function () {
+        let newSeconds = this.minutes * 60 + this.seconds;
+        newSeconds++;
+
+        this.seconds = newSeconds % 60;
+        this.minutes = Math.floor(newSeconds / 60);
+
+        this.createDisplay();
+        console.log(`CountUpTimer | minute: ${this.minutes} | seconds: ${this.seconds}`)
+    },
+    trophyCount: function () {
+        let numberofSeconds = this.minutes * 60 + this.seconds;
+        this.trophy = Math.floor(numberofSeconds / 30);
+    },
+    createDisplay: function () {
+        if (timer.isGameOver()) {
+            this.setGameOver();
+            return;
+        }
+
+        if (this.seconds < 10) {
+            if (this.seconds == 0) {
+                $('div span#trophyTimer').text(`${this.minutes+1}: 6${this.seconds}`);
+                return;
+            }
+            $('div span#trophyTimer').text(`${this.minutes}: 0${this.seconds}`);
+            return;
+        }
+
+        $('div span#trophyTimer').text(`${this.minutes}: ${this.seconds}`);
+    },
 
 };
 

@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,700&display=swap" rel="stylesheet');
+@font-face {
+  font-family: myFirstFont;
+  src: url(../fonts/butterfly-kids/ButterflyKids-Regular.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-image: url("../images/background3.jpg");
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+body .text-danger {
+  color: #D9534f;
+}
+
+body .text-success {
+  color: #4BB543;
+}
+
+body section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  font-size: 3rem;
+  color: white;
+  background-color: #CAB19B;
+  padding: 1rem;
+  transition: 0.5s;
+}
+
+body section .timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #8C5638;
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+  transition: 0.5s;
+  animation-duration: 3s;
+}
+body section .level {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #8C5638;
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+  transition: 0.5s;
+  animation-duration: 3s;
+}
+
+body section .timer.full-screen {
+  height: 100%;
+  background-color: #4A756E;
+}
+
+body section .equation-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 1rem;
+}
+
+body section .equation {
+  font-size: 2rem;
+  cursor: pointer;
+  width: 49%;
+  height: 10rem;
+  background-color: #8C5638;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: .5rem;
+}
+
+body section .menu {
+  font-size: 2rem;
+  cursor: pointer;
+  width: 30%;
+  height: 10rem;
+  background-color: #8C5638;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: .5rem;
+}
+
+body section .menu-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 1rem;
+}
+
+body section .menu button {
+  cursor: pointer;
+  border-radius: .5rem;
+  font-size: 5rem;
+  background-color: #8C5638;
+  color: white;
+  border: 0;
+  width: 100%;
+  padding: 1rem;
+}
+
+body section .equation-container .equation:hover {
+  background-color: #A76B50;
+  transition: all 300ms ease;
+}
+
+body section .equation-container .equation.active {
+  background-color: #4A756E;
+  transition: all 300ms ease;
+}
+
+body section .reset {
+  display: flex;
+  justify-content: center;
+}
+
+body section .reset button {
+  cursor: pointer;
+  border-radius: .5rem;
+  font-size: 5rem;
+  background-color: #8C5638;
+  color: white;
+  border: 0;
+  width: 100%;
+  padding: 1rem;
+}
+
+body section .reset button:hover {
+  background-color: #A76B50;
+  transition: all 300ms ease;
+}
+
+/*# sourceMappingURL=style.css.map */
