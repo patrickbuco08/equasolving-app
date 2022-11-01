@@ -50,4 +50,7 @@ Route::controller(DefaultController::class)->group(function () {
     Route::get('pvp', 'pvp');
 });
 
+Route::get('/find-match', function(){
+    return view('user-interface.skeleton.find-match');
+});
 

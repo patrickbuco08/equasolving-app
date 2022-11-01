@@ -18,5 +18,11 @@ use App\Http\Controllers\Auth\AuthController;
 Route::post('/auth', [AuthController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function(){
-    Route::get('/user/get', [AuthController::class, 'get']);
+    Route::get('/get-user', [AuthController::class, 'getUser']);
+});
+
+Route::middleware('auth:sanctum')->get('/test-user', function (Request $request) {
+    $oldUser = $request->user();;
+    $user->tokens()->delete();
+    return $oldUser;
 });

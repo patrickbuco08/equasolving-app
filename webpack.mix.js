@@ -11,7 +11,17 @@ const mix = require('laravel-mix');
  |
  */
 
+mix.webpackConfig({ node: { fs: 'empty' }});
+
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
-    ]);
+    ])
+    .js('resources/js/pvp/pvp.js', 'public/js/pvp', [
+        require('socket.io-client')
+    ])
+    .js('resources/js/utilities/auth.js', 'public/utilities/');
+
+
+
+

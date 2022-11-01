@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,700&display=swap" rel="stylesheet');
+
+@font-face {
+    font-family: myFirstFont;
+    src: url(../fonts/butterfly-kids/ButterflyKids-Regular.ttf);
+}
+
+$font-kids: myFirstFont;
+$font-lg: 5rem;
+$font-md: 3rem;
+
+$sourDough: #CAB19B;
+$santeFe: #A76B50;
+$rope: #8C5638;
+$darkGreenCopper: #4A756E;
+$deepTeal: #1B4B43;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    // font-family: $font-kids;
+}
+
+
+
+body {
+    background-image: url('../images/background3.jpg');
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .text-danger{
+        color: #D9534f;
+    }
+
+    .text-success {
+        color: #4BB543;
+    }
+
+    section {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        font-size: $font-md;
+        color: white;
+        background-color: $sourDough;
+        padding: 1rem;
+        transition: 0.5s;
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $rope;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-radius: .5rem;
+            transition: 0.5s;
+            animation-duration: 3s;
+            
+            &.full-screen {
+                height: 100%;
+                background-color: $darkGreenCopper;
+            }
+
+        }
+
+        .equation-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: .5rem;
+            margin-bottom: 1rem;
+
+            .equation {
+                font-size: 2rem;
+                cursor: pointer;
+                width: 49%;
+                height: 10rem;
+                background-color: $rope;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: .5rem;
+
+                &:hover {
+                    background-color: $santeFe;
+                    transition: all 300ms ease;
+                }
+
+                &.active {
+                    background-color: $darkGreenCopper;
+                    transition: all 300ms ease;
+                }
+            }
+        }
+        .reset{
+            // border-radius: .5rem;
+            display: flex;
+            justify-content: center;
+            // background-color: $deepTeal;
+            
+            button{
+                cursor: pointer;
+                border-radius: .5rem;
+                font-size: 5rem;
+                background-color: $rope;
+                color: white;
+                border: 0;
+                width: 100%;
+                padding: 1rem;
+
+                &:hover {
+                    background-color: $santeFe;
+                    transition: all 300ms ease;
+                }
+
+            }
+
+
+        }
+
+        .users{
+            font-size: 1rem;
+        }
+
+    }
+
+}
+
+
+
+// body {2
+
+//         .timer{
+//             background-color: green;
+//             width: 100%;
+//             text-align: center;
+//         }
+
+//       }
+
+
+//   }

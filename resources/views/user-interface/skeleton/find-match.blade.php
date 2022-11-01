@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'PVP'])
+@extends('layouts.app', ['title' => 'Find Match'])
 
 @section('styles')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
@@ -81,14 +81,11 @@ integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJv
     <span>Version Alpha.</span>
 </div> --}}
 <section>
-    <div class="timer">
-        <span id="timer">1:30</span>
-    </div>
-    <div class="equation-container"></div>
-    <div class="reset">
-        <button>Reset</button>
-    </div>
-    <div class="users"></div>
+    <button type="button" id="find-match">find match</button>
+    <button type="button" id="cancel" style="display: none">cancel</button>
+
+    <div id="lobby-user"></div>
+
 </section>
 @endsection
 
@@ -98,156 +95,68 @@ integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyO
 </script>
 <script type="module">
     (() => {
-        const socket = io('http://127.0.0.1:3000')
+        const socket = io('http://127.0.0.1:3000');
 
-        let successFX = 'animated bounce',
-        failedFX = 'animated headShake',
-        fxEnds = 'animationend AnimationEnd mozAnimationEnd webkitAnimationEnd',
-        countdown = 60, answers = [];
+        const user = {
+            id: getParam().id ?? 1,
+            socketID: socket.id,
+            name: getParam().name ?? 'Patrick Demillo Buco',
+            mmr: getParam().mmr ?? 500
+        };
 
-        const name = getParam().name, room = getParam().room;
+        socket.on("connection", (data) => { 
+            console.log(data);
+            user.socketID = socket.id;
+         });
 
-        if(!name || !room){
-            alert('Check your name/room')
-            return;
-        }
+         socket.on("match-found", (data) => { 
+            console.log(data);
+          });
 
-        socket.emit('howdy', 'stranger');
+        // const room = getParam().room;
 
-        socket.on('hello', (data) => {
-            console.log(data)
+        // if(!room){
+        //     alert('Check your room')
+        //     return;
+        // }
+
+        $('button#find-match').click(function (e) { 
+            e.preventDefault();
+            $(this).css('display', 'none');
+            $('button#cancel').css('display', 'block');
+            socket.emit("find-match", user);
         });
 
-        socket.emit('join-room', name, room)
+        $('button#cancel').click(function (e) { 
+            e.preventDefault();
+            $('button#find-match').css('display', 'block');
+            $(this).css('display', 'none');
+            socket.emit("cancel-find-match", user);
+        });
 
-        socket.on('room-joined', (users) => {
-            createUserDOM(users)
-            console.log(users)
-         })
-
-         //get countdown
-         socket.on('countdown', (cd) => {
-            countdown = cd
-            createTimerDisplay()
-            console.log(cd)
-          })
-
-        //get equation
-        socket.on('equation', (eq) => { 
-            generateEquation(eq)
-         })
-
-        //check if your answer is correct or wrong
-        socket.on('distribute-answer', (answer) => { 
-            if(!answer.correct){
-                alert('wrong')
-            }
-         })
 
         //kapag may nadidisconnect na user
         socket.on('user-disconnected', (users) => {
             createUserDOM(users)
-         })
-
-        $(document).on('click', 'div.equation', function () {
-            if($(this).hasClass('active')){
-                return
-            }
-            $(this).addClass('active');
-            console.log($(this).data('answer'))
-            answers.push($(this).data('answer'))
-            // equation.setAnswer($(this).data('answer'))
-
-            if(answers.length == 4){
-                socket.emit('equation-answer', answers)
-                $('div.equation').removeClass('active');
-                answers = []
-            }
-        });
+        })
 
         $('.reset button').click(function (e) {
             e.preventDefault();
             $('div.equation').removeClass('active');
             answers = []
         });
-
-        function createUserDOM(users){
-            let htmlDOM = '';
-            htmlDOM += '<ul>'
-
-            for (const key in users) {
-                console.log(`${key}: ${users[key]}`);
-                htmlDOM +=  `<li>${users[key]}</li>`
-            }
-            htmlDOM += '</ul>'
-
-            $('div.users').html(htmlDOM);
-         }
-
-         function createTimerDisplay() {
-            if (countdown <= 0) {
-                alert('GAME OVER')
-                return;
-            }
-
-            if (countdown < 10) {
-                if (countdown == 0) {
-                    $('div span#timer').text(`6${countdown}`);
-                    return;
-                }
-                $('div span#timer').text(`0${countdown}`);
-                return;
-            }
-
-            $('div span#timer').text(`${countdown}`);
-        }
-
-        function generateEquation(eq) {
-            let equations = eq,
-                htmlDOM = '';
-
-            equations.forEach(equation => {
-                let operation = '';
-
-                switch (equation.operation) {
-                    case 'addition':
-                        operation = '+';
-                        break;
-                    case 'subtraction':
-                        operation = '-';
-                        break;
-                    case 'multiplication':
-                        operation = 'x';
-                        break;
-                    case 'division':
-                        operation = '/';
-                        break;
-            }
-
-            htmlDOM += `<div class="equation" data-answer=${equation.answer} >${equation.a}${operation}${equation.b}=???</div>`;
-            });
-            $('div.equation-container').html(htmlDOM);
-        }
-
-        function isAnswerSorted() {
-            let second_index;
-            for (let first_index = 0; first_index < answers.length; first_index++) {
-                second_index = first_index + 1;
-                if (answers[second_index] - answers[first_index] < 0) return false;
-            }
-            return true;
-        }
         
         function getParam(){
             let query = window.location.search,
             parameters = new URLSearchParams(query),
             room = parameters.get('room'),
-            name = parameters.get('name')
+            name = parameters.get('name'),
+            id = parameters.get('id'),
+            mmr = parameters.get('mmr')
 
-            return { name, room }
+            return { name, room, id, mmr }
         }
 
     })();
 </script>
-{{-- <script src="{{ asset('js/pvp/pvp.js') }}" type="module"></script> --}}
 @endsection

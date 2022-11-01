@@ -12,7 +12,6 @@ class AuthController extends Controller
     public function login(Request $request)
     {
       try {
-
         $request->validate([
           'email' => 'email|required',
           'password' => 'required'
@@ -50,7 +49,7 @@ class AuthController extends Controller
       }
     }
 
-    public function get(Request $request){
+    public function getUser(Request $request){
         return $request->user();
     }
 }
