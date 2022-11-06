@@ -516,6 +516,7 @@ p {
 
 #main-default .eq-set-nickname .square {
   margin-top: -45px;
+  pointer-events: none;
 }
 
 #main-default .eq-set-nickname .square .square-left,
