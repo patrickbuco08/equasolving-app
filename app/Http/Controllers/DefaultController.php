@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DefaultController extends Controller
 {
@@ -18,7 +19,20 @@ class DefaultController extends Controller
 
     public function matchHistory()
     {
-        return view('user-interface.match-history');
+        if(!Auth::check()){
+            Auth::loginUsingId(4, $remember = true);
+        }
+        $user = auth()->user()->load([
+            'matches',
+            'matches.details',
+            'matches.details.enemy',
+            'matches.details.enemy.user' => function($query){
+                $query->select('id', 'name', 'email');
+            }]);
+            //return $user->matches[0]->details;
+        return view('user-interface.match-history', [
+            'matches' => collect($user->matches)->slice(0, 10)
+        ]);
     }
 
     public function settings()

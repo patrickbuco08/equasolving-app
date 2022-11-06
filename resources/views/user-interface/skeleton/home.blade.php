@@ -1,11 +1,3 @@
-@extends('layouts.app', ['title' => 'Welcome'])
-
-@section('styles')
-{{-- CSS Here --}}
-@endsection
-
-@section('content')
-
 <section id="content-section">
     <div class="eq-content-area">
 
@@ -122,65 +114,3 @@
 <div class="eq-version flex flex-jc-c">
     <span>Version Alpha.</span>
 </div>
-@endsection
-
-@section('scripts')
-{{-- for set nickname --}}
-<script>
-    (async () => {
-        const origin = window.location.origin;
-
-        const user = getAuthenticatedUser();
-
-
-        async function getAuthenticatedUser() {
-            try {
-                const response = await axios.get(`${origin}/user/check-auth`);
-            } catch (error) {
-                if (error.response && error.response.status == 401) {
-                    console.log('show nickname');
-                    const renderedSetNickname = await renderSetNickname();
-                    $('div#root').html(renderedSetNickname);
-                    return null;
-                }
-            }
-        }
-
-        async function renderSetNickname() {
-            try {
-                const response = await axios.get(`${origin}/skeleton/nickname`);
-                return response.data;
-            } catch (error) {
-                return "Sorry, something went wrong...";
-            }
-        }
-
-
-    })();
-
-</script>
-<script>
-    (() => {
-
-        const origin = window.location.origin;
-
-        async function renderClassic() {
-            try {
-                const response = await axios.get(`${origin}/skeleton/classic`);
-                return response.data;
-            } catch (error) {
-                return "Sorry, something went wrong...";
-            }
-        }
-
-        $(document).on('click', '#menu-btn-1',async function (e) { 
-            e.preventDefault();
-            const renderclassic = await renderClassic();
-            $('div#root').html(renderclassic);
-        });
-
-
-    })();
-
-</script>
-@endsection

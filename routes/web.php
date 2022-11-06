@@ -47,11 +47,9 @@ Route::prefix('user')->group(function () {
 Route::prefix('skeleton')->group(function () {
     Route::name('skeleton.')->group(function(){
         Route::get('/nickname', [SkeletonController::class, 'nickname'])->name('get-nickname');
+        Route::get('/classic', [SkeletonController::class, 'classic'])->name('get-classic');
+        Route::get('/home', [SkeletonController::class, 'home'])->name('get-home');
     });
-});
-
-Route::prefix('skeleton')->group(function(){
-    Route::get('/classic', [ClassicController::class, 'index']);
 });
 
 Route::controller(DefaultController::class)->group(function () {

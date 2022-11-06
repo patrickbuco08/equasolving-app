@@ -1,5 +1,7 @@
 export const equation = {
     answers: [],
+    level: 0,
+    countArr: 0,
     operations: ['addition', 'subtraction', 'multiplication', 'division'],
     setAnswer: function (answer) {
         this.answers.push(answer)
@@ -43,8 +45,14 @@ export const equation = {
         return numbers;
     },
     randomOperation: function () {
-        const rand = Math.random() * this.operations.length | 0;
-        return this.operations[rand];
+        if(this.level + 1 <= 10){
+            const rand = Math.random() * (this.operations.length - 2) | 0;
+            return this.operations[rand];
+        }
+        else {
+            const rand = Math.random() * this.operations.length | 0;
+            return this.operations[rand];
+        }
     },
     randomNumber: function (min, max) {
         min = Math.ceil(min);
@@ -59,14 +67,27 @@ export const equation = {
 
         switch (operation) {
             case 'addition':
-                a = this.randomNumber(9, 90);
-                b = this.randomNumber(9, 90);
+                if(this.level + 1 <= 5){
+                    a = this.randomNumber(1, 9);
+                    b = this.randomNumber(1, 9);
+                }
+                else {
+                    a = this.randomNumber(9, 90);
+                    b = this.randomNumber(9, 90);
+                }
+                
                 answer = a + b;
                 break;
 
             case 'subtraction':
-                a = this.randomNumber(10, 99);
-                b = this.randomNumber(a > 10 ? 10 : 0, a);
+                if(this.level + 1 <= 5){
+                    a = this.randomNumber(1, 9);
+                    b = this.randomNumber(a > 1 ? 1 : 0, a);
+                }
+                else {
+                    a = this.randomNumber(10, 99);
+                    b = this.randomNumber(a > 10 ? 10 : 0, a);
+                }
                 answer = a - b;
                 break;
 
@@ -107,6 +128,7 @@ export const equation = {
     generateDOM: function () {
         let equations = [],
             numberOfEquation = 4,
+            htmlDOMLvl = '',
             htmlDOM = '';
 
         while (numberOfEquation) {
@@ -116,10 +138,10 @@ export const equation = {
             numberOfEquation--;
 
         }
-
+        let countOfData = 1;
         equations.forEach(equation => {
             let operation = '';
-
+            
             switch (equation.operation) {
                 case 'addition':
                     operation = '+';
@@ -134,29 +156,74 @@ export const equation = {
                     operation = '/';
                     break;
             }
-            htmlDOM += `<div class="equation" data-answer=${equation.answer} >${equation.a}${operation}${equation.b}=???</div>`;
+            htmlDOM += `<div class="row" id="row-${countOfData}"><span class="data" id="data-${countOfData}" data-answer=${equation.answer} >${equation.a}${operation}${equation.b}=?</span></div>`;
+            countOfData++;
         });
         this.answers = []
-        $('div.equation-container').html(htmlDOM);
+        $('div.game-grid').html(htmlDOM);
+        this.level++;
+        htmlDOMLvl = 'Level: '+ this.level;
+        $('div.level span#level').html(htmlDOMLvl);
     }
 
 }
 
 export const timer = {
     minutes: 0,
-    seconds: 60,
+    seconds: 22,
     timerLoop: null,
     init: function () {
         const countDownTimer = this.countDownTimer.bind(this);
-
         this.timerLoop = setInterval(countDownTimer, 1000);
-        this.countDownTimer()
+        this.countDownTimer();
+
+        
+
     },
     run: function () {
         clearInterval(this.timerLoop);
         const countDownTimer = this.countDownTimer.bind(this);
         this.timerLoop = setInterval(countDownTimer, 1000);
-        timer.createDisplay();
+        this.createDisplay();
+    },
+    pause: function () {
+        clearInterval(this.timerLoop);
+        clearInterval(gameTimer.timerLoop);
+        console.log("game pause");
+    },
+    continue: function () {
+        this.init();
+        gameTimer.init();
+    },
+    quit: function () {
+        this.minutes = 0;
+        this.seconds = 0;
+        this.createDisplay();
+    },
+    playagain: function (){
+        this.minutes = 0;
+        this.seconds = 22;
+        gameTimer.minutes = 0;
+        gameTimer.seconds = 0;
+        $('div#main-default-summary').removeClass("fadein-animation");
+        $('div#main-default-summary').hide();
+        $('.eq-content-area').show();
+        this.continue();
+        
+    },
+    loading: function(){
+        if($("#content-section").hasClass("start")){
+            setTimeout(() => { 
+                $('#main-default-loading').hide();
+                $('body#main-default').removeClass('flex-jc-c-imp');
+                $('div#main-default-summary').hide();
+                $('.eq-content-area').show();
+                $('#content-section').removeClass('start');
+                timer.continue();
+              }, 3000);
+            }
+        
+        
     },
     countDownTimer: function () {
         let newSeconds = this.minutes * 60 + this.seconds;
@@ -169,42 +236,51 @@ export const timer = {
         console.log(`CountDownTimer | minute: ${this.minutes} | seconds: ${this.seconds}`)
     },
     createDisplay: function () {
+        if(!$('body#main-default').hasClass('flex-jc-c-imp')){
+            setTimeout(() => { 
+                this.loading();
+                  }, 3000)
+        }
         if (this.isGameOver()) {
             this.setGameOver();
             return;
         }
 
         if (this.seconds < 10) {
-            if (this.seconds == 0) {
-                $('div span#timer').text(`${this.minutes-1}: 6${this.seconds}`);
+            if (this.seconds == 0 && this.minutes > 0) {
+                $('div .timer-container input#timer').val(`${this.minutes}: 0${this.seconds}`);
+                setTimeout(() => {
+                    $('div .timer-container input#timer').val(`${this.minutes}: ${this.seconds}`);
+                }, 1000);
                 return;
             }
-            $('div span#timer').text(`${this.minutes}: 0${this.seconds}`);
+            $('div .timer-container input#timer').val(`${this.minutes}: 0${this.seconds}`);
             return;
         }
 
-        $('div span#timer').text(`${this.minutes}: ${this.seconds}`);
+        $('div .timer-container input#timer').val(`${this.minutes}: ${this.seconds}`);
     },
     isGameOver: function () {
         return this.minutes <= 0 && this.seconds <= 0;
     },
     setGameOver: function () {
-        $('div.equation-container').remove();
-        $('div.reset').remove();
-        $('div.timer').addClass('full-screen animated zoomIn').one('animationend AnimationEnd mozAnimationEnd webkitAnimationEnd', function () {
-            $('div.timer').removeClass('animated zoomIn');
-            $('div.timer').addClass('animated hinge');
-        });
+        $('.eq-content-area').hide();
+        $('div#main-default-summary').addClass("fadein-animation");
+        $('div#main-default-summary').show();
+        $('body#main-default').addClass("flex-jc-c-imp");
+
         // setTimeout(() => { 
 
         //  }, 3000)
-        $('div span#timer').text(`Game Over`);
+        gameTimer.trophyCount();
+        $('span#summary-trophy').text(`Trophy: ` + gameTimer.trophy);
+        $('span#summary-level').text(`Level: ` + equation.level);
         clearInterval(this.timerLoop);
-        console.log('END From set game cover')
+        clearInterval(gameTimer.timerLoop);
     },
     addTime: function (additionalTime = 3) {
         if ((additionalTime + this.seconds) > 60) {
-            console.log('fthis seconds', this.seconds)
+            console.log('this seconds', this.seconds)
             this.minutes += Math.floor((additionalTime + this.seconds) / 60)
             this.seconds = additionalTime % 60
         } else {
@@ -230,6 +306,56 @@ export const timer = {
         }
         timer.run();
     }
+
+};
+
+export const gameTimer = {
+    minutes: 0,
+    seconds: 0,
+    trophy: 0,
+    addtrophycounter: 1,
+    timerLoop: null,
+    init: function () {
+        const countUpTimer = this.countUpTimer.bind(this);
+
+        this.timerLoop = setInterval(countUpTimer, 1000);
+        this.countUpTimer();
+    },
+    run: function () {
+        clearInterval(this.timerLoop);
+        const countUpTimer = this.countUpTimer.bind(this);
+        this.timerLoop = setInterval(countUpTimer, 1000);
+        timer.createDisplay();
+    },
+    countUpTimer: function () {
+        let newSeconds = this.minutes * 60 + this.seconds;
+        newSeconds++;
+
+        this.seconds = newSeconds % 60;
+        this.minutes = Math.floor(newSeconds / 60);
+
+        this.createDisplay();
+        console.log(`CountUpTimer | minute: ${this.minutes} | seconds: ${this.seconds}`)
+    },
+    trophyCount: function () {
+        let numberofSeconds = this.minutes * 60 + this.seconds;
+        this.trophy = Math.floor(numberofSeconds / 30);
+        
+        if(this.addtrophycounter == this.trophy){
+            $('span#add-trophy').addClass(`add-trophy-absolute move-up-animation`);
+            setTimeout(() => {
+                $('span#add-trophy').removeClass(`add-trophy-absolute move-up-animation`);
+            }, 1500);
+            this.addtrophycounter++;
+        }
+    },
+    createDisplay: function () {
+        this.trophyCount();
+        $('div .timer-container input#trophy').val(`${this.trophy}`);
+        
+        return;
+        
+    },
 
 };
 
