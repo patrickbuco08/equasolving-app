@@ -23,17 +23,32 @@
                     <img src="{{ asset('images/Logo.png') }}" alt="EquaSolve-Logo">
                 </div>
             </div>
+            {{-- {{auth()->user()->classicModeDetails}} --}}
             <div class="right-side flex flex-vert flex-ai-fe flex-jc-sb">
+                @auth
                 <div class="input-container">
                     <span class="mmr">MMR:</span>
-                    <input readonly type="text" class="eq-mmr" id="mmr" placeholder="210">
-                    <span class="mmr-2">MMR: </span>
+                    <input readonly type="text" class="eq-mmr" id="mmr" placeholder="{{auth()->user()->pvpModeDetails->mmr}}">
+                    <span class="mmr-2">MMR:</span>
                 </div>
                 <div class="input-container">
                     <span class="trophy">Trophy:</span>
-                    <input readonly type="text" class="eq-trophy" id="trophy" placeholder="1200">
+                    <input readonly type="text" class="eq-trophy" id="trophy" placeholder="{{auth()->user()->classicModeDetails->trophies}}">
                     <div class="img-container"></div>
                 </div>
+                @endauth
+                @guest
+                <div class="input-container">
+                    <span class="mmr">MMR:</span>
+                    <input readonly type="text" class="eq-mmr" id="mmr" placeholder="0">
+                    <span class="mmr-2">MMR:</span>
+                </div>
+                <div class="input-container">
+                    <span class="trophy">Trophy:</span>
+                    <input readonly type="text" class="eq-trophy" id="trophy" placeholder="0">
+                    <div class="img-container"></div>
+                </div>
+                @endguest
             </div>
         </div>
 
@@ -41,7 +56,12 @@
             <div class="eq-title-container">
                 <div class="eq-title-area flex flex-vert flex-jc-sb flex-ai-c">
                     <h1 class="welcome-text">
-                        Hello User #140!
+                        @auth
+                        Hello {{ auth()->user()->name }}
+                        @endauth
+                        @guest
+                            Hello Anonymous
+                        @endguest
                     </h1>
                 </div>
                 <div class="square flex flex-hori flex-jc-sb">
@@ -86,6 +106,12 @@
                         <p>Exchange trophies for skins and effects.</p>
                     </div>
                 </div>
+                @auth
+                <form action={{ route('logout') }} method="POST">
+                    @csrf
+                    <button type="submit" class="dropdown-item">Logout</button>
+                </form>
+                @endauth
             </div>
         </div>
 
@@ -99,6 +125,40 @@
 @endsection
 
 @section('scripts')
+{{-- for set nickname --}}
+<script>
+    (async () => {
+        const origin = window.location.origin;
+
+        const user = getAuthenticatedUser();
+
+
+        async function getAuthenticatedUser() {
+            try {
+                const response = await axios.get(`${origin}/user/check-auth`);
+            } catch (error) {
+                if (error.response && error.response.status == 401) {
+                    console.log('show nickname');
+                    const renderedSetNickname = await renderSetNickname();
+                    $('div#root').html(renderedSetNickname);
+                    return null;
+                }
+            }
+        }
+
+        async function renderSetNickname() {
+            try {
+                const response = await axios.get(`${origin}/skeleton/nickname`);
+                return response.data;
+            } catch (error) {
+                return "Sorry, something went wrong...";
+            }
+        }
+
+
+    })();
+
+</script>
 <script>
     (() => {
 
