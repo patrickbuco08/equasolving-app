@@ -452,6 +452,7 @@
 
         .square {
             margin-top: -45px;
+            pointer-events: none;
 
             .square-left,
             .square-right {

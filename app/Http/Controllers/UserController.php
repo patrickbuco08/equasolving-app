@@ -5,9 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Match;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    public function checkIfAuthenticated()
+    {
+      $status_code = 401;
+      $user = null;
+
+      if(Auth::check()){
+        $status_code = 200;
+        $user = auth()->user();
+      }
+
+      return response()->json($user, $status_code);
+      
+    }
+
     public function getUser(User $user){
         $sql = "SELECT * FROM users where ?";
 
