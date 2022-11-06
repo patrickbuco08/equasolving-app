@@ -278,7 +278,6 @@
         });
         $('#play-again').click(function (e) {
             e.preventDefault();
-            $('body').css('background', 'black');
             $('div#root').animate({opacity: 0}, 1000);
             setTimeout(() => {
                 const origin = window.location.origin;

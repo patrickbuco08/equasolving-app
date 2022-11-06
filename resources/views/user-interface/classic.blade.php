@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<section id="content-section" class="start">
+<section id="content-section" class="start d-none">
     <div class="eq-content-area">
             <div class="eq-header flex flex-jc-sb">
                 <div class="left-side flex flex-vert flex-ai-fs flex-jc-sb">
@@ -119,7 +119,7 @@
             </div>
     </div>       
 </div>
-<div id="main-default-loading">
+<div id="main-default-loading" class="d-none">
     <div class="ms-content-area">
             <div class="eq-header flex flex-jc-c">
                 <div class="game-logo flex flex-jc-c">
@@ -144,7 +144,7 @@
             </div>
     </div>       
 </div>
-<div class="eq-version flex flex-jc-c">
+<div id="footer" class="eq-version flex flex-jc-c d-none">
         <span>Version Alpha.</span>
 </div>
 <div id="exit-modal" class="modal">
@@ -186,13 +186,20 @@
 <script type="module">
     import {equation, timer, gameTimer} from '/js/classic/utils.js'
     (() => {
-        $('div#root').animate({opacity: 1}, 1000);
         let successFX = 'animated bounce', failedFX = 'animated headShake', fxEnds = 'animationend AnimationEnd mozAnimationEnd webkitAnimationEnd';
+        setTimeout(() => {
+            $('section#content-section').removeClass('d-none');
+            $('div#main-default-loading').removeClass('d-none');
+            $('div#footer').removeClass('d-none');
+            }, 500);
 
-        $('#main-default-loading').show();
-        $('body#main-default').addClass('flex-jc-c-imp');
+        $('body').addClass("fade-in");
+        
         $('div#main-default-summary').hide();
         $('.eq-content-area').hide();
+        $('#main-default-loading').show();
+        $('body#main-default').addClass('flex-jc-c-imp');
+        
         
 
         //initialize timer
@@ -287,8 +294,7 @@
         });
         $('#play-again').click(function (e) {
             e.preventDefault();
-            $('body').css('background', 'black');
-            $('div#root').animate({opacity: 0}, 1000);
+            $('div#root').animate({opacity: 0}, 500);
             setTimeout(() => {
                 const origin = window.location.origin;
                 window.location.href = `${origin}/classic`;

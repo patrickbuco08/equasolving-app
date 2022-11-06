@@ -444,3 +444,20 @@ div#main-default-summary{
     from {top: 0px;}
     to {top: -20px;}
 }
+
+.fade-in {
+  animation: fadeIn ease 1s;
+}
+
+@keyframes fadeIn{
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+.d-none{
+  display: none !important;
+}
