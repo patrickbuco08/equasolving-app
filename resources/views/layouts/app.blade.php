@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf_token" content="{{ csrf_token() }}">
     <meta name="google-signin-client_id" content="{{env('GOOGLE_APP_ID')}}">
     <title>{{ $title ?? 'EquaSolve' }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,8 +21,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js" integrity="sha512-bHeT+z+n8rh9CKrSrbyfbINxu7gsBmSHlDCb3gUF1BjmjDzKhoKspyB71k0CIRBSjE5IVQiMMVBgCWjF60qsvA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @yield('styles')
 </head>
-<body id="main-default">
-    
+@auth
+<body
+    id="main-default"
+    data-user-id={{auth()->user()->id}}
+    >
+@endauth
+
+@guest
+<body id="main-default" >
+@endguest
+
     <div id="root">
         @yield('content')
     </div>
