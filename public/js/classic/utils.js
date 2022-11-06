@@ -169,8 +169,8 @@ export const equation = {
 }
 
 export const timer = {
-    minutes: 2,
-    seconds: 5,
+    minutes: 0,
+    seconds: 22,
     timerLoop: null,
     init: function () {
         const countDownTimer = this.countDownTimer.bind(this);
@@ -202,7 +202,7 @@ export const timer = {
     },
     playagain: function (){
         this.minutes = 0;
-        this.seconds = 21;
+        this.seconds = 22;
         gameTimer.minutes = 0;
         gameTimer.seconds = 0;
         $('div#main-default-summary').removeClass("fadein-animation");

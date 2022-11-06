@@ -186,7 +186,7 @@
 <script type="module">
     import {equation, timer, gameTimer} from '/js/classic/utils.js'
     (() => {
-
+        $('div#root').animate({opacity: 1}, 1000);
         let successFX = 'animated bounce', failedFX = 'animated headShake', fxEnds = 'animationend AnimationEnd mozAnimationEnd webkitAnimationEnd';
 
         $('#main-default-loading').show();
@@ -274,23 +274,25 @@
             timer.quit();
         }); 
         const renderMainMenu = async () => {
-            const response = await axios.get('');
+            const origin = window.location.origin;
+            const response = await axios.get(`${origin}/skeleton/home`);
             $('div#root').html(response.data);
         }
 
         $('#main-menu').click(function (e) {
             e.preventDefault();
-            renderMainMenu();
+            //renderMainMenu();
+            const origin = window.location.origin;
+            window.location.href = `${origin}`;
         });
         $('#play-again').click(function (e) {
             e.preventDefault();
-            timer.playagain();
-            $('#content-section').addClass('start');
-            $('#main-default-loading').show();
-            $('body#main-default').addClass('flex-jc-c-imp');
-            $('div#main-default-summary').hide();
-            $('.eq-content-area').hide();
-            timer.pause();
+            $('body').css('background', 'black');
+            $('div#root').animate({opacity: 0}, 1000);
+            setTimeout(() => {
+                const origin = window.location.origin;
+                window.location.href = `${origin}/classic`;
+            }, 1000);
         });
 
     })();
