@@ -103,11 +103,11 @@
     (() => {
 
         const renderClassic = async () => {
-            const response = await axios.get('/skeleton/classic');
+            const response = await axios.get('/classic');
             $('div#root').html(response.data);
         }
 
-        $('button#classic').click(function (e) {
+        $('#menu-btn-1').click(function (e) {
             e.preventDefault();
             renderClassic();
         });
