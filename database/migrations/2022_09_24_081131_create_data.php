@@ -66,7 +66,9 @@ class CreateData extends Migration
             return $value == $id;
         });
 
-        $match = Match::create();
+        $match = Match::create([
+            'unique_id' => uniqid()
+        ]);
         $match->participants()->createMany([
             [
                 'user_id' => $id,
@@ -91,7 +93,8 @@ class CreateData extends Migration
                     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
                     'is_welcome_tutorial_finished' => false,
                     'is_pvp_tutorial_finished' => false,
-                    'in_game' => false
+                    'in_game' => false,
+                    'room_id' => 0
                 ],
                 'background' => [
                     [
@@ -111,7 +114,8 @@ class CreateData extends Migration
                     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
                     'is_welcome_tutorial_finished' => false,
                     'is_pvp_tutorial_finished' => false,
-                    'in_game' => false
+                    'in_game' => false,
+                    'room_id' => 0
                 ],
                 'background' => [
                     [
@@ -131,7 +135,8 @@ class CreateData extends Migration
                     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
                     'is_welcome_tutorial_finished' => false,
                     'is_pvp_tutorial_finished' => false,
-                    'in_game' => false
+                    'in_game' => false,
+                    'room_id' => 0
                 ],
                 'background' => [
                     [
@@ -151,7 +156,8 @@ class CreateData extends Migration
                     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
                     'is_welcome_tutorial_finished' => false,
                     'is_pvp_tutorial_finished' => false,
-                    'in_game' => false
+                    'in_game' => false,
+                    'room_id' => 0
                 ],
                 'background' => [
                     [

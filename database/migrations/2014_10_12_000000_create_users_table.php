@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_welcome_tutorial_finished');
             $table->boolean('is_pvp_tutorial_finished');
             $table->boolean('in_game');
+            $table->integer('room_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

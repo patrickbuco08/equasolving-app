@@ -12,6 +12,8 @@ class Match extends Model
 
     protected $table = 'matches';
 
+    protected $fillable = ['unique_id'];
+
     public function participants()
     {
         return $this->hasMany(MatchParticipant::class);

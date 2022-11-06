@@ -8,7 +8,8 @@ const io = require('socket.io')(3000, {
 
 const equation = eq.generateDOM()
 
-let users = {}, intervals = {}
+let users = {},
+    intervals = {}
 let rooms = {
     javascript: {
         countdown: 500,
@@ -17,71 +18,72 @@ let rooms = {
     }
 }
 
-intervals['javascript'] = setInterval(() => {
-
-    io.to('javascript').emit('countdown', rooms['javascript'].countdown) // room user
-    // io.emit('receive-message', filteredRoom) //for all user
-    // socket.emit('receive-message', filteredRoom) //sakin lang
-    // socket.broadcast.emit('receive-message', filteredRoom) // send except you
-    
-    --rooms['javascript'].countdown;
-    console.log(rooms['javascript'].countdown)
-    if(rooms['javascript'].countdown == 0){
-        clearInterval(intervals['javascript'])
-        console.log('GAME OVER')
+let matches = {
+    '12345': {
+        countdown: 3,
+        time: 120,
+        contestants: {
+            '1': {
+                id: 1,
+                name: 'user1',
+                points: 0
+            },
+            '2': {
+                id: 2,
+                name: 'user2',
+                points: 0
+            }
+        },
+        equation: equation,
+        equationInterval: '',
     }
+};
 
-}, 1000);
+const room = '12345';
 
-io.on("connection", (socket) => { 
-    // send a message to the client
-    socket.emit("hello", "world");
+// intervals[room] = setInterval(() => {
 
-    // receive a message from the client
-    socket.on("howdy", (arg) => { 
-        console.log(arg) //prints "stranger"
-     })
+//     io.to(room).emit('countdown', rooms[room].countdown) // room user
+//     // io.emit('receive-message', filteredRoom) //for all user
+//     // socket.emit('receive-message', filteredRoom) //sakin lang
+//     // socket.broadcast.emit('receive-message', filteredRoom) // send except you
 
-     socket.on('join-room', (name, room_name) => {
+//     --rooms[room].countdown;
+//     console.log(rooms[room].countdown)
+//     if(rooms[room].countdown == 0){
+//         clearInterval(intervals[room])
+//         console.log('GAME OVER')
+//     }
 
-        if(!rooms[room_name]){
-            rooms[room_name] = {
-                countdown: 60,
-                equation: null,
-                users: {}
-            }
-        }
+// }, 1000);
 
-        rooms[room_name] = {
-            ...rooms[room_name],
-            users:{
-                ...rooms[room_name].users, [socket.id]: name
-            }
-        }
-        socket.join(room_name);
-        socket.emit('room-joined', rooms[room_name].users)
-        socket.emit('equation', rooms[room_name].equation)
-        socket.to(room_name).emit('room-joined', rooms[room_name].users)
-     })
+io.on("connection", (socket) => {
 
-     socket.on('equation-answer', (answer) => {
+    socket.on('join-room', (room_id) => {
+        socket.join(room_id);
+        socket.emit('room-joined', matches[room_id]); //send sayo
+        // socket.to(room_id).emit('room-joined', 'fuck!') //send to all except you (broadcast)
+    })
+
+    socket.on('equation-answer', (user, answer) => {
         const isCorrect = isSorted(answer);
 
-        if(isCorrect){
-            rooms['javascript'].equation = eq.generateDOM()
-            io.to('javascript').emit('equation', rooms['javascript'].equation)
+        if (isCorrect) {
+            matches[user.room].equation = eq.generateDOM();
+            matches[user.room].contestants[user.id].points++;
+            io.to(user.room).emit('update-score', matches[user.room]);
+            io.to(user.room).emit('new-equation', matches[user.room].equation);
         }
 
-        socket.emit('distribute-answer', {
+        socket.emit('wrong-answer', {
             correct: isCorrect
         })
-      })
+    });
 
     socket.on('disconnect', () => {
-        delete rooms['javascript'].users[socket.id]
-        
-        socket.broadcast.emit('user-disconnected', rooms['javascript'].users)
-        console.log(`user disconnected ${socket.id}`)
+        // delete rooms['javascript'].users[socket.id];
+        // socket.broadcast.emit('user-disconnected', rooms['javascript'].users);
+        console.log(`user disconnected ${socket.id}`);
     })
 
     function isSorted(answers) {
@@ -92,5 +94,4 @@ io.on("connection", (socket) => {
         }
         return true;
     }
-
- });
+});

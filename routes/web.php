@@ -24,6 +24,10 @@ Route::get('/', function ($id = 1) {
 
 // social login -> socialite
 //much better if javascript login
+Route::get('login', function(){
+    return view('google-login');
+});
+
 Route::get('google-login', [SocialController::class, 'loginWithGoogle'])->name('google.login');
 Route::any('google/callback', [SocialController::class, 'callbackFromGoogle'])->name('google.callback');
 
