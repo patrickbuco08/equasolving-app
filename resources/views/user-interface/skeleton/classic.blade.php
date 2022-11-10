@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="level"><span id="level"></span></div>
-                <div class="game-grid grid" id="game-grid">
+                <div class="game-grid" id="game-grid">
                     
                     <div class="row" id="row-1"> 
                         <span class = "data" id="data-1"> </span>
@@ -189,6 +189,7 @@
         gameTimer.init();
         equation.generateDOM();
         let i = 0;
+        const sequence = ['first','second','third', 'fourth'];
         if($("#content-section").hasClass("start")){
             timer.pause();
             timer.loading();
@@ -199,6 +200,7 @@
                 i--;
                 $('span.data.'+''+i).removeClass('active');
                 $('span.data').removeClass(''+i+'');
+                $('span.data').removeClass('first second third fourth');
                 equation.answers.splice(i);
                 return
             }
@@ -207,6 +209,7 @@
             }
             $(this).addClass('active');
             $(this).addClass(''+i+'');
+            $(this).addClass(''+sequence[i]+'');
             equation.setAnswer($(this).data('answer'))
             i++;
             if(equation.answers.length == 4){
@@ -225,6 +228,7 @@
                     $('input#timer').addClass(`text-danger ${failedFX} red`).one(fxEnds, function(){
                         $('input#timer').removeClass(`text-danger ${failedFX} red`);
                         $('span.data').removeClass('active');
+                        $('span.data').removeClass('first second third fourth');
                     });
                     $('span#minus-time').addClass(`minus-time-absolute move-up-animation`);
                         setTimeout(() => {
@@ -233,6 +237,7 @@
                     timer.deductTime(3);
                     equation.answers = []
                     $('span.data').removeClass('0 1 2 3');
+                    
                     i = 0;
                     
                 } 

@@ -156,7 +156,15 @@ export const equation = {
                     operation = '/';
                     break;
             }
+            if(countOfData == 2){
+                htmlDOM += `<div class="row-${countOfData}-${countOfData+1}">`;
+            }
             htmlDOM += `<div class="row" id="row-${countOfData}"><span class="data" id="data-${countOfData}" data-answer=${equation.answer} >${equation.a}${operation}${equation.b}=?</span></div>`;
+            
+            if(countOfData == 3){
+                htmlDOM += `</div>`;
+            }
+            
             countOfData++;
         });
         this.answers = []
@@ -169,7 +177,7 @@ export const equation = {
 }
 
 export const timer = {
-    minutes: 0,
+    minutes: 100,
     seconds: 22,
     timerLoop: null,
     init: function () {

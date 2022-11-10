@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="level"><span id="level"></span></div>
-                <div class="game-grid grid" id="game-grid">
+                <div class="game-grid" id="game-grid">
                     
                     <div class="row" id="row-1"> 
                         <span class = "data" id="data-1"> </span>

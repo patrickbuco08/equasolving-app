@@ -407,7 +407,7 @@ div#main-default-summary{
 }
 
 #main-default div#game-area .game-grid {
-  padding: 25px 5px 5px 5px !important;
+  padding: 30px 5px 5px 5px !important;
 }
 
 #main-default div#game-area .timer-container div.relative{
@@ -460,4 +460,94 @@ div#main-default-summary{
 
 .d-none{
   display: none !important;
+}
+
+#main-default div#game-area .game-grid div#row-1, #main-default div#game-area .game-grid div#row-4 {
+  justify-content: center;
+  margin:5px auto;
+}
+
+#main-default div#game-area .game-grid div#row-2{
+  justify-content: left !important;
+  margin:5px 10px;
+}
+#main-default div#game-area .game-grid div#row-3{
+  justify-content: right !important;
+  margin: 5px 10px;
+}
+
+#main-default div#game-area .game-grid .row-2-3{
+  justify-content: space-between !important;
+  display: flex !important;
+}
+
+#main-default div#game-area .game-grid .row span {
+  background: #fff;
+  padding: 5px ;
+  border-radius: 10px;
+}
+
+#main-default div#game-area .game-grid .row {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  margin: 5px 10px;
+  background: none !important;
+   width: fit-content; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+#main-default div#game-area .game-grid .row#row-3 {
+ 
+   width: initial; 
+
+}
+
+#main-default div#game-area .game-grid .first::before{
+  color: rgb(51, 51, 51) !important;
+  content:'1';
+  position: absolute;
+  z-index: 1;
+  background: none !important;
+  right: -10px;
+  top: -15px;
+  display: inline!important;
+  font-weight: 700;
+}
+
+#main-default div#game-area .game-grid .second::before{
+  color: rgb(51, 51, 51) !important;
+  content:'2';
+  position: absolute;
+  z-index: 1;
+  background: none !important;
+  right: -10px;
+  top: -15px;
+  display: inline!important;
+  font-weight: 700;
+}
+
+#main-default div#game-area .game-grid .third::before{
+  color: rgb(51, 51, 51) !important;
+  content:'3';
+  position: absolute;
+  z-index: 1;
+  background: none !important;
+  right: -10px;
+  top: -15px;
+  display: inline!important;
+  font-weight: 700;
+}
+
+#main-default div#game-area .game-grid .fourth::before{
+  color: rgb(51, 51, 51) !important;
+  content:'4';
+  position: absolute;
+  z-index: 1;
+  background: none !important;
+  right: -10px;
+  top: -15px;
+  display: inline!important;
+  font-weight: 700;
 }
