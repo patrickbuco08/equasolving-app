@@ -20,8 +20,8 @@ use App\Http\Controllers\Auth\SocialController;
 |
 */
 
-Route::get('/', function ($id = 1) {
-    return view('welcome');
+Route::get('/ip-address', function () {
+    echo url('/');
 });
 
 // social login -> socialite
@@ -31,15 +31,18 @@ Route::any('google/callback', [SocialController::class, 'callbackFromGoogle'])->
 
 // logout
 Route::post('logout', [LogoutController::class, 'store'])->name('logout');
+Route::post('ajax-logout', [LogoutController::class, 'ajaxLogout']);
 
 Route::get('/generate-data', [FakeDataController::class, 'index']);
 
 Route::prefix('user')->group(function () {
     Route::name('user.')->group(function(){
+        Route::get('/manual-login/{user}', [UserController::class, 'manualLogin'])->name('manual-login');
         Route::get('/check-auth', [UserController::class, 'checkIfAuthenticated'])->name('check');
         Route::get('/{user}', [UserController::class, 'getUser'])->name('get');
         Route::get('/match-history/{user}', [UserController::class, 'getMatchHistory'])->name('match-history');
         Route::get('/match-history-v2/{user}', [UserController::class, 'getMatchHistoryv2'])->name('match-history-2');
+        Route::post('create-using-nickname', [UserController::class, 'createUsingNickName'])->name('create-using-nickname');
     });
 });
 
@@ -49,6 +52,9 @@ Route::prefix('skeleton')->group(function () {
         Route::get('/nickname', [SkeletonController::class, 'nickname'])->name('get-nickname');
         Route::get('/classic', [SkeletonController::class, 'classic'])->name('get-classic');
         Route::get('/home', [SkeletonController::class, 'home'])->name('get-home');
+        Route::get('/match-history', [SkeletonController::class, 'matchHistory'])->name('get-matchHistory');
+        Route::get('find-match', [SkeletonController::class, 'findMatch'])->name('find-match');
+        Route::post('versus-screen', [SkeletonController::class, 'versusScreen'])->name('find-match');
     });
 });
 
@@ -59,9 +65,7 @@ Route::controller(DefaultController::class)->group(function () {
     Route::get('settings', 'settings');
     Route::get('classic', 'classic');
     Route::get('pvp', 'pvp');
-});
-
-Route::get('/find-match', function(){
-    return view('user-interface.skeleton.find-match');
+    Route::get('find-match', 'findMatch');
+    Route::get('versus-screen', 'versusScreen');
 });
 

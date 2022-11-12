@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Match;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,6 +10,9 @@ class DefaultController extends Controller
 {
     public function index()
     {
+        if(!Auth::check()){
+            return view('user-interface.set-nickname');
+        }
         return view('user-interface.welcome');
     }
 
@@ -22,6 +26,7 @@ class DefaultController extends Controller
         if(!Auth::check()){
             Auth::loginUsingId(4, $remember = true);
         }
+
         $user = auth()->user()->load([
             'matches',
             'matches.details',
@@ -29,9 +34,9 @@ class DefaultController extends Controller
             'matches.details.enemy.user' => function($query){
                 $query->select('id', 'name', 'email');
             }]);
-            //return $user->matches[0]->details;
+            // return $user->matches[0];
         return view('user-interface.match-history', [
-            'matches' => collect($user->matches)->slice(0, 10)
+            'matches' => collect($user->matches)->slice(0, 10)->sortBy('created_at')
         ]);
     }
 
@@ -48,6 +53,16 @@ class DefaultController extends Controller
     public function pvp()
     {
         return view('user-interface.pvp');
+    }
+
+    public function findMatch()
+    {
+        return view('user-interface.find-match');
+    }
+
+    public function versusScreen(Request $request)
+    {
+        return view('user-interface.versus-screen');
     }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SkeletonController extends Controller
 {
@@ -15,8 +16,44 @@ class SkeletonController extends Controller
     {
         return view('user-interface.skeleton.classic');
     }
+
+    public function findMatch()
+    {
+        return view('user-interface.skeleton.find-match');
+    }
+
     public function home()
     {
         return view('user-interface.skeleton.home');
+    }
+
+    public function matchHistory()
+    {
+        if(!Auth::check()){
+            Auth::loginUsingId(4, $remember = true);
+        }
+
+        $user = auth()->user()->load([
+            'matches',
+            'matches.details',
+            'matches.details.enemy',
+            'matches.details.enemy.user' => function($query){
+                $query->select('id', 'name', 'email');
+            }]);
+            
+        return view('user-interface.skeleton.match-history', [
+            'matches' => collect($user->matches)->slice(0, 10)->sortBy('created_at')
+        ]);
+    }
+
+    public function versusScreen(Request $request)
+    {
+        $contestant_one = $request->first_contestant;
+        $contestant_two = $request->second_contestant;
+
+        return view('user-interface.skeleton.versus-screen', [
+            'contestant_one' => $contestant_one,
+            'contestant_two' => $contestant_two
+        ]);
     }
 }

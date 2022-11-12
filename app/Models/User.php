@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_welcome_tutorial_finished', 'is_pvp_tutorial_finished', 'in_game', 'room_id'
+        'name', 'email', 'password', 'is_welcome_tutorial_finished', 'is_pvp_tutorial_finished', 'is_google_account', 'in_game', 'room_id'
     ];
 
     /**
@@ -57,7 +57,7 @@ class User extends Authenticatable
     public function matches()
     {
         // return $this->hasMany(Match::class, 'id', 'user_id');
-        return $this->hasMany(MatchParticipant::class);
+        return $this->hasMany(MatchParticipant::class)->orderBy('created_at', 'DESC');
     }
 
 }

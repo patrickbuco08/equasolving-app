@@ -14,29 +14,87 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/classic/style.css') }}">
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
-    integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
-    crossorigin="anonymous">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+        integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js" integrity="sha512-bHeT+z+n8rh9CKrSrbyfbINxu7gsBmSHlDCb3gUF1BjmjDzKhoKspyB71k0CIRBSjE5IVQiMMVBgCWjF60qsvA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.2/axios.min.js"
+        integrity="sha512-bHeT+z+n8rh9CKrSrbyfbINxu7gsBmSHlDCb3gUF1BjmjDzKhoKspyB71k0CIRBSjE5IVQiMMVBgCWjF60qsvA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
+        integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous">
+    </script> --}}
+    <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
+    <script src="{{ asset('js/axios.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/socket.io.min.js') }}"></script>
+
     @yield('styles')
 </head>
-@auth
-<body
-    id="main-default"
-    data-user-id={{auth()->user()->id}}
-    >
-@endauth
 
-@guest
-<body id="main-default" >
-@endguest
+<body id="main-default">
 
     <div id="root">
         @yield('content')
     </div>
 
+    <script src="{{ asset('js/asyncFunctions.js') }}"></script>
+    <script>
+        // navigator
+        (async () => {
+            $nickNameInput = 'input[name="set-nickname"]';
+            $addNickNameBtn = 'button[name="add-nickname"]';
+
+            $(document).on('keyup', $nickNameInput, function (e) {
+                e.preventDefault();
+                const nickname = $($nickNameInput).val();
+                const disabledButton = nickname ? true : false;
+                console.log(disabledButton);
+
+                $($addNickNameBtn).attr('disabled', !disabledButton);
+
+            });
+
+            $(document).on('click', $addNickNameBtn, async function (e) {
+                e.preventDefault();
+                await createUserUsingNickName();
+            });
+
+            $(document).on('click', '#menu-btn-1', async function (e) {
+                e.preventDefault();
+                const classic = await renderClassic();
+                $('div#root').html(classic);
+            });
+
+            //find match
+            $(document).on('click', '#menu-btn-2', async function (e) {
+                e.preventDefault();
+                const findMatch = await renderFindMatch();
+                $('div#root').html(findMatch);
+            });
+
+            $(document).on('click', '#profile', async function (e) {
+                e.preventDefault();
+                const matchHistory = await renderMatchHistory();
+                $('div#root').html(matchHistory);
+            });
+
+            $(document).on('click', '#render-home', async function (e) {
+                e.preventDefault();
+                console.log('hi from app.blade');
+                window.findMatchFunction = null;
+                const home = await renderHome();
+                $('div#root').html(home);
+                delete socket;
+            });
+
+            $(document).on('click', 'div#logout', async function (e) {
+                e.preventDefault();
+                await logoutUser();
+            });
+
+        })();
+
+    </script>
     @yield('scripts')
 </body>
 

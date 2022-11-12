@@ -21,6 +21,6 @@ class Match extends Model
 
     public function enemy()
     {
-        return $this->hasOne(MatchParticipant::class)->where('user_id', '!=', 3);
+        return $this->hasOne(MatchParticipant::class)->where('user_id', '!=', auth()->user()->id);
     }
 }

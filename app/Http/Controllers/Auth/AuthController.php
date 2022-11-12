@@ -50,7 +50,7 @@ class AuthController extends Controller
     }
 
     public function getUser(Request $request){
-      return $request->all();
+      return $request->user();
     }
 
 }

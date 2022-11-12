@@ -15,11 +15,12 @@ const pvp = require('./utilities/pvpService');
         gameCoordinator = null,
         matches = {},
         matchIntervals = {},
+        equationIntervals = {},
         matchCountdown = {},
-        lobby = [];
+        lobby = [],
+        origin = 'http://127.0.0.1:8000';
 
-    const equation = eq.generateDOM()
-    // http://127.0.0.1:8000/find-match?id=1&name=user1&mmr=510
+    const equation = eq.generateDOM();
 
     if (!admin_bearer_token) {
         admin_bearer_token = await getBearerToken();
@@ -59,25 +60,23 @@ const pvp = require('./utilities/pvpService');
                 // const roomID = '12345';
 
                 //inform them
-                io.to([first_contestant.socketID, second_contestant.socketID]).emit('match-found', {
-                    first_contestant,
-                    second_contestant
-                });
+                const versusScreen = await generateVersusScreen(first_contestant, second_contestant);
+                io.to([first_contestant.socketID, second_contestant.socketID]).emit('match-found', roomID, versusScreen);
 
                 clearInterval(gameCoordinator); //stop the interval
 
                 await setMatch(first_contestant, second_contestant, roomID); //save data to Database
                 //add delay to request (3-5 seconds) para makapag ready yung player
 
-                console.log('Match Already Set...');
-                io.to([first_contestant.socketID, second_contestant.socketID]).emit('move-to-arena', {
-                    roomID,
-                    first_contestant,
-                    second_contestant
-                }); //move contestants to arena
+                console.log('Match Already Set... Moving to Arena...');
+                // io.to([first_contestant.socketID, second_contestant.socketID]).emit('move-to-arena', {
+                //     roomID,
+                //     first_contestant,
+                //     second_contestant
+                // });
 
-                io.to(first_contestant.socketID).emit('move-to-arena', roomID, first_contestant);
-                io.to(second_contestant.socketID).emit('move-to-arena', roomID, second_contestant);
+                // io.to(first_contestant.socketID).emit('move-to-arena', roomID, first_contestant);
+                // io.to(second_contestant.socketID).emit('move-to-arena', roomID, second_contestant);
 
                 //remove the matched contestant to lobby
                 lobby = lobby.filter((lobbyUser) => {
@@ -86,8 +85,10 @@ const pvp = require('./utilities/pvpService');
 
                 //create match
                 matches[roomID] = {
+                    playerReady: 0,
+                    gameStarted: false,
                     countdown: 3,
-                    time: 30,
+                    time: 1800,
                     contestants: {},
                     equation: equation,
                     equationInterval: '',
@@ -107,26 +108,42 @@ const pvp = require('./utilities/pvpService');
 
                 console.log(matches[roomID]);
 
-                matchIntervals[roomID] = setInterval(() => {
-                    io.to(roomID).emit('countdown', matches[roomID].time);
-
-                    --matches[roomID].time;
-                    if (matches[roomID].time == 0) {
-                        clearInterval(matchIntervals[roomID]);
-                        console.log('GAME OVER');
-                        // announce the winner.
-                    }
-
-                }, 1000);
-
-                //implement 3,2,1 countdown sa match
-                // also, the 1 min and 30 seconds match
-
                 //find match again
                 gameCoordinator = setInterval(findMatch, 10000);
                 findMatch();
             }
         }
+    }
+
+    function startMatchCountdown(room) {
+        io.to(room).emit('initial-countdown', matches[room].countdown);
+        console.log(matches[room].countdown);
+        matches[room].countdown--;
+        if (matches[room].countdown == 0) {
+            clearInterval(matchCountdown[room]);
+
+            startGame(room);
+            matchIntervals[room] = setInterval(() => {
+                startGame(room);
+            }, 1000);
+
+        }
+    }
+
+    function startGame(room) {
+        io.to(room).emit('countdown', matches[room].time);
+        console.log(matches[room].time);
+        matches[room].time--;
+
+
+
+        if (matches[room].time == 0) {
+            clearInterval(matchIntervals[room]);
+            clearInterval(equationIntervals[room]);
+            console.log('game over');
+            // announce the winner
+        }
+
     }
 
     io.on("connection", (socket) => {
@@ -137,6 +154,27 @@ const pvp = require('./utilities/pvpService');
 
         // ARENA STRAT----------------------------------------------------------------------------
         socket.on('join-room', (room_id) => {
+            matches[room_id].playerReady++;
+            console.log(matches[room_id].playerReady);
+            if (matches[room_id].playerReady == 2) {
+                // initial start the game
+
+                if (!matches[room_id].gameStarted) {
+                    matches[room_id].gameStarted = true;
+                    setTimeout(() => {
+                        startMatchCountdown(room_id);
+                        matchCountdown[room_id] = setInterval(() => {
+                            startMatchCountdown(room_id);
+                        }, 1000);
+
+                        equationIntervals[room_id] = setInterval(() => {
+                            matches[room_id].equation = eq.generateDOM();
+                            io.to(room_id).emit('new-equation', matches[room_id].equation);
+                        }, 20000);
+                    }, 1000);
+                }
+
+            }
             socket.join(room_id);
             socket.emit('room-joined', matches[room_id]); //send sayo
             // socket.to(room_id).emit('room-joined', 'fuck!') //send to all except you (broadcast)
@@ -146,10 +184,18 @@ const pvp = require('./utilities/pvpService');
             const isCorrect = isSorted(answer);
 
             if (isCorrect) {
-                matches[user.room].equation = eq.generateDOM();
-                matches[user.room].contestants[user.id].points++;
-                io.to(user.room).emit('update-score', matches[user.room]);
-                io.to(user.room).emit('new-equation', matches[user.room].equation);
+                // stop interval equation
+                clearInterval(equationIntervals[user.room_id]);
+
+                matches[user.room_id].equation = eq.generateDOM();
+                matches[user.room_id].contestants[user.id].points++;
+                io.to(user.room_id).emit('update-score', matches[user.room_id], user.id);
+                io.to(user.room_id).emit('new-equation', matches[user.room_id].equation);
+
+                equationIntervals[user.room_id] = setInterval(() => {
+                    matches[user.room_id].equation = eq.generateDOM();
+                    io.to(user.room_id).emit('new-equation', matches[user.room_id].equation);
+                }, 20000)
             }
 
             socket.emit('wrong-answer', {
@@ -199,7 +245,7 @@ const pvp = require('./utilities/pvpService');
         try {
             const response = await axios({
                 method: 'POST',
-                url: 'http://127.0.0.1:8000/api/auth',
+                url: `${origin}/api/auth`,
                 data: {
                     email: 'patrick.buco@gmail.com',
                     password: 'password'
@@ -220,7 +266,7 @@ const pvp = require('./utilities/pvpService');
                     Authorization: `Bearer ${admin_bearer_token}`
                 },
                 method: 'POST',
-                url: 'http://127.0.0.1:8000/api/set-match',
+                url: `${origin}/api/set-match`,
                 data: {
                     first_contestant: first_contestant,
                     second_contestant: second_contestant,
@@ -235,6 +281,66 @@ const pvp = require('./utilities/pvpService');
         }
     }
 
+    async function saveMatch(room) {
+        try {
+            const response = await axios({
+                headers: {
+                    Authorization: `Bearer ${admin_bearer_token}`
+                },
+                method: 'POST',
+                url: `${origin}/api/save-match`,
+                data: {
+                    room_id: '12345',
+                    match: {
+                        countdown: 3,
+                        time: 30,
+                        contestants: {
+                            '1': {
+                                id: 'first_contestant.id',
+                                name: 'first_contestant.name',
+                                points: 5
+                            },
+                            '2': {
+                                id: 'second_contestant.id',
+                                name: 'second_contestant.name',
+                                points: 0
+                            }
+                        },
+                        equation: equation,
+                        equationInterval: '',
+                    }
+
+                }
+            });
+
+            console.log(response.data);
+
+        } catch (error) {
+            console.log('error from setMatch', error);
+        }
+    }
+
+    async function generateVersusScreen(first_contestant, second_contestant) {
+        try {
+            const response = await axios({
+                headers: {
+                    Authorization: `Bearer ${admin_bearer_token}`
+                },
+                method: 'POST',
+                url: `${origin}/api/skeleton/versus-screen`,
+                data: {
+                    first_contestant: first_contestant,
+                    second_contestant: second_contestant
+                }
+            });
+            console.log('THIS PART');
+            return response.data;
+        } catch (error) {
+            console.log('error', error);
+            return 'sorry something went wrong...';
+        }
+    }
+
     async function getAdmin() {
         try {
             const response = await axios({
@@ -242,7 +348,7 @@ const pvp = require('./utilities/pvpService');
                     Authorization: `Bearer ${admin_bearer_token}`
                 },
                 method: 'GET',
-                url: 'http://127.0.0.1:8000/api/get-user',
+                url: `${origin}/api/get-user`,
             });
             return response.data;
         } catch (error) {

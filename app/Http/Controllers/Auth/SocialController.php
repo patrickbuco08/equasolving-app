@@ -34,7 +34,9 @@ class SocialController extends Controller
                     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
                     'is_welcome_tutorial_finished' => false,
                     'is_pvp_tutorial_finished' => false,
-                    'in_game' => false
+                    'is_google_account' => true,
+                    'in_game' => false,
+                    'room_id' => null
                 ]);
 
                 $user->ownedBackgrounds()->create([

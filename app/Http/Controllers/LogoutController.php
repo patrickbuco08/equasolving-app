@@ -11,4 +11,11 @@ class LogoutController extends Controller
         auth()->logout();
         return redirect()->route('home');
     }
+
+    public function ajaxLogout(Request $request)
+    {
+        sleep(3);
+        auth()->logout();
+        return response()->json("success!", 201);
+    }
 }

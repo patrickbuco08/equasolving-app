@@ -85,22 +85,28 @@ class CreateData extends Migration
 
     public function fakeUsers()
     {
+        $additionalInformation = [
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
+            'is_welcome_tutorial_finished' => false,
+            'is_pvp_tutorial_finished' => false,
+            'is_google_account' => true,
+            'in_game' => false,
+            'room_id' => 0
+        ];
+
+        $defaultBackgound = [
+            'background_id' => 1,
+            'activated' => false,
+        ];
+
         $fakeUsers = [
             [
                 'data' => [
                     'name' => 'Gem Cuevas',
                     'email' => 'gem.cuevas@gmail.com',
-                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
-                    'is_welcome_tutorial_finished' => false,
-                    'is_pvp_tutorial_finished' => false,
-                    'in_game' => false,
-                    'room_id' => 0
                 ],
                 'background' => [
-                    [
-                        'background_id' => 1,
-                        'activated' => false
-                    ],
+                    $defaultBackgound,
                     [
                         'background_id' => rand(2, 4),
                         'activated' => true
@@ -111,17 +117,9 @@ class CreateData extends Migration
                 'data' => [
                     'name' => 'JJ Montilla',
                     'email' => 'jj.montilla@gmail.com',
-                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
-                    'is_welcome_tutorial_finished' => false,
-                    'is_pvp_tutorial_finished' => false,
-                    'in_game' => false,
-                    'room_id' => 0
                 ],
                 'background' => [
-                    [
-                        'background_id' => 1,
-                        'activated' => false
-                    ],
+                    $defaultBackgound,
                     [
                         'background_id' => rand(2, 4),
                         'activated' => true
@@ -132,17 +130,9 @@ class CreateData extends Migration
                 'data' => [
                     'name' => 'John Patrick Buco',
                     'email' => 'patrick.buco@gmail.com',
-                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
-                    'is_welcome_tutorial_finished' => false,
-                    'is_pvp_tutorial_finished' => false,
-                    'in_game' => false,
-                    'room_id' => 0
                 ],
                 'background' => [
-                    [
-                        'background_id' => 1,
-                        'activated' => false
-                    ],
+                    $defaultBackgound,
                     [
                         'background_id' => rand(2, 4),
                         'activated' => true
@@ -153,17 +143,9 @@ class CreateData extends Migration
                 'data' => [
                     'name' => 'Russell AronDela Rosa',
                     'email' => 'radelarosa@gmail.com',
-                    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
-                    'is_welcome_tutorial_finished' => false,
-                    'is_pvp_tutorial_finished' => false,
-                    'in_game' => false,
-                    'room_id' => 0
                 ],
                 'background' => [
-                    [
-                        'background_id' => 1,
-                        'activated' => false
-                    ],
+                    $defaultBackgound,
                     [
                         'background_id' => rand(2, 4),
                         'activated' => true
@@ -172,7 +154,14 @@ class CreateData extends Migration
             ]
         ];
 
-        return $fakeUsers;
+        $users = [];
+
+        foreach ($fakeUsers as $fakeUser) {
+            $fakeUser['data'] = array_merge($fakeUser['data'], $additionalInformation);
+            array_push($users, $fakeUser);
+        }
+
+        return $users;
     }
 
     public function fakeBackgrounds()

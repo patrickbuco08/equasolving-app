@@ -140,8 +140,12 @@ p {
 
 #main-default div.eq-content-area {
   width: 100%;
-  height: 100%;
+  height: 500px;
   padding: 15px;
+}
+
+#main-default div.eq-content-area.vh-100 {
+  height: 100vh !important;
 }
 
 #main-default div#game-area {
@@ -199,19 +203,592 @@ p {
   background: #fff;
   border-radius: 8px;
   border: 3px solid #000;
-  box-shadow: 0 6px 0 rgba a(0, 0, 0, 0.25);
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
   padding: 17px 0;
   font-weight: 700;
 }
 
 #main-default div#game-area button:active {
-  box-shadow: 0 2px 0 rgba a(0, 0, 0, 0.5);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(4px);
 }
 
 #main-default div#game-area span.data {
   font-size: 24px;
   font-weight: 800;
+}
+
+#main-default div#find-match {
+  height: 100%;
+}
+
+#main-default div#find-match main {
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#main-default div#find-match main .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: 3px solid black;
+  color: white;
+  background-color: white;
+  color: black;
+}
+
+#main-default div#find-match main .content {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#main-default div#find-match main .content .logo {
+  width: 12rem;
+  height: 12rem;
+  border: 3px solid black;
+  border-radius: 12px;
+  background-image: url("/images/Pvp Logo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 9rem;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+#main-default div#find-match main .content .find-match {
+  width: 100%;
+  height: 10%;
+}
+
+#main-default div#find-match main .content .cancel {
+  width: 100%;
+  height: 10%;
+}
+
+#main-default div#find-match main .content .tips {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
+  color: white;
+  margin: 1rem 0;
+}
+
+#main-default div#find-match main .menu {
+  width: 100%;
+  height: 10%;
+}
+
+#main-default div#find-match footer {
+  height: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#main-default div#find-match footer p {
+  font-size: .8rem;
+}
+
+#main-default div#pvp {
+  height: 100%;
+  position: relative;
+}
+
+#main-default div#pvp .pvpOverlay {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
+#main-default div#pvp .pvpOverlay span {
+  font-size: 4rem;
+  color: white;
+}
+
+#main-default div#pvp header {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  row-gap: .2rem;
+}
+
+#main-default div#pvp header .timer {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 10px;
+  height: 25%;
+}
+
+#main-default div#pvp header .timer div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: 3px solid black;
+  color: white;
+  background-color: black;
+}
+
+#main-default div#pvp header .timer div:nth-child(1) {
+  background: #00A3FF;
+}
+
+#main-default div#pvp header .timer div:nth-child(2) {
+  width: 130%;
+}
+
+#main-default div#pvp header .timer div:nth-child(3) {
+  background: #FF5C00;
+}
+
+#main-default div#pvp header .versus-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+  height: 50%;
+}
+
+#main-default div#pvp header .versus-section div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: 3px solid black;
+  color: white;
+}
+
+#main-default div#pvp header .versus-section div.versus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: 3px solid black;
+  color: white;
+  border: 0;
+  width: 40%;
+}
+
+#main-default div#pvp header .versus-section div.versus .exit {
+  width: 80px;
+  height: 100%;
+  padding: 1rem;
+  background-image: url("/images//Exit.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 2.5rem;
+  object-fit: cover;
+}
+
+#main-default div#pvp header .versus-section .player {
+  width: 7rem;
+  height: 5rem;
+  background-image: url("/images/Pvp Logo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 4rem;
+  object-fit: cover;
+}
+
+#main-default div#pvp header .versus-section .player.one {
+  background-color: #00A3FF;
+}
+
+#main-default div#pvp header .versus-section .player.two {
+  background-color: #FF5C00;
+}
+
+#main-default div#pvp header .versus-section span {
+  font-weight: 900;
+  font-size: 1.875rem;
+}
+
+#main-default div#pvp header .points {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+  height: 25%;
+}
+
+#main-default div#pvp header .points div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: 3px solid black;
+  color: white;
+}
+
+#main-default div#pvp header .points div.one {
+  background-color: #00A3FF;
+}
+
+#main-default div#pvp header .points div.two {
+  background-color: #FF5C00;
+}
+
+#main-default div#pvp main {
+  height: 73%;
+  padding: .5rem 0 .5rem 0;
+}
+
+#main-default div#pvp main .game-area {
+  position: relative;
+  border-radius: 12px;
+  border: 3px solid black;
+  height: 90%;
+}
+
+#main-default div#pvp main .game-area .equation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  padding: 5px;
+  height: 10%;
+  border-radius: 12px;
+  border: 3px solid black;
+  color: black;
+  background-color: white;
+}
+
+#main-default div#pvp main .game-area .equation .circle {
+  display: none;
+  position: absolute;
+  right: -.5rem;
+  top: -.5rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid white;
+  background-color: black;
+  color: white;
+  font-size: .7rem;
+}
+
+#main-default div#pvp main .game-area .equation .circle.selected-1:before {
+  vertical-align: sub;
+  content: "1";
+}
+
+#main-default div#pvp main .game-area .equation .circle.selected-2:before {
+  vertical-align: sub;
+  content: "2";
+}
+
+#main-default div#pvp main .game-area .equation .circle.selected-3:before {
+  vertical-align: sub;
+  content: "3";
+}
+
+#main-default div#pvp main .game-area .equation .circle.selected-4:before {
+  vertical-align: sub;
+  content: "4";
+}
+
+#main-default div#pvp main .game-area .equation.equation-1 {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top: .5rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+#main-default div#pvp main .game-area .equation.equation-2 {
+  position: absolute;
+  margin-top: auto;
+  margin-bottom: auto;
+  left: .5rem;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+#main-default div#pvp main .game-area .equation.equation-3 {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: .5rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+#main-default div#pvp main .game-area .equation.equation-4 {
+  position: absolute;
+  margin-top: auto;
+  margin-bottom: auto;
+  right: .5rem;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+#main-default div#pvp main .game-area .equation.active {
+  background-color: #00A3FF;
+  color: white;
+}
+
+#main-default div#pvp main .game-area .equation.active .circle {
+  display: block;
+}
+
+#main-default div#pvp main .reset {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10%;
+  padding-top: .3rem;
+}
+
+#main-default div#pvp main .reset .button-reset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: 3px solid black;
+  color: white;
+  background-color: white;
+  color: black;
+}
+
+#main-default div#pvp footer {
+  height: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#main-default div#pvp footer p {
+  font-size: .8rem;
+}
+
+#main-default div#versus-screen {
+  height: 100%;
+}
+
+#main-default div#versus-screen main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 95%;
+}
+
+#main-default div#versus-screen main .container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#main-default div#versus-screen main .container span.versus {
+  font-size: 1.8rem;
+  color: white;
+  font-weight: 900;
+  margin-bottom: .3rem;
+}
+
+#main-default div#versus-screen main .container div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#main-default div#versus-screen main .container div span {
+  color: white;
+  font-weight: 700;
+  margin-bottom: .3rem;
+}
+
+#main-default div#versus-screen main .container .player {
+  text-align: center;
+  border-radius: 12px;
+  border: 3px solid black;
+  color: white;
+  width: 7rem;
+  height: 7rem;
+  background-image: url("/images/Pvp Logo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 4rem;
+  object-fit: cover;
+}
+
+#main-default div#versus-screen main .container .player.one {
+  background-color: #00A3FF;
+}
+
+#main-default div#versus-screen main .container .player.two {
+  background-color: #FF5C00;
+}
+
+#main-default div#versus-screen main .container .player-mmr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 3rem;
+  border-radius: 12px;
+  border: 3px solid black;
+  color: black;
+  background-color: white;
+  margin-top: .3rem;
+}
+
+#main-default div#versus-screen main .eq-title-container {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+#main-default div#versus-screen footer {
+  height: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#main-default div#versus-screen footer p {
+  font-size: .8rem;
+}
+
+#main-default div#win-lose {
+  height: 100%;
+}
+
+#main-default div#win-lose main {
+  height: 95%;
+  position: relative;
+  display: flex;
+}
+
+#main-default div#win-lose main .container {
+  width: 100%;
+  height: 93%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#main-default div#win-lose main .container .match-status h1 {
+  color: white;
+  font-size: 4rem;
+}
+
+#main-default div#win-lose main .container .player-information {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .3rem;
+}
+
+#main-default div#win-lose main .container .player-information .player-name {
+  color: white;
+  font-weight: 700;
+}
+
+#main-default div#win-lose main .container .player-information .player {
+  border-radius: 12px;
+  border: 3px solid black;
+  width: 100%;
+  height: 5rem;
+  background-image: url("/images/Pvp Logo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 4rem;
+  object-fit: cover;
+}
+
+#main-default div#win-lose main .container .player-information .player.one {
+  background-color: #00A3FF;
+}
+
+#main-default div#win-lose main .container .player-information .player.two {
+  background-color: #FF5C00;
+}
+
+#main-default div#win-lose main .container .player-information .info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  border-radius: 12px;
+  border: 3px solid black;
+  color: black;
+  background-color: white;
+}
+
+#main-default div#win-lose main .menu {
+  width: 100%;
+  height: 7%;
+}
+
+#main-default div#win-lose main .menu span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: 3px solid black;
+  color: white;
+  color: black;
+  background-color: white;
+}
+
+#main-default div#win-lose .menu {
+  position: absolute;
+  bottom: 0;
+}
+
+#main-default div#win-lose footer {
+  height: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#main-default div#win-lose footer p {
+  font-size: .8rem;
 }
 
 #main-default div.eq-header {
@@ -237,7 +814,7 @@ p {
   width: 55.59px;
   border-radius: 12px;
   background: #fff;
-  box-shadow: 0 6px 0 rgba 0, 0, 0, 0.25;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
   border: 3px solid #000;
   padding: 3px 4.8px;
 }
@@ -253,7 +830,7 @@ p {
 }
 
 #main-default div.eq-header .left-side button:active {
-  box-shadow: 0 2px 0 rgba 0, 0, 0, 0.5;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(4px);
 }
 
@@ -279,7 +856,7 @@ p {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  box-shadow: 0 6px 0 rgba 0, 0, 0, 0.25;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
 }
 
 #main-default div.eq-header .right-side .input-container input {
@@ -321,7 +898,7 @@ p {
   background: #FDC613;
   border: 3px solid #000;
   border-radius: 20px;
-  box-shadow: 0 6px 0 rgba a(0, 0, 0, 0.25);
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
   max-width: 121px;
   display: flex;
   justify-content: center;
@@ -343,7 +920,7 @@ p {
 }
 
 #main-default div.main-menu-container .menu-btn:hover {
-  background: rgba a(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.25);
   border: 3px solid #fff;
 }
 
@@ -357,7 +934,7 @@ p {
 }
 
 #main-default div.main-menu-container .menu-btn:active {
-  box-shadow: 0 2px 0 rgba 0, 0, 0, 0.5;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(4px);
 }
 
@@ -366,7 +943,7 @@ p {
   border-radius: 12px;
   border: 3px solid #000;
   padding: 12px 25px;
-  box-shadow: 0 6px 0 rgba 0, 0, 0, 0.25;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
   height: auto;
 }
 
@@ -380,7 +957,7 @@ p {
   border-radius: 12px;
   border: 3px solid #000;
   padding: 7px;
-  box-shadow: 0 4px 0 rgba 0, 0, 0, 0.25;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: center;
   margin-right: 20px;
@@ -454,7 +1031,7 @@ p {
   border: 3px solid #000;
   width: 100%;
   height: 100%;
-  box-shadow: 0 0 25px rgba a(0, 0, 0, 0.25);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
 }
 
 #main-default .eq-set-nickname .eq-nickname-container {
@@ -500,11 +1077,11 @@ p {
   font-size: 1rem;
   font-weight: 500;
   width: 100%;
-  box-shadow: 0 6px 0 rgba 0, 0, 0, 0.25;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
 }
 
 #main-default .eq-set-nickname button:active {
-  box-shadow: 0 2px 0 rgba 0, 0, 0, 0.5;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(4px);
 }
 
@@ -516,7 +1093,6 @@ p {
 
 #main-default .eq-set-nickname .square {
   margin-top: -45px;
-  pointer-events: none;
 }
 
 #main-default .eq-set-nickname .square .square-left,

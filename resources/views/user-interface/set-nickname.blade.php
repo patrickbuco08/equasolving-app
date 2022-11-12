@@ -1,3 +1,10 @@
+@extends('layouts.app', ['title' => 'Set Nickname'])
+
+@section('styles')
+{{-- CSS Here --}}
+@endsection
+
+@section('content')
 <section id="content-section">
     <div class="eq-content-area">
 
@@ -64,3 +71,12 @@
  <div class="eq-version flex flex-jc-c">
      <span>Version Alpha.</span>
  </div>
+@endsection
+
+@section('scripts')
+<script>
+(() => { 
+
+ })();
+</script>
+@endsection

@@ -5,16 +5,15 @@
 @endsection
 
 @section('content')
-
 <section id="content-section">
     <div class="eq-content-area">
 
         <div class="eq-header flex flex-jc-sb">
             <div class="left-side flex flex-vert flex-ai-fs flex-jc-sb">
-                <button class="header-btn" id="settings">
+                <button type="button" class="header-btn" id="settings">
                     <img src="{{ asset('images/Settings.png') }}" alt="settings">
                 </button>
-                <button class="header-btn" id="profile">
+                <button type="button" class="header-btn" id="profile">
                     <img src="{{ asset('images/User Profile.png') }}" alt="profile">
                 </button>
             </div>
@@ -28,12 +27,14 @@
                 @auth
                 <div class="input-container">
                     <span class="mmr">MMR:</span>
-                    <input readonly type="text" class="eq-mmr" id="mmr" placeholder="{{auth()->user()->pvpModeDetails->mmr}}">
+                    <input readonly type="text" class="eq-mmr" id="mmr"
+                        placeholder="{{auth()->user()->pvpModeDetails->mmr}}">
                     <span class="mmr-2">MMR:</span>
                 </div>
                 <div class="input-container">
                     <span class="trophy">Trophy:</span>
-                    <input readonly type="text" class="eq-trophy" id="trophy" placeholder="{{auth()->user()->classicModeDetails->trophies}}">
+                    <input readonly type="text" class="eq-trophy" id="trophy"
+                        placeholder="{{auth()->user()->classicModeDetails->trophies}}">
                     <div class="img-container"></div>
                 </div>
                 @endauth
@@ -57,10 +58,10 @@
                 <div class="eq-title-area flex flex-vert flex-jc-sb flex-ai-c">
                     <h1 class="welcome-text">
                         @auth
-                        Hello {{ auth()->user()->name }}
+                        Hello {{ Str::of(auth()->user()->name)->explode(' ')[0] }}
                         @endauth
                         @guest
-                            Hello Anonymous
+                        Hello Anonymous
                         @endguest
                     </h1>
                 </div>
@@ -107,14 +108,14 @@
                     </div>
                 </div>
                 @auth
-                <form action={{ route('logout') }} method="POST">
-                    @csrf
-                    <button type="submit" class="dropdown-item">Logout</button>
-                </form>
+                <div id="logout" class="shop-btn menu-btn flex ">
+                    <div class="text-container flex flex-ai-fs flex-vert flex-jc-c">
+                        <h2 id="logout-text">Logout</h2>
+                    </div>
+                </div>
                 @endauth
             </div>
         </div>
-
 
     </div>
 </section>
@@ -125,62 +126,9 @@
 @endsection
 
 @section('scripts')
-{{-- for set nickname --}}
 <script>
     (async () => {
-        const origin = window.location.origin;
-
         const user = getAuthenticatedUser();
-
-
-        async function getAuthenticatedUser() {
-            try {
-                const response = await axios.get(`${origin}/user/check-auth`);
-            } catch (error) {
-                if (error.response && error.response.status == 401) {
-                    console.log('show nickname');
-                    const renderedSetNickname = await renderSetNickname();
-                    $('div#root').html(renderedSetNickname);
-                    return null;
-                }
-            }
-        }
-
-        async function renderSetNickname() {
-            try {
-                const response = await axios.get(`${origin}/skeleton/nickname`);
-                return response.data;
-            } catch (error) {
-                return "Sorry, something went wrong...";
-            }
-        }
-
-
     })();
-
-</script>
-<script>
-    (() => {
-
-        const origin = window.location.origin;
-
-        async function renderClassic() {
-            try {
-                const response = await axios.get(`${origin}/skeleton/classic`);
-                return response.data;
-            } catch (error) {
-                return "Sorry, something went wrong...";
-            }
-        }
-
-        $(document).on('click', '#menu-btn-1',async function (e) { 
-            e.preventDefault();
-            const renderclassic = await renderClassic();
-            $('div#root').html(renderclassic);
-        });
-
-
-    })();
-
 </script>
 @endsection

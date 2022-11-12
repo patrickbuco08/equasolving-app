@@ -1,11 +1,3 @@
-@extends('layouts.app', ['title' => 'Match History'])
-
-@section('styles')
-    {{-- CSS Here --}}
-@endsection
-
-@section('content')
-{{-- HTML here --}}
 <div id="main-default-summary">
     <div class="ms-content-area">
             <div class="eq-header flex flex-jc-c">
@@ -42,14 +34,13 @@
                 </button>
             </div>
             @endforeach
+            <div class="summary-button-container margin-tb-25 flex flex-vert flex-jc-sb" style="background-color: 'orange">
+                <button class="main-menu-btn" id="render-home">BACK</button>
+            </div>
     </div>       
 </div>
-@endsection
-
-@section('scripts')
 <script>
     (() => {
         $('div#main-default-summary').show();
 })();
 </script>
-@endsection
