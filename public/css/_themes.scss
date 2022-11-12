@@ -57,14 +57,18 @@
 
     div.eq-content-area {
         width: 100%;
-        height: 100%;
+        height: 500px;
         padding: 15px;
+
+        &.vh-100 {
+            height: 100vh !important;
+        }
     }
 
     // classic-mode.html
     div#game-area {
         margin: 25px 0;
-        height: 80%;
+        height: 100%;
         gap: 5%;
 
         .timer-container {
@@ -116,19 +120,592 @@
             background: $white;
             border-radius: 8px;
             border: 3px solid #000;
-            box-shadow: 0 6px 0 rgba a(0, 0, 0, 0.25);
+            box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
             padding: 17px 0;
             font-weight: 700;
         }
 
         button:active {
-            box-shadow: 0 2px 0 rgba a(0, 0, 0, .5);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, .5);
             transform: translateY(4px);
         }
 
         span.data {
             font-size: 24px;
             font-weight: 800;
+        }
+    }
+
+    // win lose announcement
+    div#find-match {
+        height: 100%;
+
+        main {
+            height: 95%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .button {
+                @include createBox;
+                background-color: white;
+                color: black;
+            }
+
+            .content {
+                height: 90%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .logo {
+                    width: 12rem;
+                    height: 12rem;
+                    border: 3px solid black;
+                    border-radius: 12px;
+                    background-image: url('/img/Pvp\ Logo.png');
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: 9rem;
+                    object-fit: cover;
+                    margin-bottom: 1rem;
+                }
+
+                .find-match {
+                    width: 100%;
+                    height: 10%;
+                }
+
+                .cancel {
+                    width: 100%;
+                    height: 10%;
+                }
+
+                .tips {
+                    width: 100%;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                    text-align: center;
+                    color: white;
+                    margin: 1rem 0;
+                }
+            }
+
+            .menu {
+                width: 100%;
+                height: 10%;
+            }
+        }
+
+        footer {
+            height: 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            p {
+                font-size: .8rem;
+            }
+        }
+    }
+
+    // pvp-changes
+    // pvp v2
+    div#pvp {
+        height: 100%;
+        position: relative;
+
+        .pvpOverlay {
+            position: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .75);
+            top: 0;
+            left: 0;
+            z-index: 5;
+
+            span {
+                font-size: 4rem;
+                color: white;
+            }
+        }
+
+        header {
+            width: 100%;
+            height: 30%;
+            display: flex;
+            flex-direction: column;
+            row-gap: .75rem;
+            font-family: poppins, sans-serif;
+
+            .timer {
+                display: flex;
+                justify-content: space-between;
+                column-gap: 10px;
+                height: 25%;
+
+
+                div {
+                    @include createBox;
+                    background-color: black;
+                    font-size: $font-xs;
+                    font-weight: 900;
+                }
+
+                div:nth-child(1) {
+                    background: $blue01;
+                }
+
+                div:nth-child(2) {
+                    width: 130%;
+                }
+
+                div:nth-child(3) {
+                    background: $red01;
+                }
+            }
+
+            .versus-section {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                column-gap: 10px;
+                height: 40%;
+
+                div {
+                    @include createBox;
+
+                    span {
+                        font-size: 60px;
+                        font-weight: 900;
+                    }
+
+                    &.versus {
+                        @include createBox;
+                        border: 0;
+                        width: 33.33%;
+
+                        .exit {
+                            width: 80px;
+                            height: 100%;
+                            // background-color: white;
+                            padding: 1rem;
+                            background-image: url('/img//Exit.png');
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            background-position: center center;
+                            background-size: 2.5rem;
+                            object-fit: cover;
+                        }
+
+                    }
+                }
+
+
+                .player {
+                    width: 35%;
+                    background-image: url('/img/Pvp\ Logo.png');
+                    background-size: 85%;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    object-fit: cover;
+                    border-radius: 20px;
+                    box-shadow: 0 6px 0 rgb(0, 0, 0, .25);
+
+                    &.one {
+                        background-color: $blue01;
+                    }
+
+                    &.two {
+                        background-color: $red01;
+                    }
+                }
+
+                span {
+                    font-weight: 900;
+                    font-size: $font-l;
+                }
+            }
+
+            .points {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                column-gap: 50px;
+                height: 20%;
+                font-family: poppins, sans-serif;
+
+                span {
+                    font-weight: bold;
+                }
+
+                div {
+                    @include createBox;
+
+                    &.one {
+                        background-color: $blue01;
+                    }
+
+                    &.two {
+                        background-color: $red01;
+                    }
+                }
+            }
+
+        }
+
+        main {
+            height: 60%;
+            padding: 0;
+
+            .game-area {
+                position: relative;
+                border-radius: 12px;
+                z-index: 0;
+                height: 90%;
+
+                .equation {
+                    @include equationBox;
+                    margin: 25px 0;
+                    z-index: 99;
+                    box-shadow: 0 6px 0 rgb(0, 0, 0, .25);
+
+                    .circle {
+                        display: none;
+                        position: absolute;
+                        right: 35%;
+                        top: -40%;
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 100%;
+                        border: 3px solid #000;
+                        background-color: black;
+                        color: white;
+                        font-size: .7rem;
+
+                        &.selected-1:before {
+                            vertical-align: sub;
+                            content: "1";
+                        }
+
+                        &.selected-2:before {
+                            vertical-align: sub;
+                            content: "2";
+                        }
+
+                        &.selected-3:before {
+                            vertical-align: sub;
+                            content: "3";
+                        }
+
+                        &.selected-4:before {
+                            vertical-align: sub;
+                            content: "4";
+                        }
+
+                    }
+
+                    &.equation-1 {
+                        position: absolute;
+                        margin-left: auto;
+                        margin-right: auto;
+                        top: .5em;
+                        left: 0;
+                        right: 0;
+                        text-align: center;
+                    }
+
+                    &.equation-2 {
+                        position: absolute;
+                        margin-top: auto;
+                        margin-bottom: auto;
+                        left: .5rem;
+                        top: 0;
+                        bottom: 0;
+                        text-align: center;
+                    }
+
+                    &.equation-3 {
+                        position: absolute;
+                        margin-left: auto;
+                        margin-right: auto;
+                        bottom: .5rem;
+                        left: 0;
+                        right: 0;
+                        text-align: center;
+                    }
+
+                    &.equation-4 {
+                        position: absolute;
+                        margin-top: auto;
+                        margin-bottom: auto;
+                        right: .5rem;
+                        top: 0;
+                        bottom: 0;
+                        text-align: center;
+                    }
+
+                    &.active {
+                        background-color: $blue01;
+                        color: white;
+
+                        .circle {
+                            display: block;
+                        }
+                    }
+                }
+
+                .equation:active {
+                    box-shadow: 0 0 30px $background_c;
+                    background: $yellow;
+                    color: white;
+                    transform: translateY(4px);
+                }
+
+                .big-square {
+                    border: 3px solid #000;
+                    position: absolute;
+                    width: 170px;
+                    height: 170px;
+                    right: 0;
+                    left: 26%;
+                    top: 25%;
+                    z-index: 0;
+                    transform: rotate(45deg);
+
+                }
+            }
+
+            .reset {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 12%;
+                padding-top: .3rem;
+
+                .button-reset {
+                    @include createBox;
+                    background-color: white;
+                    color: black;
+                    box-shadow: 0 6px 0 rgb(0, 0, 0, .25);
+                }
+
+                .button-reset:active {
+                    box-shadow: 0 2px 0 rgb(0, 0, 0, .5);
+                    transform: translateY(4px);
+                }
+            }
+        }
+
+        footer {
+            height: 3%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            p {
+                font-size: .8rem;
+            }
+        }
+    }
+
+    // versus screen
+    div#versus-screen {
+        height: 100%;
+
+        main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 95%;
+
+
+            .container {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                span.versus {
+                    font-size: 1.8rem;
+                    color: white;
+                    font-weight: 900;
+                    margin-bottom: .3rem;
+                }
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    span {
+                        color: white;
+                        font-weight: 700;
+                        margin-bottom: .3rem;
+                    }
+                }
+
+                .player {
+                    text-align: center;
+                    border-radius: 12px;
+                    border: 3px solid black;
+                    color: white;
+                    width: 7rem;
+                    height: 7rem;
+                    background-image: url('/img/Pvp\ Logo.png');
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: 4rem;
+                    object-fit: cover;
+
+                    &.one {
+                        background-color: $blue01;
+                    }
+
+                    &.two {
+                        background-color: $red01;
+                    }
+                }
+
+                .player-mmr {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 3rem;
+                    border-radius: 12px;
+                    border: 3px solid black;
+                    color: black;
+                    background-color: white;
+                    margin-top: .3rem;
+                }
+            }
+
+            .eq-title-container {
+                margin-top: 1rem;
+                width: 100%;
+            }
+        }
+
+        footer {
+            height: 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            p {
+                font-size: .8rem;
+            }
+        }
+    }
+
+    // win lose announcement
+    div#win-lose {
+        height: 100%;
+
+        main {
+            height: 95%;
+            position: relative;
+            display: flex;
+
+            .container {
+                width: 100%;
+                height: 93%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                .match-status {
+                    h1 {
+                        color: white;
+                        font-size: 4rem;
+                    }
+                }
+
+                .player-information {
+                    width: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: .3rem;
+
+                    .player-name {
+                        color: white;
+                        font-weight: 700;
+                    }
+
+                    .player {
+                        border-radius: 12px;
+                        border: 3px solid black;
+                        width: 100%;
+                        height: 5rem;
+                        background-image: url('/img/Pvp\ Logo.png');
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        background-position: center center;
+                        background-size: 4rem;
+                        object-fit: cover;
+
+                        &.one {
+                            background-color: $blue01;
+                        }
+
+                        &.two {
+                            background-color: $red01;
+                        }
+                    }
+
+                    .info {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100%;
+                        height: 50px;
+                        border-radius: 12px;
+                        border: 3px solid black;
+                        color: black;
+                        background-color: white;
+                    }
+
+                }
+            }
+
+            .menu {
+                width: 100%;
+                height: 7%;
+
+                span {
+                    @include createBox;
+                    color: black;
+                    background-color: white;
+                }
+            }
+        }
+
+        .menu {
+            position: absolute;
+            bottom: 0;
+        }
+
+
+        footer {
+            height: 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            p {
+                font-size: .8rem;
+            }
         }
     }
 
@@ -155,7 +732,7 @@
                 width: 55.59px;
                 border-radius: 12px;
                 background: $white;
-                box-shadow: 0 6px 0 rgba (0, 0, 0, .25);
+                box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
                 border: 3px solid #000;
                 padding: 3px 4.8px;
 
@@ -174,7 +751,7 @@
             }
 
             button:active {
-                box-shadow: 0 2px 0 rgba (0, 0, 0, .5);
+                box-shadow: 0 2px 0 rgba(0, 0, 0, .5);
                 transform: translateY(4px);
             }
         }
@@ -200,7 +777,7 @@
                 display: flex;
                 flex-direction: row-reverse;
                 align-items: center;
-                box-shadow: 0 6px 0 rgba (0, 0, 0, .25);
+                box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
 
                 input {
                     width: 100%;
@@ -243,7 +820,7 @@
                 background: $yellow;
                 border: 3px solid #000;
                 border-radius: 20px;
-                box-shadow: 0 6px 0 rgba a(0, 0, 0, 0.25);
+                box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
                 max-width: 121px;
                 display: flex;
                 justify-content: center;
@@ -270,7 +847,7 @@
         }
 
         & .menu-btn:hover {
-            background: rgba a(255, 255, 255, .25);
+            background: rgba(255, 255, 255, .25);
             border: 3px solid $white;
 
             div.img-container {
@@ -285,7 +862,7 @@
         }
 
         & .menu-btn:active {
-            box-shadow: 0 2px 0 rgba (0, 0, 0, .5);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, .5);
             transform: translateY(4px);
         }
 
@@ -294,7 +871,7 @@
             border-radius: 12px;
             border: 3px solid #000;
             padding: 12px 25px;
-            box-shadow: 0 6px 0 rgba (0, 0, 0, .25);
+            box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
             height: auto;
 
             h2 {
@@ -307,7 +884,7 @@
                 border-radius: 12px;
                 border: 3px solid #000;
                 padding: 7px;
-                box-shadow: 0 4px 0 rgba (0, 0, 0, .25);
+                box-shadow: 0 4px 0 rgba(0, 0, 0, .25);
                 display: flex;
                 justify-content: center;
                 margin-right: 20px;
@@ -391,7 +968,7 @@
         border: 3px solid #000;
         width: 100%;
         height: 100%;
-        box-shadow: 0 0 25px rgba a(0, 0, 0, .25);
+        box-shadow: 0 0 25px rgba(0, 0, 0, .25);
 
         .eq-nickname-container {
             padding: 0 14px;
@@ -436,11 +1013,11 @@
             font-size: $font-base;
             font-weight: 500;
             width: 100%;
-            box-shadow: 0 6px 0 rgba (0, 0, 0, .25);
+            box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
         }
 
         button:active {
-            box-shadow: 0 2px 0 rgba (0, 0, 0, .5);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, .5);
             transform: translateY(4px);
         }
 
@@ -452,7 +1029,6 @@
 
         .square {
             margin-top: -45px;
-            pointer-events: none;
 
             .square-left,
             .square-right {
