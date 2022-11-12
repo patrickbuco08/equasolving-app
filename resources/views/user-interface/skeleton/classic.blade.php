@@ -1,5 +1,5 @@
 <section id="content-section" class="start">
-    <div class="eq-content-area">
+    <div class="eq-content-area vh-100">
             <div class="eq-header flex flex-jc-sb">
                 <div class="left-side flex flex-vert flex-ai-fs flex-jc-sb">
                     <button class="header-btn" id="settings">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="level"><span id="level"></span></div>
-                <div class="game-grid" id="game-grid">
+                <div class="game-grid grid" id="game-grid">
                     
                     <div class="row" id="row-1"> 
                         <span class = "data" id="data-1"> </span>
@@ -73,6 +73,9 @@
                 </div>
                     <button class="reset-btn" id="reset">Reset</button>
                 </div>
+                <div class="eq-version flex flex-jc-c">
+                    <span>Version Alpha.</span>
+            </div>
             </div>
 
 </section>
@@ -110,7 +113,10 @@
                 <button class="main-menu-btn" id="main-menu">Main Menu</button>
                 <button class="play-again-btn" id="play-again">Play Again</button>
             </div>
-    </div>       
+    </div>
+    <div class="eq-version flex flex-jc-c">
+        <span>Version Alpha.</span>
+</div>       
 </div>
 <div id="main-default-loading">
     <div class="ms-content-area">
@@ -135,11 +141,12 @@
                         </div>
                     </div>
             </div>
-    </div>       
-</div>
-<div class="eq-version flex flex-jc-c">
+    </div>   
+    <div class="eq-version flex flex-jc-c">
         <span>Version Alpha.</span>
+</div>    
 </div>
+
 <div id="exit-modal" class="modal">
   <div class="modal-content">
     <div class="eq-mm-container">
@@ -168,8 +175,35 @@
 
     </div>
 
-  </div>
 </div>
+
+<div id="settings-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="close">&times;</span>
+      <div class="eq-mm-container">
+        <div class="eq-header flex flex-jc-sb">
+            <div class="modal-header flex flex-vert flex-ai-c flex-jc-c">
+                <span class="header-btn white" id="settings">
+                    <img src="{{ asset('images/Settings.png') }}" alt="settings">
+                </span>
+                <div class="flex flex-hori flex-ai-c flex-jc-sb">
+                    <h4>Music:</h4>
+                <span class="header-btn" id="settings">
+                    <img src="{{ asset('images/music-on.png') }}" alt="settings">
+                </span>
+                </div>
+                <div class="flex flex-hori flex-ai-c flex-jc-sb">
+                    <h4>SFX:</h4>
+                <span class="header-btn" id="settings">
+                    <img src="{{ asset('images/music-on.png') }}" alt="settings">
+                </span>
+                </div>
+            </div>
+        </div>
+      </div>  
+    </div>
+</div>
+
 
 <script type="module">
     import {equation, timer, gameTimer} from '/js/classic/utils.js'
@@ -200,31 +234,40 @@
                 i--;
                 $('span.data.'+''+i).removeClass('active');
                 $('span.data').removeClass(''+i+'');
-                $('span.data').removeClass('first second third fourth');
-                equation.answers.splice(i);
+                $('span.data').removeClass(''+sequence[i]+'');
+                equation.answers.splice(i); 
                 return
             }
-            else if($(this).hasClass('active') || $(this).hasClass('0 1 2 3')){
+            else if($(this).hasClass('active') || $(this).hasClass('0 1 2 3') || $(this).hasClass('first second third fourth')){
                 return
             }
             $(this).addClass('active');
             $(this).addClass(''+i+'');
             $(this).addClass(''+sequence[i]+'');
             equation.setAnswer($(this).data('answer'))
+            console.log(equation.answers);
             i++;
             if(equation.answers.length == 4){
+                
                 if(equation.isAnswerSorted()){
                     $('input#timer').addClass(`text-success ${successFX} green`).one(fxEnds, function(){
                         $('input#timer').removeClass(`text-success ${successFX} green`);
+                        $('div#classic-logo').removeClass(`text-success ${successFX} green`);
                     });
                     $('span#add-time').addClass(`add-time-absolute move-up-animation`);
                         setTimeout(() => {
                     $('span#add-time').removeClass(`add-time-absolute move-up-animation`);
                     }, 1500);
+                    $('div#classic-logo').addClass(`text-success ${successFX} green`).one(fxEnds, function(){
+                        $('div#classic-logo').removeClass(`text-success ${successFX} green`);
+                    });
                     timer.addTime(5);
                     equation.generateDOM()
                     i = 0;
                 }else{
+                    $('div#classic-logo').addClass(`text-danger ${failedFX} red`).one(fxEnds, function(){
+                        $('div#classic-logo').removeClass(`text-danger ${failedFX} red`);
+                    });
                     $('input#timer').addClass(`text-danger ${failedFX} red`).one(fxEnds, function(){
                         $('input#timer').removeClass(`text-danger ${failedFX} red`);
                         $('span.data').removeClass('active');
@@ -239,7 +282,7 @@
                     $('span.data').removeClass('0 1 2 3');
                     
                     i = 0;
-                    
+
                 } 
             }
         });
@@ -248,6 +291,7 @@
             e.preventDefault();
             $('span.data').removeClass('active');
             $('span.data').removeClass('0 1 2 3');
+            $('span.data').removeClass('first second third fourth');
             equation.answers = []
             i = 0;
         });
@@ -255,12 +299,22 @@
             e.preventDefault();
             timer.pause();
             $("#exit-modal").show();
-        });              
+        });       
+        $('#settings').click(function (e) { 
+            e.preventDefault();
+            timer.pause();
+            $("#settings-modal").show();
+        });         
         $('#cancel').click(function (e) { 
             e.preventDefault();
             $("#exit-modal").hide();
             timer.continue();
         }); 
+        $('#close').click(function (e) { 
+            e.preventDefault();
+            $("#settings-modal").hide();
+            timer.continue();
+        });
         $('#exit').click(function (e) { 
             e.preventDefault();
             $("#exit-modal").hide();
