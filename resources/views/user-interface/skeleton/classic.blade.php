@@ -73,9 +73,6 @@
                 </div>
                     <button class="reset-btn" id="reset">Reset</button>
                 </div>
-                <div class="eq-version flex flex-jc-c">
-                    <span>Version Alpha.</span>
-            </div>
             </div>
 
 </section>
@@ -113,10 +110,7 @@
                 <button class="main-menu-btn" id="main-menu">Main Menu</button>
                 <button class="play-again-btn" id="play-again">Play Again</button>
             </div>
-    </div>
-    <div class="eq-version flex flex-jc-c">
-        <span>Version Alpha.</span>
-</div>       
+    </div>       
 </div>
 <div id="main-default-loading">
     <div class="ms-content-area">
@@ -141,10 +135,7 @@
                         </div>
                     </div>
             </div>
-    </div>   
-    <div class="eq-version flex flex-jc-c">
-        <span>Version Alpha.</span>
-</div>    
+    </div>     
 </div>
 
 <div id="exit-modal" class="modal">
@@ -184,18 +175,18 @@
         <div class="eq-header flex flex-jc-sb">
             <div class="modal-header flex flex-vert flex-ai-c flex-jc-c">
                 <span class="header-btn white" id="settings">
-                    <img src="{{ asset('images/Settings.png') }}" alt="settings">
+                    Settings
                 </span>
                 <div class="flex flex-hori flex-ai-c flex-jc-sb">
                     <h4>Music:</h4>
-                <span class="header-btn" id="settings">
-                    <img src="{{ asset('images/music-on.png') }}" alt="settings">
+                <span class="header-btn" id="musicOnOff">
+                    <img src="{{ asset('images/music-on.png') }}" alt="Music">
                 </span>
                 </div>
                 <div class="flex flex-hori flex-ai-c flex-jc-sb">
                     <h4>SFX:</h4>
-                <span class="header-btn" id="settings">
-                    <img src="{{ asset('images/music-on.png') }}" alt="settings">
+                <span class="header-btn" id="SFXOnOff">
+                    <img src="{{ asset('images/music-on.png') }}" alt="SFX">
                 </span>
                 </div>
             </div>
@@ -250,10 +241,11 @@
             if(equation.answers.length == 4){
                 
                 if(equation.isAnswerSorted()){
-                    $('input#timer').addClass(`text-success ${successFX} green`).one(fxEnds, function(){
-                        $('input#timer').removeClass(`text-success ${successFX} green`);
-                        $('div#classic-logo').removeClass(`text-success ${successFX} green`);
-                    });
+                    $('input#timer').addClass(`text-success  green`);
+                    setTimeout(() => {
+                        $('input#timer').removeClass(`text-success green`);
+                        $('div#classic-logo').removeClass(`text-success green`);
+                    }, 1000);
                     $('span#add-time').addClass(`add-time-absolute move-up-animation`);
                         setTimeout(() => {
                     $('span#add-time').removeClass(`add-time-absolute move-up-animation`);
@@ -268,11 +260,12 @@
                     $('div#classic-logo').addClass(`text-danger ${failedFX} red`).one(fxEnds, function(){
                         $('div#classic-logo').removeClass(`text-danger ${failedFX} red`);
                     });
-                    $('input#timer').addClass(`text-danger ${failedFX} red`).one(fxEnds, function(){
-                        $('input#timer').removeClass(`text-danger ${failedFX} red`);
-                        $('span.data').removeClass('active');
-                        $('span.data').removeClass('first second third fourth');
-                    });
+                    $('input#timer').addClass(`text-danger red`);
+                    setTimeout(() => {
+                    $('input#timer').removeClass(`text-danger red`);
+                    $('span.data').removeClass('active');
+                    $('span.data').removeClass('first second third fourth');
+                    }, 1000);
                     $('span#minus-time').addClass(`minus-time-absolute move-up-animation`);
                         setTimeout(() => {
                     $('span#minus-time').removeClass(`minus-time-absolute move-up-animation`);
@@ -321,6 +314,39 @@
             timer.quit();
         }); 
 
+    $("#musicOnOff").on('click', function(){
+            var sfxBtn = $('#button_sfx'); 
+            var sfxWL = $('#other_sfx');
+        if(sfxBtn[0].volume == 1.0)
+        {
+            sfxBtn[0].volume = 0;
+            sfxWL[0].volume = 0;
+            $("#musicImg").removeAttr("src");
+            $("#musicImg").attr('src', '{{ asset('/images/music-off.png') }}');
+        }
+        else 
+        {
+            sfxBtn[0].volume = 1;
+            sfxWL[0].volume = 1;
+            $("#musicImg").removeAttr("src");
+            $("#musicImg").attr('src', '{{ asset('/images/music-on.png') }}');
+        }
+    });
+    $("#SFXOnOff").on('click',function(e){
+        var bgMusic = $('#bg_sfx');
+        if(bgMusic[0].volume == 1.0)
+    {
+        bgMusic[0].volume = 0;
+        $("#sfxImg").removeAttr("src");
+        $("#sfxImg").attr('src', '{{ asset('/images/music-off.png') }}');
+    }
+    else 
+    {
+        bgMusic[0].volume = 1
+        $("#sfxImg").removeAttr("src");
+        $("#sfxImg").attr('src', '{{ asset('/images/music-on.png') }}');
+    }
+    });
         
 
         const renderMainMenu = async () => {

@@ -29,20 +29,19 @@ class SkeletonController extends Controller
 
     public function matchHistory()
     {
-        if(!Auth::check()){
-            Auth::loginUsingId(4, $remember = true);
-        }
 
         $user = auth()->user()->load([
             'matches',
+            'pvpModeDetails',
             'matches.details',
             'matches.details.enemy',
             'matches.details.enemy.user' => function($query){
                 $query->select('id', 'name', 'email');
             }]);
-            
+
         return view('user-interface.skeleton.match-history', [
-            'matches' => collect($user->matches)->slice(0, 10)->sortBy('created_at')
+            'matches' => collect($user->matches)->slice(0, 10)->sortBy('created_at'),
+            'user' => $user
         ]);
     }
 
