@@ -34,7 +34,7 @@
              </div>
          </div>
 
-         <div class="eq-set-nickname">
+         <div class="eq-set-nickname" style="height: auto">
              <div class="eq-nickname-container flex flex-jc-c flex-vert">
                  <div class="eq-title-area flex flex-vert flex-jc-sb flex-ai-c">
                      <input type="text" class="set-nickname" name="set-nickname" placeholder="Set Nickname">

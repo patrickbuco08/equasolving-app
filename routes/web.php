@@ -53,8 +53,10 @@ Route::prefix('skeleton')->group(function () {
         Route::get('/classic', [SkeletonController::class, 'classic'])->name('get-classic');
         Route::get('/home', [SkeletonController::class, 'home'])->name('get-home');
         Route::get('/match-history', [SkeletonController::class, 'matchHistory'])->name('get-matchHistory');
-        Route::get('find-match', [SkeletonController::class, 'findMatch'])->name('find-match');
-        Route::post('versus-screen', [SkeletonController::class, 'versusScreen'])->name('find-match');
+        Route::get('/find-match', [SkeletonController::class, 'findMatch'])->name('find-match');
+        Route::get('/shop', [SkeletonController::class, 'shop']);
+        Route::post('/versus-screen', [SkeletonController::class, 'versusScreen']);
+        Route::post('/win-lose-announcement', [SkeletonController::class, 'winLoseAnnouncement']);
     });
 });
 

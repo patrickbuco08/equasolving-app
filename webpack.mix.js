@@ -17,10 +17,10 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ])
-    .js('resources/js/pvp/pvp.js', 'public/js/pvp', [
-        require('socket.io-client')
-    ])
-    .js('resources/js/utilities/auth.js', 'public/utilities/');
+    .js('resources/js/utilities/request.js', 'public/js/utilities')
+    .js('resources/js/utilities/pvpService.js', 'public/js/utilities')
+    .js('resources/js/sfx.js', 'public/js/sfx/')
+    .js('resources/js/pvp.js', 'public/js/pvp.js')
 
 
 

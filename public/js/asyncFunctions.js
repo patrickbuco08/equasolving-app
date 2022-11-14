@@ -14,6 +14,7 @@ async function createUserUsingNickName() {
                 _token: token
             }
         });
+        console.log(response.data);
         window.location.href = origin;
     } catch (error) {
         if (err.response) {
@@ -46,6 +47,8 @@ async function getAuthenticatedUser() {
 }
 
 async function renderHome() {
+    window.location.href=`${origin}/`;
+    return false;
     try {
         const response = await axios.get(`${origin}/skeleton/home`);
         return response.data;
@@ -59,6 +62,16 @@ async function renderFindMatch() {
     return true;
     try {
         const response = await axios.get(`${origin}/skeleton/find-match`);
+        return response.data;
+    } catch (error) {
+        return "Sorry, something went wrong...";
+    }
+}
+
+async function renderShop() {
+
+    try {
+        const response = await axios.get(`${origin}/skeleton/shop`);
         return response.data;
     } catch (error) {
         return "Sorry, something went wrong...";

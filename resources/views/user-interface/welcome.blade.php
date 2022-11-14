@@ -119,10 +119,6 @@
 
     </div>
 </section>
-
-<div class="eq-version flex flex-jc-c">
-    <span>Version Alpha.</span>
-</div>
 @endsection
 
 @section('scripts')
@@ -130,5 +126,6 @@
     (async () => {
         const user = getAuthenticatedUser();
     })();
+
 </script>
 @endsection
