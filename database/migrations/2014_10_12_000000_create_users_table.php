@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_pvp_tutorial_finished');
             $table->boolean('is_google_account');
             $table->boolean('in_game');
-            $table->integer('room_id')->nullable();
+            $table->text('room_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -12,7 +12,7 @@
                 <div class="content">
                     <div class="logo"></div>
                     <div class="button find-match">
-                        <span>Find Match</span>
+                        <span>Connecting...</span>
                     </div>
                     <div class="button cancel" style="display: none">
                         <span>Cancel Queue</span>
@@ -21,7 +21,7 @@
                         <span><b>Tips: </b> There are times where fear is good.</span>
                     </div>
                 </div>
-                <div class="button menu">
+                <div class="button menu" id="render-home">
                     <span>MENU</span>
                 </div>
             </main>
@@ -34,23 +34,19 @@
 @endsection
 
 @section('scripts')
-<script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
-    integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous">
-</script>
 <script type="module">
     (async () => {
         const origin = window.location.origin;
-        const socket = io('http://127.0.0.1:3000'), welcomeText = $('.welcome-text').text()
+        const socket = io(`http://${window.location.hostname}:3000`), welcomeText = $('.welcome-text').text()
         let isConnected = false, user = null;
-
+        console.log(window.location);
         socket.on("connection", async (data) => { 
             user = await getAuthenticatedUser();
             user.socketID = socket.id;
-            $('#find-match-text').text('Find Match');
+            $('div.find-match').children('span').text('Find Match');
             isConnected = true;
-            console.log(user);
+            console.log('CONNECTED!');
          });
-
 
          socket.on("match-found", (roomID, versusScreen) => {
             $('div#root').html(versusScreen);

@@ -80,7 +80,7 @@
         const socket = io(origin);
         const welcomeText = $('.welcome-text').text();
         let isConnected = false;
-
+    alert('hi');
         const user = async () => { 
             try {
                 const response = await axios.get(`${origin}/user/check-auth`);

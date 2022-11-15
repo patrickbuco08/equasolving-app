@@ -139,6 +139,348 @@ p {
 #main-default div.eq-content-area.vh-100 {
   height: 100vh !important;
 }
+<<<<<<< HEAD
+=======
+
+#main-default div.game-theme-container .upper-text {
+  width: 100%;
+}
+
+#main-default div.game-theme-container span.us {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+  border-radius: 100%;
+}
+
+#main-default div.game-theme-container .active-theme {
+  background: transparent;
+  z-index: 1;
+  border-radius: 12px;
+  pointer-events: all;
+}
+
+#main-default div.game-theme-container .active-theme span.us {
+  background: green;
+}
+
+#main-default div.game-theme-container .active-theme .input-container {
+  display: none;
+}
+
+#main-default div.game-theme-container .neutral-theme {
+  background: transparent;
+  z-index: 1;
+  border-radius: 12px;
+  pointer-events: all;
+}
+
+#main-default div.game-theme-container .neutral-theme span.us {
+  background: orange;
+}
+
+#main-default div.game-theme-container .neutral-theme .input-container {
+  display: none;
+}
+
+#main-default div.game-theme-container .locked-theme {
+  background: #000000c4;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+#main-default div.game-theme-container .locked-theme .img-container2 {
+  width: 30px;
+  height: 45px;
+  padding: 10px;
+  background: #FDC613;
+  border-radius: 8px 0 0 8px;
+  border-right: 3px solid #000;
+  background-image: url("/images/trophy.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #FDC613;
+}
+
+#main-default div.game-theme-container .locked-theme .input-container {
+  background: #fff;
+  border: 3px solid #000;
+  border-radius: 12px;
+  height: 50px;
+  padding: 0px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
+  position: absolute;
+  z-index: 1;
+  width: 100px;
+  margin: 35px 125px;
+}
+
+#main-default div.game-theme-container .locked-theme .input-container input {
+  width: 100%;
+  background: transparent;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  text-align: center;
+  height: 50px;
+  padding: 0 10px;
+}
+
+#main-default div.game-theme-container .locked-theme .input-container .eq-mmr {
+  text-align: start;
+  width: 60%;
+}
+
+#main-default div.game-theme-container .locked-theme .input-container:active {
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(4px);
+}
+
+#main-default div.game-theme-container .locked-theme .menu-btn {
+  pointer-events: none;
+}
+
+#main-default div.game-theme-container .locked-theme .menu-btn {
+  opacity: 0.4;
+}
+
+#main-default div.game-theme-container span.colors {
+  height: inherit;
+  width: 40px;
+  border: 2px solid #000;
+  position: inherit;
+  border-radius: 8px;
+}
+
+#main-default div.game-theme-container div.theme-menu {
+  height: auto;
+  overflow-y: auto;
+  gap: 15px;
+  padding: 10px 0;
+}
+
+#main-default div.game-theme-container div.text-container {
+  flex: 100%;
+}
+
+#main-default div.game-theme-container .menu-btn {
+  padding: 12px !important;
+}
+
+#main-default div.game-theme-container .menu-btn:active {
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(4px);
+}
+
+#main-default div.game-theme-container div.img-container {
+  width: 100%;
+  border-radius: 12px;
+  border: 3px solid #000;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
+  margin-right: 25px;
+}
+
+#main-default div.game-theme-container div.img-container img {
+  margin: 0 auto;
+  height: 50px;
+  display: none;
+}
+
+#main-default div.game-theme-container div.color-container {
+  height: 30px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+#main-default div.game-theme-container #default-theme {
+  background: #fff;
+  border: 3px solid #000;
+  z-index: 0;
+}
+
+#main-default div.game-theme-container #default-theme #color-1 {
+  background: #FFA600;
+}
+
+#main-default div.game-theme-container #default-theme #color-2 {
+  background: #FDC613;
+}
+
+#main-default div.game-theme-container #default-theme #color-3 {
+  background: #000;
+}
+
+#main-default div.game-theme-container #default-theme #color-4 {
+  background: #fff;
+}
+
+#main-default div.game-theme-container #default-theme div.img-container {
+  background: url("/images/Default-Theme-logo.png");
+  background-size: contain;
+  background-position: center center;
+}
+
+#main-default div.game-theme-container #cloud-theme {
+  background: #fff;
+  border: 3px solid #000;
+  z-index: 0;
+}
+
+#main-default div.game-theme-container #cloud-theme #color-1 {
+  background: #14536c;
+}
+
+#main-default div.game-theme-container #cloud-theme #color-2 {
+  background: #25a7da;
+}
+
+#main-default div.game-theme-container #cloud-theme #color-3 {
+  background: #51b8e1;
+}
+
+#main-default div.game-theme-container #cloud-theme #color-4 {
+  background: #fff;
+}
+
+#main-default div.game-theme-container #cloud-theme div.img-container {
+  background: url("/images/cloud-theme-logo.png");
+  background-size: cover;
+  background-position: bottom center;
+}
+
+#main-default div.game-theme-container #sun-theme {
+  background: #fff;
+  border: 3px solid #000;
+  z-index: 0;
+}
+
+#main-default div.game-theme-container #sun-theme #color-1 {
+  background: #3B4046;
+}
+
+#main-default div.game-theme-container #sun-theme #color-2 {
+  background: #F5A302;
+}
+
+#main-default div.game-theme-container #sun-theme #color-3 {
+  background: #191817;
+}
+
+#main-default div.game-theme-container #sun-theme #color-4 {
+  background: #fff;
+}
+
+#main-default div.game-theme-container #sun-theme div.img-container {
+  background: url("/images/sun-moon-theme.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+#main-default div.game-theme-container #night-theme {
+  background: #fff;
+  border: 3px solid #000;
+  z-index: 0;
+}
+
+#main-default div.game-theme-container #night-theme #color-1 {
+  background: #26236B;
+}
+
+#main-default div.game-theme-container #night-theme #color-2 {
+  background: #F8A102;
+}
+
+#main-default div.game-theme-container #night-theme #color-3 {
+  background: #261052;
+}
+
+#main-default div.game-theme-container #night-theme #color-4 {
+  background: #0D103F;
+}
+
+#main-default div.game-theme-container #night-theme div.img-container {
+  background: url("/images/midnight-theme.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+#main-default div.game-theme-container .menu-btn {
+  border-radius: 12px;
+  padding: 12px 25px;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
+  height: auto;
+}
+
+#main-default div.game-theme-container .menu-btn h2 {
+  margin: 0;
+}
+
+#main-default div.eq-version span {
+  font-size: 0.625rem;
+  color: #000;
+  font-weight: 400;
+  padding: 15px;
+}
+
+#main-default .eq-title-area {
+  width: 100%;
+  background: #fff;
+  border: 3px solid #000;
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+#main-default .square {
+  margin-top: -70px;
+}
+
+#main-default .square .square-left,
+#main-default .square .square-right {
+  height: 80px;
+}
+
+#main-default .square .us {
+  background: #fff;
+  width: 25px;
+  height: 25px;
+  border: 3px solid #000;
+}
+
+#main-default div.eq-mm-container .eq-title-container {
+  margin: 30px auto;
+}
+
+#main-default div.eq-nn-container .eq-title-container {
+  margin: 30px auto 56px auto;
+}
+
+#main-default div.eq-title-container h1 {
+  font-size: 1.125rem;
+  font-weight: 900;
+  text-align: center;
+  margin: 10px 0;
+}
+
+#main-default div.eq-title-container p {
+  color: #fff;
+  text-align: center;
+  font-weight: 400;
+  line-height: 1.50em;
+}
+
+#main-default div.eq-title-container .eq-sub-text {
+  padding: 0 18%;
+}
+
+>>>>>>> main
 #main-default div#game-area {
   margin: 25px 0;
   height: 100%;
@@ -297,7 +639,11 @@ p {
   height: 30%;
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   row-gap: 0.75rem;
+=======
+  row-gap: .75rem;
+>>>>>>> main
   font-family: poppins, sans-serif;
 }
 #main-default div#pvp header .timer {
@@ -333,8 +679,12 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+<<<<<<< HEAD
   -moz-column-gap: 10px;
        column-gap: 10px;
+=======
+  column-gap: 10px;
+>>>>>>> main
   height: 40%;
 }
 #main-default div#pvp header .versus-section div {
@@ -347,10 +697,18 @@ p {
   border: 3px solid black;
   color: white;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 #main-default div#pvp header .versus-section div span {
   font-size: 60px;
   font-weight: 900;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 #main-default div#pvp header .versus-section div.versus {
   display: flex;
   justify-content: center;
@@ -377,12 +735,20 @@ p {
 }
 #main-default div#pvp header .versus-section .player {
   width: 35%;
+<<<<<<< HEAD
   background-image: url("/img/Pvp Logo.png");
   background-size: 85%;
   background-repeat: no-repeat;
   background-position: center center;
   -o-object-fit: cover;
      object-fit: cover;
+=======
+  background-image: url("/images/Pvp Logo.png");
+  background-size: 85%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  object-fit: cover;
+>>>>>>> main
   border-radius: 20px;
   box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
 }
@@ -400,11 +766,19 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+<<<<<<< HEAD
   -moz-column-gap: 50px;
        column-gap: 50px;
   height: 20%;
   font-family: poppins, sans-serif;
 }
+=======
+  column-gap: 50px;
+  height: 20%;
+  font-family: poppins, sans-serif;
+}
+
+>>>>>>> main
 #main-default div#pvp header .points span {
   font-weight: bold;
 }
@@ -484,7 +858,11 @@ p {
   position: absolute;
   margin-left: auto;
   margin-right: auto;
+<<<<<<< HEAD
   top: 0.5em;
+=======
+  top: .5em;
+>>>>>>> main
   left: 0;
   right: 0;
   text-align: center;
@@ -523,11 +901,21 @@ p {
 #main-default div#pvp main .game-area .equation.active .circle {
   display: block;
 }
+<<<<<<< HEAD
 #main-default div#pvp main .game-area .equation:active {
+=======
+
+#main-default div#pvp main .game-area .equation:active {
+  box-shadow: 0 0 30px #00A3FF;
+>>>>>>> main
   background: #FDC613;
   color: white;
   transform: translateY(4px);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 #main-default div#pvp main .game-area .big-square {
   border: 3px solid #000;
   position: absolute;
@@ -539,12 +927,20 @@ p {
   z-index: 0;
   transform: rotate(45deg);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 #main-default div#pvp main .reset {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 12%;
+<<<<<<< HEAD
   padding-top: 0.3rem;
+=======
+  padding-top: .3rem;
+>>>>>>> main
 }
 #main-default div#pvp main .reset .button-reset {
   display: flex;
@@ -559,6 +955,10 @@ p {
   color: black;
   box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 #main-default div#pvp main .reset .button-reset:active {
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(4px);
@@ -848,6 +1248,7 @@ p {
 }
 #main-default div.main-menu-container div.menu {
   height: 330px;
+  gap: .5rem;
 }
 #main-default div.main-menu-container .menu-btn:hover {
   background: rgba(255, 255, 255, 0.25);
@@ -905,6 +1306,7 @@ p {
 }
 #main-default .square {
   margin-top: -70px;
+  pointer-events: none;
 }
 #main-default .square .square-left,
 #main-default .square .square-right {

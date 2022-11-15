@@ -34,8 +34,7 @@ class UserController extends Controller
 
     public function createUsingNickName(Request $request)
     {
-        sleep(3);
-
+        sleep(1);
         try {
             DB::beginTransaction();
 
@@ -59,14 +58,14 @@ class UserController extends Controller
             ]);
 
             $user->classicModeDetails()->create([
-                'current_level' => 999,
-                'trophies' => 998
+                'current_level' => 0,
+                'trophies' => 0
             ]);
 
             $user->pvpModeDetails()->create([
-                'total_matches' => 999,
-                'winrate' => 100,
-                'mmr' => 999
+                'total_matches' => 0,
+                'winrate' => 0,
+                'mmr' => 500
             ]);
 
             DB::commit();

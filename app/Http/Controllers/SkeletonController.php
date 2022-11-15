@@ -45,6 +45,11 @@ class SkeletonController extends Controller
         ]);
     }
 
+    public function shop()
+    {
+        return view('user-interface.skeleton.shop');
+    }
+
     public function versusScreen(Request $request)
     {
         $contestant_one = $request->first_contestant;
@@ -53,6 +58,16 @@ class SkeletonController extends Controller
         return view('user-interface.skeleton.versus-screen', [
             'contestant_one' => $contestant_one,
             'contestant_two' => $contestant_two
+        ]);
+    }
+
+    public function winLoseAnnouncement(Request $request)
+    {
+        $player = ($request->player_one['id'] == auth()->user()->id) ? $request->player_one : $request->player_two;
+
+        return view('user-interface.skeleton.win-lose-announcement',[
+            'player'=> $player,
+            'isDraw' => $request->isDraw
         ]);
     }
 }

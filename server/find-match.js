@@ -6,7 +6,8 @@ const pvp = require('./utilities/pvpService');
 
     const io = require('socket.io')(3000, {
         cors: {
-            origin: ['http://127.0.0.1:8000', 'http://127.0.0.1:3000']
+            // origin: ['http://127.0.0.1:8000', 'http://127.0.0.1:3000']
+            origin: ['http://192.168.1.11:8000', 'http://192.168.1.11:3000']
         }
     });
 
@@ -18,7 +19,7 @@ const pvp = require('./utilities/pvpService');
         equationIntervals = {},
         matchCountdown = {},
         lobby = [],
-        origin = 'http://127.0.0.1:8000';
+        origin = 'http://192.168.1.11:8000';
 
     const equation = eq.generateDOM();
 
@@ -28,6 +29,7 @@ const pvp = require('./utilities/pvpService');
     admin = await getAdmin();
     console.log(admin.name);
 
+    //start to find match
     gameCoordinator = setInterval(findMatch, 6000);
     findMatch();
 
@@ -45,8 +47,8 @@ const pvp = require('./utilities/pvpService');
             const second_contestants = remaining_contestant.filter((contestant) => {
                 const difference = Math.abs(first_contestant.mmr - contestant.mmr); //make it positive integer
 
-                //ibig sabihin pasok sa elo
-                if (difference <= 10) {
+                // maximum mmr difference
+                if (difference <= 50) {
                     return contestant;
                 }
             });
@@ -57,7 +59,6 @@ const pvp = require('./utilities/pvpService');
             if (second_contestant) {
                 console.log('FIGHT! please wait');
                 const roomID = generateRoomID();
-                // const roomID = '12345';
 
                 //inform them
                 const versusScreen = await generateVersusScreen(first_contestant, second_contestant);
@@ -87,8 +88,8 @@ const pvp = require('./utilities/pvpService');
                 matches[roomID] = {
                     playerReady: 0,
                     gameStarted: false,
-                    countdown: 3,
-                    time: 1800,
+                    countdown: 4,
+                    time: 90,
                     contestants: {},
                     equation: equation,
                     equationInterval: '',
@@ -97,12 +98,14 @@ const pvp = require('./utilities/pvpService');
                 matches[roomID].contestants[first_contestant.id] = {
                     id: first_contestant.id,
                     name: first_contestant.name,
+                    mmr: first_contestant.mmr,
                     points: 0
                 };
 
                 matches[roomID].contestants[second_contestant.id] = {
                     id: second_contestant.id,
                     name: second_contestant.name,
+                    mmr: second_contestant.mmr,
                     points: 0
                 };
 
@@ -126,24 +129,26 @@ const pvp = require('./utilities/pvpService');
             matchIntervals[room] = setInterval(() => {
                 startGame(room);
             }, 1000);
+            // dito dapat yon : 178
 
         }
     }
 
-    function startGame(room) {
+    async function startGame(room) {
         io.to(room).emit('countdown', matches[room].time);
         console.log(matches[room].time);
         matches[room].time--;
-
-
 
         if (matches[room].time == 0) {
             clearInterval(matchIntervals[room]);
             clearInterval(equationIntervals[room]);
             console.log('game over');
             // announce the winner
+            console.log('room', room);
+            console.log('data', matches[room]);
+            const userData = await saveMatch(room, matches[room]);
+            io.to(room).emit('finished', userData);
         }
-
     }
 
     io.on("connection", (socket) => {
@@ -156,17 +161,21 @@ const pvp = require('./utilities/pvpService');
         socket.on('join-room', (room_id) => {
             matches[room_id].playerReady++;
             console.log(matches[room_id].playerReady);
+
+            //ibig sabihin nakapasok na yung dalawang player
             if (matches[room_id].playerReady == 2) {
                 // initial start the game
 
                 if (!matches[room_id].gameStarted) {
                     matches[room_id].gameStarted = true;
+                    
                     setTimeout(() => {
                         startMatchCountdown(room_id);
                         matchCountdown[room_id] = setInterval(() => {
                             startMatchCountdown(room_id);
                         }, 1000);
 
+                        //hindi to dito
                         equationIntervals[room_id] = setInterval(() => {
                             matches[room_id].equation = eq.generateDOM();
                             io.to(room_id).emit('new-equation', matches[room_id].equation);
@@ -196,11 +205,10 @@ const pvp = require('./utilities/pvpService');
                     matches[user.room_id].equation = eq.generateDOM();
                     io.to(user.room_id).emit('new-equation', matches[user.room_id].equation);
                 }, 20000)
+            }else{
+                socket.emit('wrong-answer', isCorrect);
             }
 
-            socket.emit('wrong-answer', {
-                correct: isCorrect
-            })
         });
         // ARENA END------------------------------------------------------------------------------
 
@@ -281,7 +289,7 @@ const pvp = require('./utilities/pvpService');
         }
     }
 
-    async function saveMatch(room) {
+    async function saveMatch(room, data) {
         try {
             const response = await axios({
                 headers: {
@@ -290,33 +298,15 @@ const pvp = require('./utilities/pvpService');
                 method: 'POST',
                 url: `${origin}/api/save-match`,
                 data: {
-                    room_id: '12345',
-                    match: {
-                        countdown: 3,
-                        time: 30,
-                        contestants: {
-                            '1': {
-                                id: 'first_contestant.id',
-                                name: 'first_contestant.name',
-                                points: 5
-                            },
-                            '2': {
-                                id: 'second_contestant.id',
-                                name: 'second_contestant.name',
-                                points: 0
-                            }
-                        },
-                        equation: equation,
-                        equationInterval: '',
-                    }
-
+                    room_id: room,
+                    match: data
                 }
             });
-
             console.log(response.data);
-
+            return response.data;
         } catch (error) {
             console.log('error from setMatch', error);
+            return null;
         }
     }
 

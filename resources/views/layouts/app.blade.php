@@ -43,7 +43,9 @@
         (async () => {
             $nickNameInput = 'input[name="set-nickname"]';
             $addNickNameBtn = 'button[name="add-nickname"]';
+            console.log('origin', origin);
 
+            //validation sa pag input ng nickname
             $(document).on('keyup', $nickNameInput, function (e) {
                 e.preventDefault();
                 const nickname = $($nickNameInput).val();
@@ -54,39 +56,49 @@
 
             });
 
+            //submit nickname
             $(document).on('click', $addNickNameBtn, async function (e) {
                 e.preventDefault();
                 await createUserUsingNickName();
             });
 
+            //render classic UI
             $(document).on('click', '#menu-btn-1', async function (e) {
                 e.preventDefault();
                 const classic = await renderClassic();
                 $('div#root').html(classic);
             });
 
-            //find match
+            //clicks PVP button
             $(document).on('click', '#menu-btn-2', async function (e) {
                 e.preventDefault();
                 const findMatch = await renderFindMatch();
                 $('div#root').html(findMatch);
             });
 
+            // click shop
+            $(document).on('click', '#menu-btn-3', async function (e) {
+                e.preventDefault();
+                
+                const shop = await renderShop();
+                $('div#root').html(shop);
+            });
+
+            // render match history
             $(document).on('click', '#profile', async function (e) {
                 e.preventDefault();
                 const matchHistory = await renderMatchHistory();
                 $('div#root').html(matchHistory);
             });
 
+            //render home
             $(document).on('click', '#render-home', async function (e) {
                 e.preventDefault();
-                console.log('hi from app.blade');
-                window.findMatchFunction = null;
                 const home = await renderHome();
                 $('div#root').html(home);
-                delete socket;
             });
 
+            //logout
             $(document).on('click', 'div#logout', async function (e) {
                 e.preventDefault();
                 await logoutUser();

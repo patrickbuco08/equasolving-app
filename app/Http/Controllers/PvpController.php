@@ -2,21 +2,138 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Match;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PvpController extends Controller
 {
     public function setMatch(Request $request)
     {
-        sleep(1);
-        return $request->all();
+        sleep(3);
+        try {
+            DB::beginTransaction();
+
+            $match = Match::create([
+                'unique_id' => $request->room_id
+            ]);
+    
+            $player_one = User::find($request->first_contestant['id']);
+            $player_two = User::find($request->second_contestant['id']);
+    
+            $player_one->update([
+                'in_game' => true,
+                'room_id' => $request->room_id
+            ]);
+    
+            $player_two->update([
+                'in_game' => true,
+                'room_id' => $request->room_id
+            ]);
+    
+            DB::commit();
+            return response()->json([
+                'player_one' => $player_one,
+                'player_two'=> $player_two
+            ], 200);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json($th, 409);
+        }
     }
 
     public function saveMatch(Request $request)
     {
-        $roomID = $request->room_id;
-        $contestants = [];
+        // return $request->all();
+        try {
+            DB::beginTransaction();
 
+            $roomID = $request->room_id;
+            // $roomID = '636fa939cab49';
+            $match = Match::where('unique_id', $roomID)->first();
+            $data = $this->computePlayerData($request);
+
+            $match->participants()->createMany([
+                [
+                    'user_id' => $data['contestant_one']['id'],
+                    'score' => $data['contestant_one']['points'],
+                    'status' => $data['contestant_one']['isWinner']
+                ],
+                [
+                    'user_id' => $data['contestant_two']['id'],
+                    'score' => $data['contestant_two']['points'],
+                    'status' => $data['contestant_two']['isWinner']
+                ]
+            ]);
+
+            // for player one
+            $player_one = User::find($data['contestant_one']['id'])->first();
+            $player_one->update([
+                'in_game' => false,
+                'room_id' => null
+            ]);
+
+            $player_one_pvp_mode_details = $player_one->pvpModeDetails;
+            $player_one_winrate = 0;
+            $player_one_total_matches = $player_one_pvp_mode_details->total_matches; //7
+            $player_one_current_winrate = $player_one_pvp_mode_details->winrate; //71%
+            $player_one_total_wins = round($player_one_total_matches*($player_one_current_winrate/100)); // 7*.71 = 4.97 = 5
+
+
+            if($data['contestant_one']['isWinner']){
+                $player_one_winrate = ($player_one_total_wins+1)/($player_one_total_matches+1);
+            }else{
+                $player_one_winrate = $player_one_total_wins/($player_one_total_matches+1);
+            }
+
+            $player_one_pvp_mode_details->update([
+                'total_matches' => $player_one_pvp_mode_details->total_matches + 1,
+                'winrate' => $data['draw'] ? $player_one_pvp_mode_details->winrate : round($player_one_winrate*100),
+                'mmr' => $data['contestant_one']['updated_mmr']
+            ]);
+
+            // for player two
+            $player_two = User::find($data['contestant_two']['id']);
+            $player_two->update([
+                'in_game' => false,
+                'room_id' => null
+            ]);
+
+            $player_two_pvp_mode_details = $player_two->pvpModeDetails;
+            $player_two_winrate = 0;
+            $player_two_total_matches = $player_two_pvp_mode_details->total_matches; //7
+            $player_two_current_winrate = $player_two_pvp_mode_details->winrate; //71%
+            $player_two_total_wins = round($player_two_total_matches*($player_two_current_winrate/100)); // 7*.71 = 4.97 = 5
+
+
+            if($data['contestant_two']['isWinner']){
+                $player_two_winrate = ($player_two_total_wins+1)/($player_two_total_matches+1);
+            }else{
+                $player_two_winrate = $player_two_total_wins/($player_two_total_matches+1);
+            }
+
+            $player_two_pvp_mode_details->update([
+                'total_matches' => $player_two_pvp_mode_details->total_matches + 1,
+                'winrate' => $data['draw'] ? $player_two_pvp_mode_details->winrate : round($player_two_winrate*100),
+                'mmr' => $data['contestant_two']['updated_mmr']
+            ]);
+
+            DB::commit();
+            return response()->json([
+                'player_one' => $data['contestant_one'],
+                'player_two' => $data['contestant_two'],
+                'isDraw' => $data['draw']
+            ], 200);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json($th, 409);
+        }
+    }
+
+    public function computePlayerData(Request $request){
+        $contestants = [];
+        $draw = false;
         foreach ($request->match['contestants'] as $contestant) {
             array_push($contestants, $contestant);
         }
@@ -32,28 +149,20 @@ class PvpController extends Controller
         $contestant_one['updated_mmr'] = round($contestant_one['mmr'] + 30*($contestant_one['isWinner']-$contestant_one['rating']));
         $contestant_two['updated_mmr'] = round($contestant_two['mmr'] + 30*($contestant_two['isWinner']-$contestant_two['rating']));
 
+        if($contestant_one['points'] == $contestant_two['points']){
+            $draw = true;
+            $contestant_one['updated_mmr'] = $contestant_one['mmr'];
+            $contestant_two['updated_mmr'] = $contestant_two['mmr'];
+        }else{
+            $contestant_one['updated_mmr'] = round($contestant_one['mmr'] + 30*($contestant_one['isWinner']-$contestant_one['rating']));
+            $contestant_two['updated_mmr'] = round($contestant_two['mmr'] + 30*($contestant_two['isWinner']-$contestant_two['rating']));
+        }
+
         return [
             'contestant_one' => $contestant_one,
-            'contestant_two' => $contestant_two
+            'contestant_two' => $contestant_two,
+            'draw' => $draw
         ];
-
-        // return $request->match['contestants'][0];
-
-
     }
 }
 
-// MMR based, Starting MMR is 500. The match queue is random but the MMR points that will be added or deducted will be computed using Elo Rating Algorithm.
-
-//    >Firstly, both players’ rating in competitive mode will be computed using the formula (Rating for Player 1) R1=1/(1+〖10〗^((r2-r1)/400) )  and (Rating for Player 2) R2=1/(1+〖10〗^((r1-r2)/400) )  and this will be the expected score. In most of the games, “Actual Score” is either 0 or 1 means player either wins or loose. The developers decided that the constant value is K=30. The updated MMR will be computed as (Updated MMR for Player 1) U1=P1 current MMR + Constant (Actual Score – R1) and (Updated MMR for Player 2) U2=P2 current MMR + Constant (Actual Score – R2)
-// Example: Player1=500 MMR and Player2=400MMR
-// R1=1/(1+〖10〗^((r2-r1)/400) ) =1/(1+〖10〗^((400-500)/400) )=0.64
-// R2=1/(1+〖10〗^((r1-r2)/400) ) =1/(1+〖10〗^((500-400)/400) )=0.36
-// The developers decided that the constant value is K=30.
-// If Player 1 wins, P1 actual score is 1 and P2 actual score is 0
-// U1=P1 current MMR + Constant (Actual Score – R1)
-// U1=500 + 30 (1 – 0.64) =510.8 =511
-// U2=400 + 30 (0 – 0.36) =389.2 =389
-// If Player 2 wins, P1 actual score is 0 and P2 actual score is 1
-// U1=500 + 30 (0 – 0.64) =480.8 =481
-// U2=400 + 30 (1 – 0.36) =419.2 =419

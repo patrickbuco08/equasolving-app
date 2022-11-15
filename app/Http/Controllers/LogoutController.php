@@ -14,7 +14,7 @@ class LogoutController extends Controller
 
     public function ajaxLogout(Request $request)
     {
-        sleep(3);
+        sleep(1);
         auth()->logout();
         return response()->json("success!", 201);
     }
