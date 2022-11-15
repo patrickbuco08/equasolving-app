@@ -3,12 +3,11 @@
   font-family: myFirstFont;
   src: url(../fonts/butterfly-kids/ButterflyKids-Regular.ttf);
 }
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -18,15 +17,12 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 body .text-danger {
   color: #D9534f;
 }
-
 body .text-success {
   color: #4BB543;
 }
-
 body section {
   position: relative;
   width: 100%;
@@ -37,7 +33,6 @@ body section {
   padding: 1rem;
   transition: 0.5s;
 }
-
 body section .timer {
   display: flex;
   justify-content: center;
@@ -45,25 +40,23 @@ body section .timer {
   background-color: #8C5638;
   font-size: 2rem;
   margin-bottom: 1rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   transition: 0.5s;
-  animation-duration: 3s;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
 }
-
 body section .timer.full-screen {
   height: 100%;
   background-color: #4A756E;
 }
-
 body section .equation-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: .5rem;
+  gap: 0.5rem;
   margin-bottom: 1rem;
 }
-
 body section .equation-container .equation {
   font-size: 2rem;
   cursor: pointer;
@@ -73,27 +66,23 @@ body section .equation-container .equation {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
-
 body section .equation-container .equation:hover {
   background-color: #A76B50;
   transition: all 300ms ease;
 }
-
 body section .equation-container .equation.active {
   background-color: #4A756E;
   transition: all 300ms ease;
 }
-
 body section .reset {
   display: flex;
   justify-content: center;
 }
-
 body section .reset button {
   cursor: pointer;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   font-size: 5rem;
   background-color: #8C5638;
   color: white;
@@ -101,13 +90,10 @@ body section .reset button {
   width: 100%;
   padding: 1rem;
 }
-
 body section .reset button:hover {
   background-color: #A76B50;
   transition: all 300ms ease;
 }
-
 body section .users {
   font-size: 1rem;
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

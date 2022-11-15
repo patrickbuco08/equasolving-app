@@ -91,10 +91,10 @@
         }
 
         .game-grid {
-            border: 3px solid #000;
+            //border: 3px solid #000;
             border-radius: 12px;
             padding: 5px;
-            background: $white_25;
+            //background: $white_25;
             height: calc(100% - 24.5%);
             margin: auto 0;
             grid-template-rows: auto auto auto auto;
@@ -111,7 +111,7 @@
                 justify-content: center;
 
                 span {
-                    font-size: 18px;
+                    font-size: 20px;
                 }
             }
         }
@@ -462,7 +462,7 @@
                 }
 
                 .equation:active {
-                    box-shadow: 0 0 30px $background_c;
+                    //box-shadow: 0 0 30px $background_c;
                     background: $yellow;
                     color: white;
                     transform: translateY(4px);

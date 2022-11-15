@@ -1,6 +1,6 @@
 <div id="main-default-summary">
     <div class="ms-content-area">
-            <div class="eq-header flex flex-jc-fs width-100">
+            <div class="eq-header flex flex-jc-fs width-100 maxwidth-400 margin-auto">
                 <div class="game-logo flex flex-jc-c">
                     <div class="logo-container" id="classic-logo">
                         <img src="{{ asset('images/Logo.png') }}" alt="EquaSolve-Logo">
@@ -41,7 +41,7 @@
                     </button>
                 </div>
             </div>  
-            <div class="eq-title-container margin-tb-25">
+            <div class="eq-title-container margin-tb-25 maxwidth-400">
                     <div class="eq-title-area flex flex-vert flex-jc-sb flex-ai-c">
                         <h1 class="welcome-text">
                             Match History 

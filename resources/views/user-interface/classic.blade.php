@@ -84,7 +84,7 @@
 
 
 </section>
-<div id="main-default-summary">
+<div id="main-default-summary" class="maxwidth-500 margin-auto">
     <div class="ms-content-area">
             <div class="eq-header flex flex-jc-c">
                 <div class="game-logo flex flex-jc-c">
@@ -120,7 +120,7 @@
             </div>
     </div>     
 </div>
-<div id="main-default-loading" class="d-none">
+<div id="main-default-loading" class="d-none maxwidth-500 margin-auto">
     <div class="ms-content-area">
             <div class="eq-header flex flex-jc-c">
                 <div class="game-logo flex flex-jc-c">
