@@ -178,7 +178,7 @@ export const equation = {
 
 export const timer = {
     minutes: 0,
-    seconds: 30,
+    seconds: 22,
     timerLoop: null,
     init: function () {
         const countDownTimer = this.countDownTimer.bind(this);

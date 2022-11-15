@@ -37,7 +37,7 @@
                     </div>
                     @endauth
                     <button class="header-btn height-60px" id="render-home">
-                        <span>Back</span>
+                        <span>Menu</span>
                     </button>
                 </div>
             </div>  
