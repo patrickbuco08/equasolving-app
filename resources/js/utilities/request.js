@@ -6,7 +6,7 @@ const origin = window.location.origin,
 const createUserUsingNickname = async () => { 
     const nickname = $('input[name="set-nickname"]').val();
     try {
-        $('button[name="add-nickname"]').text('Saving....');
+        $('button[name="add-nickname"]').text('Saving....').attr('disabled', true);
         console.log('Please Wait...');
         const response = await axios({
             method: 'POST',
@@ -89,6 +89,7 @@ const renderSetNickname = async () => {
  }
 
 const renderClassic = async () => { 
+    window.location.href=`${origin}/classic`;
     try {
         const response = await axios.get(`${origin}/skeleton/classic`);
         return response.data;

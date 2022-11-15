@@ -15,33 +15,27 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, p, span, a {
-  font-family: "Arial", "sans-serif";
+  font-family: 'Arial', 'sans-serif';
 }
 
 p {
   font-size: 0.625rem;
 }
 
-::-moz-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #000;
-  opacity: 1; /* Firefox */
+  opacity: 1;
+  /* Firefox */
 }
 
-:-ms-input-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #000;
-  opacity: 1; /* Firefox */
-}
-
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #000;
-  opacity: 1; /* Firefox */
-}
-
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
   color: #000;
 }
 
-::-ms-input-placeholder { /* Microsoft Edge */
+::-ms-input-placeholder {
+  /* Microsoft Edge */
   color: #000;
 }
 
@@ -52,33 +46,43 @@ p {
 .flex {
   display: flex;
 }
+
 .flex-jc-se {
   justify-content: space-evenly;
 }
+
 .flex-jc-fe {
   justify-content: flex-end;
 }
+
 .flex-jc-fs {
   justify-content: flex-start;
 }
+
 .flex-jc-sb {
   justify-content: space-between;
 }
+
 .flex-jc-c {
   justify-content: center;
 }
+
 .flex-ai-c {
   align-items: center;
 }
+
 .flex-ai-fs {
   align-items: flex-start;
 }
+
 .flex-ai-fe {
   align-items: flex-end;
 }
+
 .flex-vert {
   flex-direction: column;
 }
+
 .flex-hori {
   flex-direction: row;
 }
@@ -99,12 +103,14 @@ p {
   flex-direction: column;
   justify-content: space-between;
 }
+
 @media screen and (min-width: 376px) {
   #main-default div.eq-content-area {
     max-width: 375px;
     margin: 0 auto;
   }
 }
+
 @media screen and (max-width: 320px) {
   #main-default .input-container {
     display: flex !important;
@@ -113,13 +119,13 @@ p {
     padding: 7px !important;
   }
   #main-default span.mmr,
-#main-default span.trophy {
+  #main-default span.trophy {
     font-size: 8px;
     font-weight: 900;
     display: block !important;
   }
   #main-default div.img-container,
-#main-default .mmr-2 {
+  #main-default .mmr-2 {
     display: none;
   }
   #main-default .input-container input {
@@ -131,52 +137,64 @@ p {
     padding: 12px 10px !important;
   }
 }
+
 #main-default div.eq-content-area {
   width: 100%;
   height: 500px;
   padding: 15px;
 }
+
 #main-default div.eq-content-area.vh-100 {
   height: 100vh !important;
 }
+
 #main-default div.game-theme-container .upper-text {
   width: 100%;
 }
+
 #main-default div.game-theme-container span.us {
   width: 20px;
   height: 20px;
   border: 1px solid #000;
   border-radius: 100%;
 }
+
 #main-default div.game-theme-container .active-theme {
   background: transparent;
   z-index: 1;
   border-radius: 12px;
   pointer-events: all;
 }
+
 #main-default div.game-theme-container .active-theme span.us {
   background: green;
 }
+
 #main-default div.game-theme-container .active-theme .input-container {
   display: none;
 }
+
 #main-default div.game-theme-container .neutral-theme {
   background: transparent;
   z-index: 1;
   border-radius: 12px;
   pointer-events: all;
 }
+
 #main-default div.game-theme-container .neutral-theme span.us {
   background: orange;
 }
+
 #main-default div.game-theme-container .neutral-theme .input-container {
   display: none;
 }
+
 #main-default div.game-theme-container .locked-theme {
-  background: rgba(0, 0, 0, 0.768627451);
+  background: #000000c4;
   z-index: 1;
   border-radius: 12px;
 }
+
 #main-default div.game-theme-container .locked-theme .img-container2 {
   width: 30px;
   height: 45px;
@@ -189,6 +207,7 @@ p {
   background-repeat: no-repeat;
   background-color: #FDC613;
 }
+
 #main-default div.game-theme-container .locked-theme .input-container {
   background: #fff;
   border: 3px solid #000;
@@ -204,6 +223,7 @@ p {
   width: 100px;
   margin: 35px 125px;
 }
+
 #main-default div.game-theme-container .locked-theme .input-container input {
   width: 100%;
   background: transparent;
@@ -215,20 +235,25 @@ p {
   height: 50px;
   padding: 0 10px;
 }
+
 #main-default div.game-theme-container .locked-theme .input-container .eq-mmr {
   text-align: start;
   width: 60%;
 }
+
 #main-default div.game-theme-container .locked-theme .input-container:active {
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(4px);
 }
+
 #main-default div.game-theme-container .locked-theme .menu-btn {
   pointer-events: none;
 }
+
 #main-default div.game-theme-container .locked-theme .menu-btn {
   opacity: 0.4;
 }
+
 #main-default div.game-theme-container span.colors {
   height: inherit;
   width: 40px;
@@ -236,22 +261,27 @@ p {
   position: inherit;
   border-radius: 8px;
 }
+
 #main-default div.game-theme-container div.theme-menu {
   height: auto;
   overflow-y: auto;
   gap: 15px;
   padding: 10px 0;
 }
+
 #main-default div.game-theme-container div.text-container {
   flex: 100%;
 }
+
 #main-default div.game-theme-container .menu-btn {
   padding: 12px !important;
 }
+
 #main-default div.game-theme-container .menu-btn:active {
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(4px);
 }
+
 #main-default div.game-theme-container div.img-container {
   width: 100%;
   border-radius: 12px;
@@ -259,11 +289,13 @@ p {
   box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
   margin-right: 25px;
 }
+
 #main-default div.game-theme-container div.img-container img {
   margin: 0 auto;
   height: 50px;
   display: none;
 }
+
 #main-default div.game-theme-container div.color-container {
   height: 30px;
   width: 100%;
@@ -271,111 +303,139 @@ p {
   align-items: center;
   gap: 10px;
 }
+
 #main-default div.game-theme-container #default-theme {
   background: #fff;
   border: 3px solid #000;
   z-index: 0;
 }
+
 #main-default div.game-theme-container #default-theme #color-1 {
   background: #FFA600;
 }
+
 #main-default div.game-theme-container #default-theme #color-2 {
   background: #FDC613;
 }
+
 #main-default div.game-theme-container #default-theme #color-3 {
   background: #000;
 }
+
 #main-default div.game-theme-container #default-theme #color-4 {
   background: #fff;
 }
+
 #main-default div.game-theme-container #default-theme div.img-container {
   background: url("/images/Default-Theme-logo.png");
   background-size: contain;
   background-position: center center;
 }
+
 #main-default div.game-theme-container #cloud-theme {
   background: #fff;
   border: 3px solid #000;
   z-index: 0;
 }
+
 #main-default div.game-theme-container #cloud-theme #color-1 {
   background: #14536c;
 }
+
 #main-default div.game-theme-container #cloud-theme #color-2 {
   background: #25a7da;
 }
+
 #main-default div.game-theme-container #cloud-theme #color-3 {
   background: #51b8e1;
 }
+
 #main-default div.game-theme-container #cloud-theme #color-4 {
   background: #fff;
 }
+
 #main-default div.game-theme-container #cloud-theme div.img-container {
   background: url("/images/cloud-theme-logo.png");
   background-size: cover;
   background-position: bottom center;
 }
+
 #main-default div.game-theme-container #sun-theme {
   background: #fff;
   border: 3px solid #000;
   z-index: 0;
 }
+
 #main-default div.game-theme-container #sun-theme #color-1 {
   background: #3B4046;
 }
+
 #main-default div.game-theme-container #sun-theme #color-2 {
   background: #F5A302;
 }
+
 #main-default div.game-theme-container #sun-theme #color-3 {
   background: #191817;
 }
+
 #main-default div.game-theme-container #sun-theme #color-4 {
   background: #fff;
 }
+
 #main-default div.game-theme-container #sun-theme div.img-container {
   background: url("/images/sun-moon-theme.png");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
 }
+
 #main-default div.game-theme-container #night-theme {
   background: #fff;
   border: 3px solid #000;
   z-index: 0;
 }
+
 #main-default div.game-theme-container #night-theme #color-1 {
   background: #26236B;
 }
+
 #main-default div.game-theme-container #night-theme #color-2 {
   background: #F8A102;
 }
+
 #main-default div.game-theme-container #night-theme #color-3 {
   background: #261052;
 }
+
 #main-default div.game-theme-container #night-theme #color-4 {
   background: #0D103F;
 }
+
 #main-default div.game-theme-container #night-theme div.img-container {
   background: url("/images/midnight-theme.png");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
 }
+
 #main-default div.game-theme-container .menu-btn {
   border-radius: 12px;
   padding: 12px 25px;
   box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
   height: auto;
 }
+
 #main-default div.game-theme-container .menu-btn h2 {
   margin: 0;
 }
+
 #main-default div.eq-version span {
   font-size: 0.625rem;
   color: #000;
   font-weight: 400;
   padding: 15px;
 }
+
 #main-default .eq-title-area {
   width: 100%;
   background: #fff;
@@ -383,49 +443,60 @@ p {
   max-width: 95%;
   margin: 0 auto;
 }
+
 #main-default .square {
   margin-top: -70px;
 }
+
 #main-default .square .square-left,
 #main-default .square .square-right {
   height: 80px;
 }
+
 #main-default .square .us {
   background: #fff;
   width: 25px;
   height: 25px;
   border: 3px solid #000;
 }
+
 #main-default div.eq-mm-container .eq-title-container {
   margin: 30px auto;
 }
+
 #main-default div.eq-nn-container .eq-title-container {
   margin: 30px auto 56px auto;
 }
+
 #main-default div.eq-title-container h1 {
   font-size: 1.125rem;
   font-weight: 900;
   text-align: center;
   margin: 10px 0;
 }
+
 #main-default div.eq-title-container p {
   color: #fff;
   text-align: center;
   font-weight: 400;
-  line-height: 1.5em;
+  line-height: 1.50em;
 }
+
 #main-default div.eq-title-container .eq-sub-text {
   padding: 0 18%;
 }
+
 #main-default div#game-area {
   margin: 25px 0;
   height: 100%;
   gap: 5%;
 }
+
 #main-default div#game-area .timer-container {
   width: 100%;
   gap: 5%;
 }
+
 #main-default div#game-area .timer-container input {
   background: #000;
   text-align: center;
@@ -439,29 +510,31 @@ p {
   padding: 0;
   font-size: 1rem;
 }
+
 #main-default div#game-area .game-grid {
   border-radius: 12px;
   padding: 5px;
-  height: 75.5%;
+  height: calc(100% - 24.5%);
   margin: auto 0;
   grid-template-rows: auto auto auto auto;
   gap: 0px;
 }
+
 #main-default div#game-area .game-grid .row {
   display: grid;
   grid-template-columns: auto auto auto auto;
   margin: 5px 10px;
   background: #fff;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 #main-default div#game-area .game-grid .row span {
   font-size: 20px;
 }
+
 #main-default div#game-area button.reset-btn {
   background: #fff;
   border-radius: 8px;
@@ -470,17 +543,21 @@ p {
   padding: 17px 0;
   font-weight: 700;
 }
+
 #main-default div#game-area button:active {
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(4px);
 }
+
 #main-default div#game-area span.data {
   font-size: 24px;
   font-weight: 800;
 }
+
 #main-default div#find-match {
   height: 100%;
 }
+
 #main-default div#find-match main {
   height: 95%;
   display: flex;
@@ -488,6 +565,7 @@ p {
   justify-content: center;
   align-items: center;
 }
+
 #main-default div#find-match main .button {
   display: flex;
   justify-content: center;
@@ -500,6 +578,7 @@ p {
   background-color: white;
   color: black;
 }
+
 #main-default div#find-match main .content {
   height: 90%;
   display: flex;
@@ -507,6 +586,7 @@ p {
   justify-content: center;
   align-items: center;
 }
+
 #main-default div#find-match main .content .logo {
   width: 12rem;
   height: 12rem;
@@ -517,18 +597,20 @@ p {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 9rem;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   margin-bottom: 1rem;
 }
+
 #main-default div#find-match main .content .find-match {
   width: 100%;
   height: 10%;
 }
+
 #main-default div#find-match main .content .cancel {
   width: 100%;
   height: 10%;
 }
+
 #main-default div#find-match main .content .tips {
   width: 100%;
   padding-left: 1rem;
@@ -537,23 +619,28 @@ p {
   color: white;
   margin: 1rem 0;
 }
+
 #main-default div#find-match main .menu {
   width: 100%;
   height: 10%;
 }
+
 #main-default div#find-match footer {
   height: 5%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 #main-default div#find-match footer p {
-  font-size: 0.8rem;
+  font-size: .8rem;
 }
+
 #main-default div#pvp {
   height: 100%;
   position: relative;
 }
+
 #main-default div#pvp .pvpOverlay {
   position: fixed;
   display: flex;
@@ -566,25 +653,28 @@ p {
   left: 0;
   z-index: 5;
 }
+
 #main-default div#pvp .pvpOverlay span {
   font-size: 4rem;
   color: white;
 }
+
 #main-default div#pvp header {
   width: 100%;
   height: 30%;
   display: flex;
   flex-direction: column;
-  row-gap: 0.75rem;
+  row-gap: .75rem;
   font-family: poppins, sans-serif;
 }
+
 #main-default div#pvp header .timer {
   display: flex;
   justify-content: space-between;
-  -moz-column-gap: 10px;
-       column-gap: 10px;
+  column-gap: 10px;
   height: 25%;
 }
+
 #main-default div#pvp header .timer div {
   display: flex;
   justify-content: center;
@@ -598,23 +688,27 @@ p {
   font-size: 0.75rem;
   font-weight: 900;
 }
+
 #main-default div#pvp header .timer div:nth-child(1) {
   background: #00A3FF;
 }
+
 #main-default div#pvp header .timer div:nth-child(2) {
   width: 130%;
 }
+
 #main-default div#pvp header .timer div:nth-child(3) {
   background: #FF5C00;
 }
+
 #main-default div#pvp header .versus-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  -moz-column-gap: 10px;
-       column-gap: 10px;
+  column-gap: 10px;
   height: 40%;
 }
+
 #main-default div#pvp header .versus-section div {
   display: flex;
   justify-content: center;
@@ -625,10 +719,12 @@ p {
   border: 3px solid black;
   color: white;
 }
+
 #main-default div#pvp header .versus-section div span {
   font-size: 60px;
   font-weight: 900;
 }
+
 #main-default div#pvp header .versus-section div.versus {
   display: flex;
   justify-content: center;
@@ -641,6 +737,7 @@ p {
   border: 0;
   width: 33.33%;
 }
+
 #main-default div#pvp header .versus-section div.versus .exit {
   width: 80px;
   height: 100%;
@@ -650,42 +747,46 @@ p {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 2.5rem;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
+
 #main-default div#pvp header .versus-section .player {
   width: 35%;
   background-image: url("/images/Pvp Logo.png");
   background-size: 85%;
   background-repeat: no-repeat;
   background-position: center center;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 20px;
   box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
 }
+
 #main-default div#pvp header .versus-section .player.one {
   background-color: #00A3FF;
 }
+
 #main-default div#pvp header .versus-section .player.two {
   background-color: #FF5C00;
 }
+
 #main-default div#pvp header .versus-section span {
   font-weight: 900;
   font-size: 1.875rem;
 }
+
 #main-default div#pvp header .points {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  -moz-column-gap: 50px;
-       column-gap: 50px;
+  column-gap: 50px;
   height: 20%;
   font-family: poppins, sans-serif;
 }
+
 #main-default div#pvp header .points span {
   font-weight: bold;
 }
+
 #main-default div#pvp header .points div {
   display: flex;
   justify-content: center;
@@ -696,28 +797,31 @@ p {
   border: 3px solid black;
   color: white;
 }
+
 #main-default div#pvp header .points div.one {
   background-color: #00A3FF;
 }
+
 #main-default div#pvp header .points div.two {
   background-color: #FF5C00;
 }
+
 #main-default div#pvp main {
   height: 70%;
   padding: 0;
 }
+
 #main-default div#pvp main .game-area {
   position: relative;
   border-radius: 12px;
   z-index: 0;
   height: 90%;
 }
+
 #main-default div#pvp main .game-area .equation {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   padding: 5px;
   height: 10%;
@@ -729,6 +833,7 @@ p {
   z-index: 99;
   box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
 }
+
 #main-default div#pvp main .game-area .equation .circle {
   display: none;
   position: absolute;
@@ -740,73 +845,85 @@ p {
   border: 3px solid #000;
   background-color: black;
   color: white;
-  font-size: 0.7rem;
+  font-size: .7rem;
 }
+
 #main-default div#pvp main .game-area .equation .circle.selected-1:before {
   vertical-align: sub;
   content: "1";
 }
+
 #main-default div#pvp main .game-area .equation .circle.selected-2:before {
   vertical-align: sub;
   content: "2";
 }
+
 #main-default div#pvp main .game-area .equation .circle.selected-3:before {
   vertical-align: sub;
   content: "3";
 }
+
 #main-default div#pvp main .game-area .equation .circle.selected-4:before {
   vertical-align: sub;
   content: "4";
 }
+
 #main-default div#pvp main .game-area .equation.equation-1 {
   position: absolute;
   margin-left: auto;
   margin-right: auto;
-  top: 0.5em;
+  top: .5em;
   left: 0;
   right: 0;
   text-align: center;
 }
+
 #main-default div#pvp main .game-area .equation.equation-2 {
   position: absolute;
   margin-top: auto;
   margin-bottom: auto;
-  left: 0.5rem;
+  left: .5rem;
   top: 0;
   bottom: 0;
   text-align: center;
 }
+
 #main-default div#pvp main .game-area .equation.equation-3 {
   position: absolute;
   margin-left: auto;
   margin-right: auto;
-  bottom: 0.5rem;
+  bottom: .5rem;
   left: 0;
   right: 0;
   text-align: center;
 }
+
 #main-default div#pvp main .game-area .equation.equation-4 {
   position: absolute;
   margin-top: auto;
   margin-bottom: auto;
-  right: 0.5rem;
+  right: .5rem;
   top: 0;
   bottom: 0;
   text-align: center;
 }
+
 #main-default div#pvp main .game-area .equation.active {
   background-color: #00A3FF;
   color: white;
 }
+
 #main-default div#pvp main .game-area .equation.active .circle {
   display: block;
 }
+
 #main-default div#pvp main .game-area .equation:active {
   box-shadow: 0 0 30px #00A3FF;
   background: #FDC613;
   color: white;
   transform: translateY(4px);
 }
+
 #main-default div#pvp main .game-area .big-square {
   border: 3px solid #000;
   position: absolute;
@@ -818,13 +935,15 @@ p {
   z-index: 0;
   transform: rotate(45deg);
 }
+
 #main-default div#pvp main .reset {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 12%;
-  padding-top: 0.3rem;
+  padding-top: .3rem;
 }
+
 #main-default div#pvp main .reset .button-reset {
   display: flex;
   justify-content: center;
@@ -838,22 +957,27 @@ p {
   color: black;
   box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
 }
+
 #main-default div#pvp main .reset .button-reset:active {
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(4px);
 }
+
 #main-default div#pvp footer {
   height: 3%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 #main-default div#pvp footer p {
-  font-size: 0.8rem;
+  font-size: .8rem;
 }
+
 #main-default div#versus-screen {
   height: 100%;
 }
+
 #main-default div#versus-screen main {
   display: flex;
   align-items: center;
@@ -861,28 +985,33 @@ p {
   flex-direction: column;
   height: 95%;
 }
+
 #main-default div#versus-screen main .container {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 #main-default div#versus-screen main .container span.versus {
   font-size: 1.8rem;
   color: white;
   font-weight: 900;
-  margin-bottom: 0.3rem;
+  margin-bottom: .3rem;
 }
+
 #main-default div#versus-screen main .container div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 #main-default div#versus-screen main .container div span {
   color: white;
   font-weight: 700;
-  margin-bottom: 0.3rem;
+  margin-bottom: .3rem;
 }
+
 #main-default div#versus-screen main .container .player {
   text-align: center;
   border-radius: 12px;
@@ -895,15 +1024,17 @@ p {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 4rem;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
+
 #main-default div#versus-screen main .container .player.one {
   background-color: #00A3FF;
 }
+
 #main-default div#versus-screen main .container .player.two {
   background-color: #FF5C00;
 }
+
 #main-default div#versus-screen main .container .player-mmr {
   display: flex;
   justify-content: center;
@@ -914,29 +1045,35 @@ p {
   border: 3px solid black;
   color: black;
   background-color: white;
-  margin-top: 0.3rem;
+  margin-top: .3rem;
 }
+
 #main-default div#versus-screen main .eq-title-container {
   margin-top: 1rem;
   width: 100%;
 }
+
 #main-default div#versus-screen footer {
   height: 5%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 #main-default div#versus-screen footer p {
-  font-size: 0.8rem;
+  font-size: .8rem;
 }
+
 #main-default div#win-lose {
   height: 100%;
 }
+
 #main-default div#win-lose main {
   height: 95%;
   position: relative;
   display: flex;
 }
+
 #main-default div#win-lose main .container {
   width: 100%;
   height: 93%;
@@ -945,21 +1082,25 @@ p {
   align-items: center;
   justify-content: center;
 }
+
 #main-default div#win-lose main .container .match-status h1 {
   color: white;
   font-size: 4rem;
 }
+
 #main-default div#win-lose main .container .player-information {
   width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.3rem;
+  gap: .3rem;
 }
+
 #main-default div#win-lose main .container .player-information .player-name {
   color: white;
   font-weight: 700;
 }
+
 #main-default div#win-lose main .container .player-information .player {
   border-radius: 12px;
   border: 3px solid black;
@@ -970,15 +1111,17 @@ p {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 4rem;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
+
 #main-default div#win-lose main .container .player-information .player.one {
   background-color: #00A3FF;
 }
+
 #main-default div#win-lose main .container .player-information .player.two {
   background-color: #FF5C00;
 }
+
 #main-default div#win-lose main .container .player-information .info {
   display: flex;
   justify-content: center;
@@ -990,10 +1133,12 @@ p {
   color: black;
   background-color: white;
 }
+
 #main-default div#win-lose main .menu {
   width: 100%;
   height: 7%;
 }
+
 #main-default div#win-lose main .menu span {
   display: flex;
   justify-content: center;
@@ -1006,34 +1151,42 @@ p {
   color: black;
   background-color: white;
 }
+
 #main-default div#win-lose .menu {
   position: absolute;
   bottom: 0;
 }
+
 #main-default div#win-lose footer {
   height: 5%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 #main-default div#win-lose footer p {
-  font-size: 0.8rem;
+  font-size: .8rem;
 }
+
 #main-default div.eq-header {
   gap: 5px;
 }
+
 #main-default div.eq-header div.eq-mm {
   margin: 30px auto !important;
 }
+
 #main-default div.eq-header span.mmr,
 #main-default div.eq-header span.trophy {
   display: none;
 }
+
 #main-default div.eq-header .left-side {
   height: 120px;
   width: 30%;
   flex: 1;
 }
+
 #main-default div.eq-header .left-side button {
   width: 55.59px;
   border-radius: 12px;
@@ -1042,29 +1195,35 @@ p {
   border: 3px solid #000;
   padding: 3px 4.8px;
 }
+
 #main-default div.eq-header .left-side button img {
   width: 40px;
   height: 40px;
 }
+
 #main-default div.eq-header .left-side button#exit-game img {
   width: 100%;
   padding: 6px 2px;
 }
+
 #main-default div.eq-header .left-side button:active {
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(4px);
 }
+
 #main-default div.eq-header .right-side {
   height: 120px;
   width: 30%;
   flex: 1;
 }
+
 #main-default div.eq-header .right-side .mmr-2 {
   font-size: 0.75rem;
   font-weight: 900;
   width: 30%;
   text-align: end;
 }
+
 #main-default div.eq-header .right-side .input-container {
   background: #fff;
   border: 3px solid #000;
@@ -1076,6 +1235,7 @@ p {
   align-items: center;
   box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
 }
+
 #main-default div.eq-header .right-side .input-container input {
   width: 100%;
   background: transparent;
@@ -1087,10 +1247,12 @@ p {
   height: 50px;
   padding: 0 10px;
 }
+
 #main-default div.eq-header .right-side .input-container .eq-mmr {
   text-align: start;
   width: 60%;
 }
+
 #main-default div.eq-header .right-side .img-container {
   width: 30px;
   height: 45px;
@@ -1103,9 +1265,11 @@ p {
   background-repeat: no-repeat;
   background-color: #FDC613;
 }
+
 #main-default div.eq-header .game-logo {
   width: 40%;
 }
+
 #main-default div.eq-header .game-logo div#classic-logo,
 #main-default div.eq-header .game-logo div#main-logo {
   background: #FDC613;
@@ -1117,33 +1281,41 @@ p {
   justify-content: center;
   align-items: center;
 }
+
 #main-default div.eq-header .game-logo div#main-logo {
   padding: 18px;
   height: 120px;
 }
+
 #main-default div.eq-header .game-logo img {
   width: 100%;
   margin: 0 auto;
 }
+
 #main-default div.main-menu-container div.menu {
   height: 330px;
-  gap: 0.5rem;
+  gap: .5rem;
 }
+
 #main-default div.main-menu-container .menu-btn:hover {
   background: rgba(255, 255, 255, 0.25);
   border: 3px solid #fff;
 }
+
 #main-default div.main-menu-container .menu-btn:hover div.img-container {
   border: 3px solid #fff;
 }
+
 #main-default div.main-menu-container .menu-btn:hover h2,
 #main-default div.main-menu-container .menu-btn:hover p {
   color: #fff;
 }
+
 #main-default div.main-menu-container .menu-btn:active {
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(4px);
 }
+
 #main-default div.main-menu-container .menu-btn {
   background: #fff;
   border-radius: 12px;
@@ -1152,9 +1324,11 @@ p {
   box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
   height: auto;
 }
+
 #main-default div.main-menu-container .menu-btn h2 {
   margin: 0;
 }
+
 #main-default div.main-menu-container .menu-btn div.img-container {
   width: 25%;
   background: #FDC613;
@@ -1166,16 +1340,19 @@ p {
   justify-content: center;
   margin-right: 20px;
 }
+
 #main-default div.main-menu-container .menu-btn div.img-container img {
   margin: 0 auto;
   height: 50px;
 }
+
 #main-default div.eq-version span {
   font-size: 0.625rem;
   color: #000;
   font-weight: 400;
   padding: 15px;
 }
+
 #main-default .eq-title-area {
   width: 100%;
   background: #fff;
@@ -1183,40 +1360,49 @@ p {
   max-width: 95%;
   margin: 0 auto;
 }
+
 #main-default .square {
   margin-top: -70px;
   pointer-events: none;
 }
+
 #main-default .square .square-left,
 #main-default .square .square-right {
   height: 80px;
 }
+
 #main-default .square .us {
   background: #fff;
   width: 25px;
   height: 25px;
   border: 3px solid #000;
 }
+
 #main-default div.eq-mm-container .eq-title-container {
   margin: 30px auto;
 }
+
 #main-default div.eq-nn-container .eq-title-container {
   margin: 30px auto 56px auto;
 }
+
 #main-default div.eq-title-container h1 {
   font-size: 20px;
   font-weight: 900;
   text-align: center;
 }
+
 #main-default div.eq-title-container p {
   color: #fff;
   text-align: center;
   font-weight: 400;
-  line-height: 1.5em;
+  line-height: 1.50em;
 }
+
 #main-default div.eq-title-container .eq-sub-text {
   padding: 0 18%;
 }
+
 #main-default .eq-set-nickname {
   padding: 25px;
   background: #FDC613;
@@ -1226,9 +1412,11 @@ p {
   height: 100%;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
 }
+
 #main-default .eq-set-nickname .eq-nickname-container {
   padding: 0 14px;
 }
+
 #main-default .eq-set-nickname .eq-title-area {
   width: 100%;
   background: #fff;
@@ -1236,11 +1424,13 @@ p {
   max-width: 95%;
   margin: 0 auto;
 }
+
 #main-default .eq-set-nickname span.nickname-restrictions {
   margin: 5px auto 15px auto;
   color: #fff;
   font-size: 0.75rem;
 }
+
 #main-default .eq-set-nickname input {
   border: none;
   width: 100%;
@@ -1252,10 +1442,12 @@ p {
   text-align: center;
   font-weight: bold;
 }
+
 #main-default .eq-set-nickname .eq-button-area {
   width: 100%;
   gap: 5%;
 }
+
 #main-default .eq-set-nickname button {
   border: 3px solid #000;
   border-radius: 8px;
@@ -1266,25 +1458,31 @@ p {
   width: 100%;
   box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
 }
+
 #main-default .eq-set-nickname button:active {
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(4px);
 }
+
 #main-default .eq-set-nickname .eq-connect img {
   width: 25px;
   height: 25px;
   margin-right: 10px;
 }
+
 #main-default .eq-set-nickname .square {
   margin-top: -45px;
 }
+
 #main-default .eq-set-nickname .square .square-left,
 #main-default .eq-set-nickname .square .square-right {
   height: 50px;
 }
+
 #main-default .eq-set-nickname .square .us {
   background: #fff;
   width: 20px;
   height: 20px;
   border: 3px solid #000;
-}/*# sourceMappingURL=style.css.map */
+}
+/*# sourceMappingURL=style.css.map */

@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -20848,7 +20848,7 @@ var createUserUsingNickname = /*#__PURE__*/function () {
           case 0:
             nickname = jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[name="set-nickname"]').val();
             _context.prev = 1;
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()('button[name="add-nickname"]').text('Saving....');
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('button[name="add-nickname"]').text('Saving....').attr('disabled', true);
             console.log('Please Wait...');
             _context.next = 6;
             return axios({
@@ -21083,25 +21083,26 @@ var renderClassic = /*#__PURE__*/function () {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
-            _context7.prev = 0;
-            _context7.next = 3;
+            window.location.href = "".concat(origin, "/classic");
+            _context7.prev = 1;
+            _context7.next = 4;
             return axios.get("".concat(origin, "/skeleton/classic"));
 
-          case 3:
+          case 4:
             response = _context7.sent;
             return _context7.abrupt("return", response.data);
 
-          case 7:
-            _context7.prev = 7;
-            _context7.t0 = _context7["catch"](0);
+          case 8:
+            _context7.prev = 8;
+            _context7.t0 = _context7["catch"](1);
             return _context7.abrupt("return", "Sorry, something went wrong...");
 
-          case 10:
+          case 11:
           case "end":
             return _context7.stop();
         }
       }
-    }, _callee7, null, [[0, 7]]);
+    }, _callee7, null, [[1, 8]]);
   }));
 
   return function renderClassic() {
@@ -21190,7 +21191,7 @@ var logoutUser = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!***********************************!*\
   !*** multi ./resources/js/pvp.js ***!
   \***********************************/

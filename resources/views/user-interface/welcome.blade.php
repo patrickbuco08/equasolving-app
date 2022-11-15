@@ -107,13 +107,6 @@
                         <p>Exchange trophies for skins and effects.</p>
                     </div>
                 </div>
-                @auth
-                <div id="logout" class="shop-btn menu-btn flex ">
-                    <div class="text-container flex flex-ai-fs flex-vert flex-jc-c">
-                        <h2 id="logout-text">Logout</h2>
-                    </div>
-                </div>
-                @endauth
             </div>
         </div>
 
