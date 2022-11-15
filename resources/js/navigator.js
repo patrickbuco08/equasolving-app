@@ -1,10 +1,11 @@
  import $ from "jquery";
  import sfx from "./sfx";
- import { renderShop, renderMatchHistory, renderHome } from "./utilities/request";
+ import { renderShop, renderMatchHistory, renderHome, renderClassic, renderFindMatch, logoutUser } from "./utilities/request";
 
  // navigator
  (async () => {
     console.log('init navigator');
+
      //validation sa pag input ng nickname
      $(document).on('keyup', 'input[name="set-nickname"]', function (e) {
          e.preventDefault();

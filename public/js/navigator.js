@@ -14366,7 +14366,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
                     case 0:
                       e.preventDefault();
                       _context2.next = 3;
-                      return renderClassic();
+                      return Object(_utilities_request__WEBPACK_IMPORTED_MODULE_2__["renderClassic"])();
 
                     case 3:
                       classic = _context2.sent;
@@ -14394,7 +14394,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
                     case 0:
                       e.preventDefault();
                       _context3.next = 3;
-                      return renderFindMatch();
+                      return Object(_utilities_request__WEBPACK_IMPORTED_MODULE_2__["renderFindMatch"])();
 
                     case 3:
                       findMatch = _context3.sent;
@@ -14506,7 +14506,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
                     case 0:
                       e.preventDefault();
                       _context7.next = 3;
-                      return logoutUser();
+                      return Object(_utilities_request__WEBPACK_IMPORTED_MODULE_2__["logoutUser"])();
 
                     case 3:
                     case "end":
