@@ -13,6 +13,8 @@ import {
     io
 } from "socket.io-client";
 
+// ANIMATION IS MISSING
+
 (async () => {
     const socket = io(`http://${window.location.hostname}:3000`);
     const user = await getAuthenticatedUser();

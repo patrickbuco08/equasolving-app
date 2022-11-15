@@ -1,5 +1,5 @@
 import { Howl } from "howler"
-console.log('init');
+console.log('fx init');
 
 //sample fx
 // var sound = new Howl({

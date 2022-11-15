@@ -20,7 +20,9 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/utilities/request.js', 'public/js/utilities')
     .js('resources/js/utilities/pvpService.js', 'public/js/utilities')
     .js('resources/js/sfx.js', 'public/js/sfx/')
-    .js('resources/js/pvp.js', 'public/js/pvp.js')
+    .js('resources/js/pvp.js', 'public/js/')
+    .js('resources/js/navigator.js', 'public/js/')
+
 
 
 

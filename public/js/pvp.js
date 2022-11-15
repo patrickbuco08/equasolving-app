@@ -20460,7 +20460,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
+ // ANIMATION IS MISSING
 
 _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
   var socket, user, animation, classPatern, answers, canAnswerEquation;
@@ -20645,7 +20645,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var howler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! howler */ "./node_modules/howler/dist/howler.js");
 /* harmony import */ var howler__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(howler__WEBPACK_IMPORTED_MODULE_0__);
 
-console.log('init'); //sample fx
+console.log('fx init'); //sample fx
 // var sound = new Howl({
 //     src: ['sound.webm', 'sound.mp3', 'sound.wav'],
 //     autoplay: true,

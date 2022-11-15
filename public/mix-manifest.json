@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/js/navigator.js": "/js/navigator.js",
     "/js/pvp.js": "/js/pvp.js",
     "/js/sfx/sfx.js": "/js/sfx/sfx.js",
     "/js/utilities/pvpService.js": "/js/utilities/pvpService.js",
