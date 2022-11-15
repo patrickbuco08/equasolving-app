@@ -80,14 +80,11 @@
                 </div>
                     <button class="reset-btn" id="reset">Reset</button>
                 </div>
-                <div id="footer" class="eq-version flex flex-jc-c d-none">
-                    <span>Version Alpha.</span>
-            </div>
             </div>
 
 
 </section>
-<div id="main-default-summary">
+<div id="main-default-summary" class="maxwidth-500 margin-auto">
     <div class="ms-content-area">
             <div class="eq-header flex flex-jc-c">
                 <div class="game-logo flex flex-jc-c">
@@ -121,12 +118,9 @@
                 <button class="main-menu-btn" id="main-menu">Main Menu</button>
                 <button class="play-again-btn" id="play-again">Play Again</button>
             </div>
-    </div>  
-    <div id="footer" class="eq-version flex flex-jc-c d-none">
-        <span>Version Alpha.</span>
-</div>     
+    </div>     
 </div>
-<div id="main-default-loading" class="d-none">
+<div id="main-default-loading" class="d-none maxwidth-500 margin-auto">
     <div class="ms-content-area">
             <div class="eq-header flex flex-jc-c">
                 <div class="game-logo flex flex-jc-c">
@@ -149,10 +143,7 @@
                         </div>
                     </div>
             </div>
-    </div> 
-    <div id="footer" class="eq-version flex flex-jc-c d-none">
-        <span>Version Alpha.</span>
-</div>      
+    </div>     
 </div>
 
 <div id="exit-modal" class="modal">
@@ -187,33 +178,30 @@
 </div>
 <div id="settings-modal" class="modal">
     <div class="modal-content">
+        <span class="close" id="close">&times;</span>
       <div class="eq-mm-container">
-                  <div class="eq-title-container">
-                      <div class="eq-title-area flex flex-vert flex-jc-sb flex-ai-c">
-                          <h1 class="welcome-text">
-                              Settings
-                          </h1>
-                      </div>
-                      <div class="square flex flex-hori flex-jc-sb exit-context-box ">
-                          <div class="square-left-exit flex flex-vert flex-jc-sb">
-                              <span class="us"></span>
-                              <span class="us"></span>
-                          </div>
-                          <div class="square-right-exit flex flex-vert flex-jc-sb">
-                              <span class="us"></span>
-                              <span class="us"></span>
-                          </div>
-                      </div>
-                  </div>
-      </div>
-              <div class="exit-button-container flex flex-hori flex-jc-sb">
-                  <button class="return-btn" id="return">Return</button>
-              </div>
-  
-      </div>
-  
+        <div class="eq-header flex flex-jc-sb">
+            <div class="modal-header flex flex-vert flex-ai-c flex-jc-c">
+                <span class="header-btn white" id="settings">
+                    Settings
+                </span>
+                <div class="flex flex-hori flex-ai-c flex-jc-sb">
+                    <h4>Music:</h4>
+                <span class="header-btn" id="musicOnOff">
+                    <img id="musicImg" src="{{ asset('images/music-on.png') }}" alt="BGMusic">
+                </span>
+                </div>
+                <div class="flex flex-hori flex-ai-c flex-jc-sb">
+                    <h4>SFX:</h4>
+                <span class="header-btn" id="SFXOnOff">
+                    <img id="sfxImg" src="{{ asset('images/music-on.png') }}" alt="BGMusic">
+                </span>
+                </div>
+            </div>
+        </div>
+      </div>  
     </div>
-  </div>
+</div>
 
 
 @endsection
@@ -270,9 +258,10 @@
             i++;
             if(equation.answers.length == 4){
                 if(equation.isAnswerSorted()){
-                    $('input#timer').addClass(`text-success ${successFX} green`).one(fxEnds, function(){
-                        $('input#timer').removeClass(`text-success ${successFX} green`);
-                    });
+                    $('input#timer').addClass(`text-success green`);
+                        setTimeout(() => {
+                        $('input#timer').removeClass(`text-success green`);
+                    }, 1000);
                     $('span#add-time').addClass(`add-time-absolute move-up-animation`);
                         setTimeout(() => {
                     $('span#add-time').removeClass(`add-time-absolute move-up-animation`);
@@ -287,11 +276,12 @@
                     $('div#classic-logo').addClass(`text-danger ${failedFX} red`).one(fxEnds, function(){
                         $('div#classic-logo').removeClass(`text-danger ${failedFX} red`);
                     });
-                    $('input#timer').addClass(`text-danger ${failedFX} red`).one(fxEnds, function(){
-                        $('input#timer').removeClass(`text-danger ${failedFX} red`);
+                    $('input#timer').addClass(`text-danger red`);
+                        setTimeout(() => {
+                        $('input#timer').removeClass(`text-danger red`);
                         $('span.data').removeClass('active');
                         $('span.data').removeClass('first second third fourth');
-                    });
+                    }, 1000);
                     $('span#minus-time').addClass(`minus-time-absolute move-up-animation`);
                         setTimeout(() => {
                     $('span#minus-time').removeClass(`minus-time-absolute move-up-animation`);
@@ -328,7 +318,7 @@
             $("#exit-modal").hide();
             timer.continue();
         }); 
-        $('#return').click(function (e) { 
+        $('#close').click(function (e) { 
             e.preventDefault();
             $("#settings-modal").hide();
             timer.continue();
@@ -338,6 +328,39 @@
             $("#exit-modal").hide();
             timer.quit();
         }); 
+
+    $("#musicOnOff").on('click', function(){
+            //var sfxBtn = $('#button_sfx'); 
+            //var sfxWL = $('#other_sfx');
+        //if(sfxBtn[0].volume == 1.0)
+        //{
+            //sfxBtn[0].volume = 0;
+            //sfxWL[0].volume = 0;
+            $("#musicImg").removeAttr("src");
+            $("#musicImg").attr('src', '{{ asset('/images/music-off.png') }}');
+        //}
+        //else 
+        //{
+            //sfxBtn[0].volume = 1;
+            //sfxWL[0].volume = 1;
+            //$("#musicOnOff img").src="{{ asset('images/music-on.png') }}";
+        //}
+    });
+    $("#SFXOnOff").on('click',function(e){
+       // var bgMusic = $('#bg_sfx');
+       // if(bgMusic[0].volume == 1.0)
+    //{
+      //  bgMusic[0].volume = 0;
+      $("#sfxImg").removeAttr("src");
+      $("#sfxImg").attr('src', '{{ asset('/images/music-off.png') }}');
+    //}
+    //else 
+    //{
+        //bgMusic[0].volume = 1
+        //$("#SFXOnOff img").src="{{ asset('images/music-on.png') }}";
+    //}
+    });
+
         const renderMainMenu = async () => {
             const origin = window.location.origin;
             const response = await axios.get(`${origin}/skeleton/home`);
