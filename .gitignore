@@ -10,3 +10,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+public/js/utilities/*.js
+public/js/classic.js
+public/js/navigator.js
+public/js/pvp.js

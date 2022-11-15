@@ -107,13 +107,6 @@
                         <p>Exchange trophies for skins and effects.</p>
                     </div>
                 </div>
-                @auth
-                <div id="logout" class="shop-btn menu-btn flex ">
-                    <div class="text-container flex flex-ai-fs flex-vert flex-jc-c">
-                        <h2 id="logout-text">Logout</h2>
-                    </div>
-                </div>
-                @endauth
             </div>
         </div>
 
@@ -124,7 +117,18 @@
 @section('scripts')
 <script>
     (async () => {
-        const user = getAuthenticatedUser();
+        try {
+            const response = await axios.get(`${origin}/user/check-auth`);
+            console.log(response.data);
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.status == 401) {
+                console.log('show nickname');
+                const renderedSetNickname = await renderSetNickname();
+                $('div#root').html(renderedSetNickname);
+                return null;
+            }
+        }
     })();
 
 </script>

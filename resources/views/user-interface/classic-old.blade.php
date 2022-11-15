@@ -207,8 +207,7 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/classic.js') }}" type="module"></script>
-{{-- <script type="module">
+<script type="module">
     import {equation, timer, gameTimer} from '/js/classic/utils.js'
     (() => {
         let successFX = 'animated bounce', failedFX = 'animated headShake', fxEnds = 'animationend AnimationEnd mozAnimationEnd webkitAnimationEnd';
@@ -384,5 +383,5 @@
         });
 
     })();
-</script> --}}
+</script>
 @endsection

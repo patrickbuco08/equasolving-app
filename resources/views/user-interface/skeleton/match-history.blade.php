@@ -97,22 +97,5 @@
 <script>
     (() => {
         $('div#main-default-summary').show();
-        $('span#score').text()
-        function Status(status1, status2){
-            if(status1 == status2)
-                return "Draw";
-            else if(status1 < status2)
-                return "Lose"
-            else
-                return "Win"
-        }
-        function ColorStatus(status){
-            if(status == "Win")
-                return "win-status"
-            else if(status == "Lose")
-                return "lose-status"
-            else(status == "Draw")
-                return "draw-status"
-        }
 })();
 </script>

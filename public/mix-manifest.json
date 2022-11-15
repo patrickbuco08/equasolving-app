@@ -1,8 +1,11 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/js/classic.js": "/js/classic.js",
+    "/js/navigator.js": "/js/navigator.js",
     "/js/pvp.js": "/js/pvp.js",
     "/js/sfx/sfx.js": "/js/sfx/sfx.js",
+    "/js/utilities/classicService.js": "/js/utilities/classicService.js",
     "/js/utilities/pvpService.js": "/js/utilities/pvpService.js",
     "/js/utilities/request.js": "/js/utilities/request.js"
 }
