@@ -3451,7 +3451,7 @@ var sfx = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\EquaSolve\app\resources\js\sfx.js */"./resources/js/sfx.js");
+module.exports = __webpack_require__(/*! C:\Users\kishu\OneDrive\Documents\GitHub\equasolving-app-classic\resources\js\sfx.js */"./resources/js/sfx.js");
 
 
 /***/ })

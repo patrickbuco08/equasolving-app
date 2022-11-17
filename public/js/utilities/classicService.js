@@ -14582,7 +14582,7 @@ var equation = {
 };
 var timer = {
   minutes: 0,
-  seconds: 5,
+  seconds: 22,
   timerLoop: null,
   init: function init() {
     var countDownTimer = this.countDownTimer.bind(this);
@@ -14783,7 +14783,7 @@ function sorted(arr) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\EquaSolve\app\resources\js\utilities\classicService.js */"./resources/js/utilities/classicService.js");
+module.exports = __webpack_require__(/*! C:\Users\kishu\OneDrive\Documents\GitHub\equasolving-app-classic\resources\js\utilities\classicService.js */"./resources/js/utilities/classicService.js");
 
 
 /***/ })

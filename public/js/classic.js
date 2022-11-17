@@ -14343,7 +14343,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     console.log(BgMusicSwitch);
 
     if (BgMusicSwitch) {
-      _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].menu.play(); //palitan mo ng sfx.classic.play();
+      _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].classic.play(); //palitan mo ng sfx.classic.play();
     }
   }, 100); //initialize timer
 
@@ -14822,7 +14822,7 @@ var equation = {
 };
 var timer = {
   minutes: 0,
-  seconds: 5,
+  seconds: 22,
   timerLoop: null,
   init: function init() {
     var countDownTimer = this.countDownTimer.bind(this);
@@ -15023,7 +15023,7 @@ function sorted(arr) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\EquaSolve\app\resources\js\classic.js */"./resources/js/classic.js");
+module.exports = __webpack_require__(/*! C:\Users\kishu\OneDrive\Documents\GitHub\equasolving-app-classic\resources\js\classic.js */"./resources/js/classic.js");
 
 
 /***/ })

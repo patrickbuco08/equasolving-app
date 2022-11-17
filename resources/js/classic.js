@@ -36,7 +36,7 @@ import sfx from "./sfx";
 
         console.log(BgMusicSwitch)
         if (BgMusicSwitch) {
-            sfx.menu.play(); //palitan mo ng sfx.classic.play();
+            sfx.classic.play(); //palitan mo ng sfx.classic.play();
         }
 
     }, 100);

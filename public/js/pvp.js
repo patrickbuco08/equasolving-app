@@ -21198,7 +21198,7 @@ var logoutUser = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\EquaSolve\app\resources\js\pvp.js */"./resources/js/pvp.js");
+module.exports = __webpack_require__(/*! C:\Users\kishu\OneDrive\Documents\GitHub\equasolving-app-classic\resources\js\pvp.js */"./resources/js/pvp.js");
 
 
 /***/ })
