@@ -31,15 +31,12 @@ import sfx from "./sfx";
     $('body#main-default').addClass('flex-jc-c-imp');
 
     setTimeout(() => {
-        $("#musicImg").attr('src', `/images/music-${BgMusicSwitch ? 'on' : 'off'}.png`);
-        $("#sfxImg").attr('src', `/images/music-${sfxSwitch ? 'on' : 'off'}.png`);
 
-        console.log(BgMusicSwitch)
         if (BgMusicSwitch) {
-            sfx.menu.play(); //palitan mo ng sfx.classic.play();
+            sfx.classic.play();
         }
 
-    }, 100);
+    }, 800);
 
 
     //initialize timer
@@ -122,13 +119,13 @@ import sfx from "./sfx";
     });
     $('#exit-game').click(function (e) {
         e.preventDefault();
-        timer.pause();
+        console.log('where');
         $("#exit-modal").show();
+        timer.pause();
     });
     $('#settings').click(function (e) {
         e.preventDefault();
         timer.pause();
-        $("#settings-modal").show();
     });
     $('#cancel').click(function (e) {
         e.preventDefault();
@@ -147,6 +144,10 @@ import sfx from "./sfx";
     });
 
     $("#musicOnOff").on('click', function () {
+
+        if(window.location.pathname != "/classic") return;
+        console.log('trigger settings on classic');
+
         const musicFXisOn = localStorage.getItem("equasolve_music_fx") === "true" ? true : false;
 
         localStorage.setItem("equasolve_music_fx", musicFXisOn ? "false" : "true");
@@ -154,36 +155,25 @@ import sfx from "./sfx";
 
         if (musicFXisOn) {
             console.log('we pause')
-            sfx.menu.pause();
+            sfx.classic.pause();
         } else {
             console.log('we play')
-            sfx.menu.play();
+            sfx.classic.play();
         }
 
     });
 
     $("#SFXOnOff").on('click', function (e) {
 
+        if(window.location.pathname != "/classic") return;
+        console.log('trigger settings on classic');
+        
         const isSfxOn = () => {
             return localStorage.getItem("equasolve_sfx") === "true";
         }
         localStorage.setItem("equasolve_sfx", isSfxOn() ? "false" : "true");
         Howler.mute(!musicFXisOn());
         $("#sfxImg").attr('src', `/images/music-${musicFXisOn() ? 'on' : 'off'}.png`);
-
-        localStorage.getItem("equasolve_sfx")
-        // var bgMusic = $('#bg_sfx');
-        // if(bgMusic[0].volume == 1.0)
-        //{
-        //  bgMusic[0].volume = 0;
-        //   $("#sfxImg").removeAttr("src");
-        //   $("#sfxImg").attr('src', '{{ asset('/images/music-off.png') }}');
-        //}
-        //else 
-        //{
-        //bgMusic[0].volume = 1
-        //$("#SFXOnOff img").src="{{ asset('images/music-on.png') }}";
-        //}
     });
 
     const renderMainMenu = async () => {

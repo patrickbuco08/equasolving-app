@@ -14322,19 +14322,60 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  // navigator
 
 _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
-  var menuBgMusic;
+  var menuBgMusic, BgMusicSwitch, sfxSwitch;
   return _regeneratorRuntime().wrap(function _callee11$(_context11) {
     while (1) {
       switch (_context11.prev = _context11.next) {
         case 0:
           console.log('init navigator');
           menuBgMusic = null;
+          BgMusicSwitch = localStorage.getItem("equasolve_music_fx") == "true" ? true : false;
+          sfxSwitch = localStorage.getItem("equasolve_sfx") == "true" ? true : false;
           setTimeout(function () {
+            // play only if page is on the landing page
             if (window.location.pathname == "/" || window.location.pathname == "/find-match") {
               console.log('play');
-              menuBgMusic = _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].menu.play();
+
+              if (BgMusicSwitch) {
+                menuBgMusic = _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].menu.play();
+              }
             }
-          }, 100); //validation sa pag input ng nickname
+          }, 100);
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#musicImg").attr('src', "/images/music-".concat(BgMusicSwitch ? 'on' : 'off', ".png"));
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sfxImg").attr('src', "/images/music-".concat(sfxSwitch ? 'on' : 'off', ".png"));
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#musicOnOff").on('click', function () {
+            if (window.location.pathname != "/") return;
+            console.log('trigger settings on landing page');
+            var musicFXisOn = localStorage.getItem("equasolve_music_fx") === "true" ? true : false;
+            localStorage.setItem("equasolve_music_fx", musicFXisOn ? "false" : "true");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#musicImg").attr('src', "/images/music-".concat(!musicFXisOn ? 'on' : 'off', ".png"));
+
+            if (musicFXisOn) {
+              _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].menu.pause();
+            } else {
+              _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].menu.play();
+            }
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#SFXOnOff").on('click', function (e) {
+            if (window.location.pathname != "/") return;
+            console.log('trigger settings on landing page');
+
+            var isSfxOn = function isSfxOn() {
+              return localStorage.getItem("equasolve_sfx") === "true";
+            };
+
+            localStorage.setItem("equasolve_sfx", isSfxOn() ? "false" : "true");
+            howler__WEBPACK_IMPORTED_MODULE_3__["Howler"].mute(!musicFXisOn());
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sfxImg").attr('src', "/images/music-".concat(musicFXisOn() ? 'on' : 'off', ".png"));
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on("click", '#settings', function (e) {
+            e.preventDefault();
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#settings-modal").show();
+          });
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('click', '#close', function (e) {
+            e.preventDefault();
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#settings-modal").hide();
+          }); //validation sa pag input ng nickname
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('keyup', 'input[name="set-nickname"]', function (e) {
             e.preventDefault();
@@ -14574,7 +14615,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() 
             };
           }());
 
-        case 11:
+        case 19:
         case "end":
           return _context11.stop();
       }

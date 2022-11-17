@@ -14338,14 +14338,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   jquery__WEBPACK_IMPORTED_MODULE_2___default()('#main-default-loading').show();
   jquery__WEBPACK_IMPORTED_MODULE_2___default()('body#main-default').addClass('flex-jc-c-imp');
   setTimeout(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#musicImg").attr('src', "/images/music-".concat(BgMusicSwitch ? 'on' : 'off', ".png"));
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#sfxImg").attr('src', "/images/music-".concat(sfxSwitch ? 'on' : 'off', ".png"));
-    console.log(BgMusicSwitch);
-
     if (BgMusicSwitch) {
-      _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].menu.play(); //palitan mo ng sfx.classic.play();
+      _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].classic.play();
     }
-  }, 100); //initialize timer
+  }, 800); //initialize timer
 
   _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"].init();
   _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["gameTimer"].init();
@@ -14427,13 +14423,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   });
   jquery__WEBPACK_IMPORTED_MODULE_2___default()('#exit-game').click(function (e) {
     e.preventDefault();
-    _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"].pause();
+    console.log('where');
     jquery__WEBPACK_IMPORTED_MODULE_2___default()("#exit-modal").show();
+    _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"].pause();
   });
   jquery__WEBPACK_IMPORTED_MODULE_2___default()('#settings').click(function (e) {
     e.preventDefault();
     _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"].pause();
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#settings-modal").show();
   });
   jquery__WEBPACK_IMPORTED_MODULE_2___default()('#cancel').click(function (e) {
     e.preventDefault();
@@ -14451,19 +14447,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"].quit();
   });
   jquery__WEBPACK_IMPORTED_MODULE_2___default()("#musicOnOff").on('click', function () {
+    if (window.location.pathname != "/classic") return;
+    console.log('trigger settings on classic');
     var musicFXisOn = localStorage.getItem("equasolve_music_fx") === "true" ? true : false;
     localStorage.setItem("equasolve_music_fx", musicFXisOn ? "false" : "true");
     jquery__WEBPACK_IMPORTED_MODULE_2___default()("#musicImg").attr('src', "/images/music-".concat(!musicFXisOn ? 'on' : 'off', ".png"));
 
     if (musicFXisOn) {
       console.log('we pause');
-      _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].menu.pause();
+      _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].classic.pause();
     } else {
       console.log('we play');
-      _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].menu.play();
+      _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].classic.play();
     }
   });
   jquery__WEBPACK_IMPORTED_MODULE_2___default()("#SFXOnOff").on('click', function (e) {
+    if (window.location.pathname != "/classic") return;
+    console.log('trigger settings on classic');
+
     var isSfxOn = function isSfxOn() {
       return localStorage.getItem("equasolve_sfx") === "true";
     };
@@ -14471,18 +14472,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     localStorage.setItem("equasolve_sfx", isSfxOn() ? "false" : "true");
     howler__WEBPACK_IMPORTED_MODULE_1__["Howler"].mute(!musicFXisOn());
     jquery__WEBPACK_IMPORTED_MODULE_2___default()("#sfxImg").attr('src', "/images/music-".concat(musicFXisOn() ? 'on' : 'off', ".png"));
-    localStorage.getItem("equasolve_sfx"); // var bgMusic = $('#bg_sfx');
-    // if(bgMusic[0].volume == 1.0)
-    //{
-    //  bgMusic[0].volume = 0;
-    //   $("#sfxImg").removeAttr("src");
-    //   $("#sfxImg").attr('src', '{{ asset('/images/music-off.png') }}');
-    //}
-    //else 
-    //{
-    //bgMusic[0].volume = 1
-    //$("#SFXOnOff img").src="{{ asset('images/music-on.png') }}";
-    //}
   });
 
   var renderMainMenu = /*#__PURE__*/function () {
@@ -14821,8 +14810,8 @@ var equation = {
   }
 };
 var timer = {
-  minutes: 0,
-  seconds: 5,
+  minutes: 2,
+  seconds: 30,
   timerLoop: null,
   init: function init() {
     var countDownTimer = this.countDownTimer.bind(this);
@@ -14912,7 +14901,7 @@ var timer = {
     return this.minutes <= 0 && this.seconds <= 0;
   },
   setGameOver: function setGameOver() {
-    _sfx__WEBPACK_IMPORTED_MODULE_2__["default"].menu.pause();
+    _sfx__WEBPACK_IMPORTED_MODULE_2__["default"].classic.pause();
     _sfx__WEBPACK_IMPORTED_MODULE_2__["default"].win.play();
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.eq-content-area').hide();
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('div#main-default-summary').addClass("fadein-animation");

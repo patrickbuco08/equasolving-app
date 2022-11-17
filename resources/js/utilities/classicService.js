@@ -181,8 +181,8 @@ export const equation = {
 }
 
 export const timer = {
-    minutes: 0,
-    seconds: 5,
+    minutes: 2,
+    seconds: 30,
     timerLoop: null,
     init: function () {
         const countDownTimer = this.countDownTimer.bind(this);
@@ -276,7 +276,7 @@ export const timer = {
         return this.minutes <= 0 && this.seconds <= 0;
     },
     setGameOver: function () {
-        sfx.menu.pause();
+        sfx.classic.pause();
         sfx.win.play();
         $('.eq-content-area').hide();
         $('div#main-default-summary').addClass("fadein-animation");

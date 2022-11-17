@@ -14581,8 +14581,8 @@ var equation = {
   }
 };
 var timer = {
-  minutes: 0,
-  seconds: 5,
+  minutes: 2,
+  seconds: 30,
   timerLoop: null,
   init: function init() {
     var countDownTimer = this.countDownTimer.bind(this);
@@ -14672,7 +14672,7 @@ var timer = {
     return this.minutes <= 0 && this.seconds <= 0;
   },
   setGameOver: function setGameOver() {
-    _sfx__WEBPACK_IMPORTED_MODULE_2__["default"].menu.pause();
+    _sfx__WEBPACK_IMPORTED_MODULE_2__["default"].classic.pause();
     _sfx__WEBPACK_IMPORTED_MODULE_2__["default"].win.play();
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.eq-content-area').hide();
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('div#main-default-summary').addClass("fadein-animation");
