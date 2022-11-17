@@ -2,6 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/js/classic.js": "/js/classic.js",
+    "/js/find-match.js": "/js/find-match.js",
     "/js/navigator.js": "/js/navigator.js",
     "/js/pvp.js": "/js/pvp.js",
     "/js/sfx/sfx.js": "/js/sfx/sfx.js",

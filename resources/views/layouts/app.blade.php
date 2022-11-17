@@ -28,6 +28,33 @@
         @yield('content')
     </div>
 
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close">&times;</span>
+          <div class="eq-mm-container">
+            <div class="eq-header flex flex-jc-sb">
+                <div class="modal-header flex flex-vert flex-ai-c flex-jc-c">
+                    <span class="header-btn white" id="settings">
+                        Settings
+                    </span>
+                    <div class="flex flex-hori flex-ai-c flex-jc-sb">
+                        <h4>Music:</h4>
+                    <span class="header-btn" id="musicOnOff">
+                        <img id="musicImg" src="{{ asset('images/music-on.png') }}" alt="BGMusic">
+                    </span>
+                    </div>
+                    <div class="flex flex-hori flex-ai-c flex-jc-sb">
+                        <h4>SFX:</h4>
+                    <span class="header-btn" id="SFXOnOff">
+                        <img id="sfxImg" src="{{ asset('images/music-on.png') }}" alt="BGMusic">
+                    </span>
+                    </div>
+                </div>
+            </div>
+          </div>  
+        </div>
+    </div>
+
     {{-- <script src="{{ asset('js/asyncFunctions.js') }}"></script> --}}
     <script src="{{ asset('js/navigator.js') }}"></script>
     <script>
