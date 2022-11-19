@@ -7,6 +7,19 @@ use Illuminate\Support\Facades\Auth;
 
 class SkeletonController extends Controller
 {
+
+    public function home()
+    {
+        return view('user-interface.skeleton.home');
+    }
+
+    public function loader($text)
+    {
+        return view('user-interface.skeleton.loader', [
+            'text' => $text
+        ]);
+    }
+
     public function nickname()
     {
         return view('user-interface.skeleton.set-nickname');
@@ -17,14 +30,24 @@ class SkeletonController extends Controller
         return view('user-interface.skeleton.classic');
     }
 
+    public function classicSummary($level, $trophies)
+    {
+        $userClassicModeDetails = auth()->user()->classicModeDetails;
+
+        $userClassicModeDetails->update([
+            'current_level' => $level > $userClassicModeDetails->current_level ? $level : $userClassicModeDetails->current_level,
+            'trophies' => $userClassicModeDetails->trophies + $trophies
+        ]);
+
+        return view('user-interface.skeleton.classic-summary', [
+            'level' => $level,
+            'trophies' => $trophies
+        ]);
+    }
+
     public function findMatch()
     {
         return view('user-interface.skeleton.find-match');
-    }
-
-    public function home()
-    {
-        return view('user-interface.skeleton.home');
     }
 
     public function matchHistory()

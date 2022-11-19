@@ -1,0 +1,1 @@
+<x-loader :title="$text" />

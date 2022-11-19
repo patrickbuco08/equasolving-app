@@ -197,6 +197,179 @@
 
 
 <script type="module">
+    import {equation, timer, gameTimer} from '/js/classic/utils.js'
+    (() => {
 
+        let successFX = 'animated bounce', failedFX = 'animated headShake', fxEnds = 'animationend AnimationEnd mozAnimationEnd webkitAnimationEnd';
+
+        $('#main-default-loading').show();
+        $('body#main-default').addClass('flex-jc-c-imp');
+        $('div#main-default-summary').hide();
+        $('.eq-content-area').hide();
+        
+
+        //initialize timer
+
+        timer.init();
+        gameTimer.init();
+        equation.generateDOM();
+        let i = 0;
+        const sequence = ['first','second','third', 'fourth'];
+        if($("#content-section").hasClass("start")){
+            timer.pause();
+            timer.loading();
+        }
+        $(document).on('click', 'span.data', function () {
+            
+            if($(this).hasClass('active') && $(this).hasClass(''+i-1+'')){
+                i--;
+                $('span.data.'+''+i).removeClass('active');
+                $('span.data').removeClass(''+i+'');
+                $('span.data').removeClass(''+sequence[i]+'');
+                equation.answers.splice(i); 
+                return
+            }
+            else if($(this).hasClass('active') || $(this).hasClass('0 1 2 3') || $(this).hasClass('first second third fourth')){
+                return
+            }
+            $(this).addClass('active');
+            $(this).addClass(''+i+'');
+            $(this).addClass(''+sequence[i]+'');
+            equation.setAnswer($(this).data('answer'))
+            console.log(equation.answers);
+            i++;
+            if(equation.answers.length == 4){
+                
+                if(equation.isAnswerSorted()){
+                    $('input#timer').addClass(`text-success  green`);
+                    setTimeout(() => {
+                        $('input#timer').removeClass(`text-success green`);
+                        $('div#classic-logo').removeClass(`text-success green`);
+                    }, 1000);
+                    $('span#add-time').addClass(`add-time-absolute move-up-animation`);
+                        setTimeout(() => {
+                    $('span#add-time').removeClass(`add-time-absolute move-up-animation`);
+                    }, 1500);
+                    $('div#classic-logo').addClass(`text-success ${successFX} green`).one(fxEnds, function(){
+                        $('div#classic-logo').removeClass(`text-success ${successFX} green`);
+                    });
+                    timer.addTime(5);
+                    equation.generateDOM()
+                    i = 0;
+                }else{
+                    $('div#classic-logo').addClass(`text-danger ${failedFX} red`).one(fxEnds, function(){
+                        $('div#classic-logo').removeClass(`text-danger ${failedFX} red`);
+                    });
+                    $('input#timer').addClass(`text-danger red`);
+                    setTimeout(() => {
+                    $('input#timer').removeClass(`text-danger red`);
+                    $('span.data').removeClass('active');
+                    $('span.data').removeClass('first second third fourth');
+                    }, 1000);
+                    $('span#minus-time').addClass(`minus-time-absolute move-up-animation`);
+                        setTimeout(() => {
+                    $('span#minus-time').removeClass(`minus-time-absolute move-up-animation`);
+                    }, 1500);
+                    timer.deductTime(3);
+                    equation.answers = []
+                    $('span.data').removeClass('0 1 2 3');
+                    
+                    i = 0;
+
+                } 
+            }
+        });
+
+        $('#reset').click(function (e) { 
+            e.preventDefault();
+            $('span.data').removeClass('active');
+            $('span.data').removeClass('0 1 2 3');
+            $('span.data').removeClass('first second third fourth');
+            equation.answers = []
+            i = 0;
+        });
+        $('#exit-game').click(function (e) { 
+            e.preventDefault();
+            timer.pause();
+            $("#exit-modal").show();
+        });       
+        $('#settings').click(function (e) { 
+            e.preventDefault();
+            timer.pause();
+            $("#settings-modal").show();
+        });         
+        $('#cancel').click(function (e) { 
+            e.preventDefault();
+            $("#exit-modal").hide();
+            timer.continue();
+        }); 
+        $('#close').click(function (e) { 
+            e.preventDefault();
+            $("#settings-modal").hide();
+            timer.continue();
+        });
+        $('#exit').click(function (e) { 
+            e.preventDefault();
+            $("#exit-modal").hide();
+            timer.quit();
+        }); 
+
+    $("#musicOnOff").on('click', function(){
+            var sfxBtn = $('#button_sfx'); 
+            var sfxWL = $('#other_sfx');
+        if(sfxBtn[0].volume == 1.0)
+        {
+            sfxBtn[0].volume = 0;
+            sfxWL[0].volume = 0;
+            $("#musicImg").removeAttr("src");
+            $("#musicImg").attr('src', '{{ asset('/images/music-off.png') }}');
+        }
+        else 
+        {
+            sfxBtn[0].volume = 1;
+            sfxWL[0].volume = 1;
+            $("#musicImg").removeAttr("src");
+            $("#musicImg").attr('src', '{{ asset('/images/music-on.png') }}');
+        }
+    });
+    $("#SFXOnOff").on('click',function(e){
+        var bgMusic = $('#bg_sfx');
+        if(bgMusic[0].volume == 1.0)
+    {
+        bgMusic[0].volume = 0;
+        $("#sfxImg").removeAttr("src");
+        $("#sfxImg").attr('src', '{{ asset('/images/music-off.png') }}');
+    }
+    else 
+    {
+        bgMusic[0].volume = 1
+        $("#sfxImg").removeAttr("src");
+        $("#sfxImg").attr('src', '{{ asset('/images/music-on.png') }}');
+    }
+    });
+        
+
+        const renderMainMenu = async () => {
+            const origin = window.location.origin;
+            const response = await axios.get(`${origin}/skeleton/home`);
+            $('div#root').html(response.data);
+        }
+
+        $('#main-menu').click(function (e) {
+            e.preventDefault();
+            //renderMainMenu();
+            const origin = window.location.origin;
+            window.location.href = `${origin}`;
+        });
+        $('#play-again').click(function (e) {
+            e.preventDefault();
+            $('div#root').animate({opacity: 0}, 1000);
+            setTimeout(() => {
+                const origin = window.location.origin;
+                window.location.href = `${origin}/classic`;
+            }, 1000);
+        });
+
+    })();
 </script>
 

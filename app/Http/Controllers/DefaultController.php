@@ -45,9 +45,16 @@ class DefaultController extends Controller
         return view('user-interface.settings');
     }
 
+    public function shop()
+    {
+        return view('user-interface.shop');
+    }
+
     public function classic()
     {
-        return view('user-interface.classic');
+        return view('user-interface.classic', [
+            'textLoader' => 'Classic Mode Loading'
+        ]);
     }
 
     public function pvp()
@@ -57,7 +64,10 @@ class DefaultController extends Controller
 
     public function findMatch()
     {
-        return view('user-interface.find-match');
+        $isAuthenticated = auth()->user()->is_google_account ? true : false;
+        return view('user-interface.find-match', [
+            'isAuthenticated' => $isAuthenticated
+        ]);
     }
 
     public function versusScreen(Request $request)

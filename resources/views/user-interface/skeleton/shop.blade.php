@@ -3,18 +3,18 @@
         <div class="eq-header flex flex-jc-sb">
             <div class="left-side flex flex-vert flex-ai-fs flex-jc-sb">
                 <button class="header-btn" id="settings">
-                    <img src="/img/Settings.png" alt="settings">
+                    <img src="/images/Settings.png" alt="settings">
                 </button>
                 <button class="header-btn" id="profile">
-                    <img src="/img/User Profile.png" alt="profile">
+                    <img src="/images/User Profile.png" alt="profile">
                 </button>
                 <button class="header-btn hide" id="exit-game">
-                    <img src="/img/Exit.png" alt="exit-game">
+                    <img src="/images/Exit.png" alt="exit-game">
                 </button>
             </div>
             <div class="game-logo flex flex-jc-c">
                 <div class="logo-container" id="classic-logo">
-                    <img src="/img/Shop logo.png" alt="EquaSolve-Logo">
+                    <img src="/images/Shop logo.png" alt="EquaSolve-Logo">
                 </div>
             </div>
             <div class="right-side flex flex-vert flex-ai-fe flex-jc-sb">
@@ -56,7 +56,7 @@
                 <div class="active-theme">
                     <div id="default-theme" class="menu-btn flex">
                         <div class="img-container">
-                            <img src="/img/cloud-theme.png" alt="Cloud-theme">
+                            <img src="/images/cloud-theme.png" alt="Cloud-theme">
                         </div>
                         <div class="text-container flex flex-ai-fs flex-vert flex-jc-c">
 
@@ -83,7 +83,7 @@
                     </div>
                     <div id="cloud-theme" class="menu-btn flex">
                         <div class="img-container">
-                            <img src="/img/Logo.png" alt="Classic-logo">
+                            <img src="/images/Logo.png" alt="Classic-logo">
                         </div>
                         <div class="text-container flex flex-ai-fs flex-vert flex-jc-c">
                             <div class="upper-text flex flex-hori flex-jc-sb">
@@ -109,7 +109,7 @@
                     </div>
                     <div id="sun-theme" class="menu-btn flex">
                         <div class="img-container">
-                            <img src="/img/Logo.png" alt="Classic-logo">
+                            <img src="/images/Logo.png" alt="Classic-logo">
                         </div>
                         <div class="text-container flex flex-ai-fs flex-vert flex-jc-c">
                             <div class="upper-text flex flex-hori flex-jc-sb">
@@ -134,7 +134,7 @@
                     </div>
                     <div id="night-theme" class="menu-btn flex">
                         <div class="img-container">
-                            <img src="/img/Logo.png" alt="Classic-logo">
+                            <img src="/images/Logo.png" alt="Classic-logo">
                         </div>
                         <div class="text-container flex flex-ai-fs flex-vert flex-jc-c">
                             <div class="upper-text flex flex-hori flex-jc-sb">

@@ -1,5 +1,5 @@
-<section id="content-section">
-    <div class="eq-content-area vh-100">
+<section id="content-section" class="content-mid">
+    <div class="eq-content-area">
         <div id="versus-screen">
             <main>
                 <div class="container">
@@ -33,9 +33,6 @@
                     </div>
                 </div>
             </main>
-            <footer>
-                <p>Version Alpha.</p>
-            </footer>
         </div>
     </div>
 </section>

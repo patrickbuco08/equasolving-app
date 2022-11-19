@@ -49,8 +49,11 @@ Route::prefix('user')->group(function () {
 // skeleton
 Route::prefix('skeleton')->group(function () {
     Route::name('skeleton.')->group(function(){
+        Route::get('/welcome', [SkeletonController::class, 'welcome']);
+        Route::get('/loader/{text}', [SkeletonController::class, 'loader']);
         Route::get('/nickname', [SkeletonController::class, 'nickname'])->name('get-nickname');
-        Route::get('/classic', [SkeletonController::class, 'classic'])->name('get-classic');
+        Route::get('/classic', [SkeletonController::class, 'classic']);
+        Route::get('/classic-summary/{level}/{trophies}', [SkeletonController::class, 'classicSummary']);
         Route::get('/home', [SkeletonController::class, 'home'])->name('get-home');
         Route::get('/match-history', [SkeletonController::class, 'matchHistory'])->name('get-matchHistory');
         Route::get('/find-match', [SkeletonController::class, 'findMatch'])->name('find-match');
@@ -67,6 +70,7 @@ Route::controller(DefaultController::class)->group(function () {
     Route::get('settings', 'settings');
     Route::get('classic', 'classic');
     Route::get('pvp', 'pvp');
+    Route::get('shop', 'shop');
     Route::get('find-match', 'findMatch');
     Route::get('versus-screen', 'versusScreen');
 });

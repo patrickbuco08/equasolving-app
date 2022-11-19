@@ -1,0 +1,1562 @@
+// Default Theme
+
+#main-cloud {
+    background-image: url("/images/cloud-theme.png");
+    background-color: $background_c;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+#overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.65);
+    position: absolute;
+}
+
+input::placeholder {
+    color: $text_c;
+}
+
+.content-mid {
+    margin: auto 0;
+}
+
+    // Responsive
+
+    @media screen and (min-width: 376px) {
+
+        div.eq-content-area {
+            max-width: 375px;
+            margin: 0 auto;
+        }
+    }
+
+    @media screen and (max-width: 320px) {
+        .input-container {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: flex-start !important;
+            padding: 7px !important;
+        }
+
+        span.mmr,
+        span.trophy {
+            font-size: 8px;
+            font-weight: 900;
+            display: block !important;
+        }
+
+        div.img-container,
+        .mmr-2 {
+            display: none;
+        }
+
+        .input-container input {
+            width: 100% !important;
+            padding: 0 !important;
+            text-align: center !important;
+        }
+
+        div.main-menu-container .menu-btn {
+            padding: 12px 10px !important;
+        }
+    }
+
+    // Main Components
+
+    div.eq-content-area {
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+    }
+
+    // Modal CSS 
+
+    #modal {
+        max-width: 345px;
+        width: 100%;
+        padding: 5px 25px 25px 25px;
+        background: $panel_c;
+        border: 3px solid $border_c;
+        border-radius: 16px;
+        position: absolute;
+        color: $text_c;
+
+        .modal-content {
+            width: 100%;
+
+            div.eq-mm-container .eq-title-container {
+                margin: 15px auto;
+            }
+
+            button {
+                color: $text_c;
+                border: 3px solid $border_c;
+                border-radius: 8px;
+                background: $white;
+                padding: 5px;
+                font-size: $font-base;
+                font-weight: 500;
+                width: 100%;
+                box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+            }
+
+            button:active {
+                box-shadow: 0 2px 0 rgba(0, 0, 0, .5);
+                transform: translateY(4px);
+            }
+
+            #error-modal,
+            #success-modal,
+            #theme-equip-modal {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                margin: 0 auto;
+
+                .eq-mm-container {
+                    width: 100%;
+                }
+
+                button#okay {
+                    width: 140px;
+                    margin: 0 auto;
+                }
+            }
+
+
+            h3 {
+                margin: 8px;
+            }
+
+            .eq-title-container {
+                .square {
+                    margin-top: -50px;
+
+                    &-left,
+                    &-right {
+                        height: 60px;
+                    }
+
+                    span.us {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+            }
+
+            .modal-button-container {
+                gap: 15px;
+            }
+        }
+    }
+
+
+// main-menu.html
+div.eq-header,
+div.game-theme-container {
+
+        gap: 5px;
+
+        div.eq-mm {
+            margin: 30px auto !important;
+        }
+
+        span.mmr,
+        span.trophy {
+            display: none;
+        }
+
+        .left-side {
+            height: 120px;
+            width: 30%;
+            flex: 1;
+
+            button {
+                width: 55.59px;
+                border-radius: 12px;
+                background: $white;
+                box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+                border: 3px solid $border_c;
+                padding: 3px 4.8px;
+
+                img {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+
+            button#exit-game {
+
+                img {
+                    width: 100%;
+                    padding: 6px 2px;
+                }
+            }
+
+            button:active {
+                box-shadow: 0 2px 0 rgba(0, 0, 0, .5);
+                transform: translateY(4px);
+            }
+        }
+
+        .right-side {
+            height: 120px;
+            width: 30%;
+            flex: 1;
+
+            .mmr-2 {
+                font-size: $font-xs;
+                font-weight: 900;
+                width: 30%;
+                text-align: end;
+                color: $text_c;
+            }
+
+            .input-container {
+                background: $white;
+                border: 3px solid $border_c;
+                border-radius: 12px;
+                height: 50px;
+                padding: 0px;
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: center;
+                box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+
+                input {
+                    width: 100%;
+                    background: transparent;
+                    font-size: $font-xs;
+                    font-weight: bold;
+                    border: none;
+                    outline: none;
+                    text-align: center;
+                    height: 50px;
+                    padding: 0 10px;
+                }
+
+                .eq-mmr {
+                    text-align: start;
+                    width: 60%;
+                }
+
+            }
+
+            .img-container {
+                width: 30px;
+                height: 45px;
+                padding: 10px;
+                background: $panel_c;
+                border-radius: 8px 0 0 8px;
+                border-right: 3px solid $border_c;
+                background-image: url("/images/trophy.png");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-color: $background_c;
+            }
+        }
+
+        .game-logo {
+            width: 40%;
+
+            div#classic-logo,
+            div#main-logo {
+                background: $panel_c;
+                border: 3px solid $border_c;
+                border-radius: 20px;
+                box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
+                max-width: 121px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            div#main-logo {
+                padding: 18px;
+                height: 120px;
+            }
+
+            img {
+                width: 100%;
+                margin: 0 auto;
+            }
+
+        }
+    }
+
+    div.main-menu-container {
+
+        div.menu {
+            height: auto;
+            overflow-y: auto;
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        & .menu-btn:hover {
+            background: rgba(255, 255, 255, .25);
+            border: 3px solid $white;
+
+            div.img-container {
+                border: 3px solid $white;
+            }
+
+            h2,
+            p {
+                color: $white;
+
+            }
+
+        }
+
+        & .menu-btn:active {
+            box-shadow: 0 2px 0 rgba(0, 0, 0, .5);
+            transform: translateY(4px);
+        }
+
+        .menu-btn {
+            background: $white;
+            border-radius: 12px;
+            border: 3px solid $border_c;
+            padding: 12px 25px;
+            box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+            height: auto;
+
+            h2,
+            p {
+                margin: 0;
+                color: $text_c;
+            }
+
+            div.img-container {
+                width: 25%;
+                background: $panel_c;
+                border-radius: 12px;
+                border: 3px solid $border_c;
+                padding: 7px;
+                box-shadow: 0 4px 0 rgba(0, 0, 0, .25);
+                display: flex;
+                justify-content: center;
+                margin-right: 20px;
+
+                img {
+                    margin: 0 auto;
+                    height: 50px;
+                }
+            }
+        }
+    }
+
+    // shop - themes
+    div.game-theme-container {
+
+        .upper-text {
+            width: 100%;
+        }
+
+        span.us {
+            width: 20px;
+            height: 20px;
+            border: 1px solid $border_c;
+            border-radius: 100%;
+        }
+
+        .active-theme {
+            background: transparent;
+            z-index: 1;
+            border-radius: 12px;
+            pointer-events: all;
+
+            span.us {
+                background: green;
+            }
+
+            & .input-container {
+                display: none;
+            }
+
+        }
+
+        .neutral-theme {
+            background: transparent;
+            z-index: 1;
+            border-radius: 12px;
+            pointer-events: all;
+
+            span.us {
+                background: orange;
+            }
+
+            & .input-container {
+                display: none;
+            }
+        }
+
+        .locked-theme {
+            background: $background_c;
+            z-index: 1;
+            border-radius: 12px;
+
+
+            & .img-container2 {
+                width: 30px;
+                height: 45px;
+                padding: 10px;
+                background: $panel_c;
+                border-radius: 8px 0 0 8px;
+                border-right: 3px solid $border_c;
+                background-image: url("/images/trophy.png");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-color: $background_c;
+            }
+
+            & .input-container {
+                background: $white;
+                border: 3px solid $border_c;
+                border-radius: 12px;
+                height: 50px;
+                padding: 0px;
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: center;
+                box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+                position: absolute;
+                z-index: 1;
+                width: 100px;
+                margin: 35px 125px;
+
+                input {
+                    width: 100%;
+                    background: transparent;
+                    font-size: $font-xs;
+                    font-weight: bold;
+                    border: none;
+                    outline: none;
+                    text-align: center;
+                    height: 50px;
+                    padding: 0 10px;
+                }
+
+                .eq-mmr {
+                    text-align: start;
+                    width: 60%;
+                }
+
+            }
+
+            & .input-container:active {
+                box-shadow: 0 2px 0 rgba(0, 0, 0, .5);
+                transform: translateY(4px);
+            }
+
+            & .menu-btn {
+                pointer-events: none;
+            }
+        }
+
+        .locked-theme .menu-btn {
+            opacity: 0.4;
+        }
+
+
+        span.colors {
+            height: inherit;
+            width: 40px;
+            border: 2px solid $border_c;
+            position: inherit;
+            border-radius: 8px;
+
+        }
+
+        div.theme-menu {
+            height: auto;
+            overflow-y: auto;
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        div.text-container {
+            flex: 100%;
+            color: $text_c;
+        }
+
+        & .menu-btn {
+            padding: 12px !important;
+        }
+
+        & .menu-btn:active {
+            box-shadow: 0 2px 0 rgba(0, 0, 0, .5);
+            transform: translateY(4px);
+        }
+
+        div.img-container {
+            width: 100%;
+            border-radius: 12px;
+            border: 3px solid $border_c;
+            box-shadow: 0 4px 0 rgba(0, 0, 0, .25);
+            margin-right: 25px;
+
+
+            img {
+                margin: 0 auto;
+                height: 50px;
+                display: none;
+            }
+        }
+
+        div.color-container {
+            height: 30px;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #default-theme {
+            background: #fff;
+            border: 3px solid $border_c;
+            z-index: 0;
+
+            #color-1 {
+                background: #FFA600;
+            }
+
+            #color-2 {
+                background: #FDC613;
+            }
+
+            #color-3 {
+                background: #000;
+            }
+
+            #color-4 {
+                background: #fff;
+            }
+
+            div.img-container {
+                background: url("/images/Default-Theme-logo.png");
+                background-size: contain;
+                background-position: center center;
+            }
+        }
+
+        #cloud-theme {
+            background: #fff;
+            border: 3px solid $border_c;
+            z-index: 0;
+
+            #color-1 {
+                background: #14536c;
+            }
+
+            #color-2 {
+                background: #25a7da;
+            }
+
+            #color-3 {
+                background: #51b8e1;
+            }
+
+            #color-4 {
+                background: #fff;
+            }
+
+            div.img-container {
+                background: url("/images/cloud-theme-logo.png");
+                background-size: cover;
+                background-position: bottom center;
+            }
+
+        }
+
+        #sun-theme {
+            background: #fff;
+            border: 3px solid $border_c;
+            z-index: 0;
+
+            #color-1 {
+                background: #3B4046;
+            }
+
+            #color-2 {
+                background: #F5A302;
+            }
+
+            #color-3 {
+                background: #191817;
+            }
+
+            #color-4 {
+                background: #fff;
+            }
+
+            div.img-container {
+                background: url("/images/sun-moon-theme.png");
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+            }
+        }
+
+        #night-theme {
+            background: #fff;
+            border: 3px solid $border_c;
+            z-index: 0;
+
+            #color-1 {
+                background: #26236B;
+            }
+
+            #color-2 {
+                background: #F8A102;
+            }
+
+            #color-3 {
+                background: #261052;
+            }
+
+            #color-4 {
+                background: #0D103F;
+            }
+
+            div.img-container {
+                background: url("/images/midnight-theme.png");
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+            }
+        }
+
+        .menu-btn {
+            border-radius: 12px;
+            padding: 12px 25px;
+            box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+            height: auto;
+
+            h2 {
+                margin: 0;
+            }
+        }
+    }
+
+
+    div.eq-version {
+        span {
+            font-size: $font-xxs;
+            color: #000;
+            font-weight: 400;
+            padding: 15px;
+        }
+    }
+
+    .eq-title-area {
+        width: 100%;
+        background: $white;
+        border: 3px solid $border_c;
+        max-width: 95%;
+        margin: 0 auto;
+    }
+
+    .square {
+        margin-top: -70px;
+
+        .square-left,
+        .square-right {
+            height: 80px;
+        }
+
+        .us {
+            background: $white;
+            width: 25px;
+            height: 25px;
+            border: 3px solid $border_c;
+        }
+
+    }
+
+    div.eq-mm-container .eq-title-container {
+        margin: 30px auto;
+    }
+
+    div.eq-nn-container .eq-title-container {
+        margin: 30px auto 56px auto;
+    }
+
+    div.eq-title-container {
+
+        h1 {
+            font-size: $font-m5;
+            font-weight: 900;
+            text-align: center;
+            margin: 10px 0;
+            color: $text_c;
+        }
+
+        p {
+            color: $white;
+            text-align: center;
+            font-weight: 400;
+            line-height: 1.50em;
+        }
+
+        .eq-sub-text {
+            padding: 0 18%;
+        }
+    }
+
+
+    // Set-nickname.html
+    .eq-set-nickname {
+        padding: 25px;
+        background: $panel_c;
+        border-radius: 15px;
+        border: 3px solid $border_c;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 0 25px rgba(0, 0, 0, .25);
+
+        .eq-nickname-container {
+            padding: 0 14px;
+        }
+
+        .eq-title-area {
+            width: 100%;
+            background: $white;
+            border: 3px solid $border_c;
+            max-width: 95%;
+            margin: 0 auto;
+        }
+
+        span.nickname-restrictions {
+            margin: 5px auto 15px auto;
+            color: $white;
+            font-size: $font-xs;
+        }
+
+        input {
+            border: none;
+            width: 100%;
+            font-size: $font-m4;
+            background: transparent;
+            color: $text_c !important;
+            padding: 0px 30px;
+            outline: none;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .eq-button-area {
+            width: 100%;
+            gap: 5%;
+        }
+
+        button {
+            border: 3px solid $border_c;
+            color: $text_c;
+            border-radius: 8px;
+            background: $white;
+            padding: 5px;
+            font-size: $font-base;
+            font-weight: 500;
+            width: 100%;
+            box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+        }
+
+        button:active {
+            box-shadow: 0 2px 0 rgba(0, 0, 0, .5);
+            transform: translateY(4px);
+        }
+
+        .eq-connect img {
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+        }
+
+        .square {
+            margin-top: -45px;
+            pointer-events: none;
+
+            .square-left,
+            .square-right {
+                height: 50px;
+            }
+
+            .us {
+                background: $white;
+                width: 20px;
+                height: 20px;
+                border: 3px solid $border_c;
+            }
+
+        }
+    }
+
+// pvp-changes
+// pvp and classic
+    div#pvp, div#classic{
+        position: relative;
+
+        .timer-container {
+            display: flex;
+            gap: .75rem;
+        }
+
+        .timer-container input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            border: 3px solid $border_c;
+            color: white;
+            font-family: poppins, san-serif;
+            width: 50%;
+        }
+
+        .pvpOverlay {
+            position: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .75);
+            top: 0;
+            left: 0;
+            z-index: 5;
+
+            span {
+                font-size: 4rem;
+                color: white;
+            }
+        }   
+
+        header.classic-timer {
+            height: 100%;
+        }
+
+        header {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            row-gap: .75rem;
+            font-family: poppins, sans-serif;
+
+            .timer {
+                display: flex;
+                justify-content: space-between;
+                column-gap: 10px;
+                height: 25%;
+                
+
+                div {
+                    @include createBox;
+                    background-color: $background_c;
+                    font-size: $font-xs;
+                    font-weight: 900;
+                    border: 3px solid $border_c;
+                }
+
+                div:nth-child(1) {
+                    background: $panel_c;
+                }
+
+                div:nth-child(2) {
+                    width: 130%;
+                    background: black;
+                    border: none;
+                }
+
+                div:nth-child(3) {
+                    background: $red01;
+                }
+            }
+
+            .versus-section {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                column-gap: 10px;
+                height: 40%;
+                
+
+                div {
+                    @include createBox;
+                    border: 3px solid $border_c;
+
+                    span {
+                        font-size: 60px;
+                        font-weight: 900;
+                        color: #fff;
+                    }
+
+                    &.versus {
+                        @include createBox;
+                        border: 0;
+                        width: 33.33%;
+
+                        .exit {
+                            width: 80px;
+                            height: 100%;
+                            // background-color: white;
+                            padding: 1rem;
+                            background-image: url('/images//Exit.png');
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            background-position: center center;
+                            background-size: 2.5rem;
+                            object-fit: cover;
+                        }
+
+                    }
+                }
+
+
+                .player {
+                    width: 35%;
+                    background-image: url('/images/Pvp\ Logo.png');
+                    background-size: 85%;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    object-fit: cover;
+                    border-radius: 20px;
+                    box-shadow: 0 6px 0 rgba(0,0,0,.25);
+
+                    &.one {
+                        background-color: $background_c;
+                    }
+
+                    &.two {
+                        background-color: $red01;
+                    }
+                }
+
+                span {
+                    font-weight: 900;
+                    font-size: $font-l;
+                }
+            }
+
+            .classic-points {
+                margin: 2.15rem 0 0.18rem 0;
+
+                .holder {
+                    background: #000;
+                    border:none;
+                }
+                .level {
+                    background: $panel_c;
+                }
+                div {
+                    padding: 5px;
+                }
+            }
+
+            .classic-points {
+                column-gap: 20px;
+            }
+
+            .points {
+                column-gap: 50px;
+            }
+
+            .points, .classic-points {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 20%;
+                font-family: poppins, sans-serif;
+
+                span {
+                    font-weight: bold;
+                }
+
+                div {
+                    @include createBox;
+                    border: 3px solid $border_c;
+
+                    &.one {
+                        background-color: $background_c;
+                    }
+
+                    &.two {
+                        background-color: $red01;
+                    }
+                }
+            }
+
+        }
+
+        main {
+            height: auto;
+            padding: 0;
+
+            .game-area {
+                position: relative;
+                border-radius: 12px;
+                z-index: 0;
+                height: 380px;
+
+                .equation {
+                    @include equationBox;
+                    border: 3px solid $border_c;
+                    color: $text_c;
+                    background: #fff;
+                    margin: 25px 0;
+                    z-index: 99;
+                    box-shadow: 0 6px 0 rgba(0,0,0,.25);
+                
+                    .circle {
+                        display: none;
+                        position: absolute;
+                        right: 35%;
+                        top: -40%;
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 100%;
+                        border: 3px solid $border_c;
+                        background-color: $background_c;
+                        color: white;
+                        font-size: .7rem;
+
+                        &.selected-1:before {
+                            vertical-align: sub;
+                            content: "1";
+                        }
+
+                        &.selected-2:before {
+                            vertical-align: sub;
+                            content: "2";
+                        }
+
+                        &.selected-3:before {
+                            vertical-align: sub;
+                            content: "3";
+                        }
+
+                        &.selected-4:before {
+                            vertical-align: sub;
+                            content: "4";
+                        }
+
+                    }
+
+                    &.equation-1 {
+                        position: absolute;
+                        margin-left: auto;
+                        margin-right: auto;
+                        top: .5em;
+                        left: 0;
+                        right: 0;
+                        text-align: center;
+                    }
+
+                    &.equation-2 {
+                        position: absolute;
+                        margin-top: auto;
+                        margin-bottom: auto;
+                        left: .5rem;
+                        top: 0;
+                        bottom: 0;
+                        text-align: center;
+                    }
+
+                    &.equation-3 {
+                        position: absolute;
+                        margin-left: auto;
+                        margin-right: auto;
+                        bottom: .5rem;
+                        left: 0;
+                        right: 0;
+                        text-align: center;
+                    }
+
+                    &.equation-4 {
+                        position: absolute;
+                        margin-top: auto;
+                        margin-bottom: auto;
+                        right: .5rem;
+                        top: 0;
+                        bottom: 0;
+                        text-align: center;
+                    }
+
+                    &.active {
+                        background-color: #fff;
+                        color: $text_c;
+
+                        .circle {
+                            display: block;
+                        }
+                    }
+                }
+                .equation:active {
+                    box-shadow: 0 0 30px $yellow;
+                    background: $yellow;
+                    color: white;
+                    transform: translateY(4px);
+                }
+                .big-square {
+                    border: 3px solid $border_c;
+                    box-shadow: 0 0 10px $yellow;
+                    position: absolute;
+                    width: 170px;
+                    height: 170px;
+                    right: 0;
+                    left: 26%;
+                    top: 25%;
+                    z-index: 0;
+                    transform: rotate(45deg);
+
+                }
+            }
+
+            .reset {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .button-reset {
+                    @include createBox;
+                    border: 3px solid $border_c;
+                    padding: 10px 0;
+                    background-color: #fff;
+                    color: $text_c;
+                    box-shadow: 0 6px 0 rgba(0,0,0,.25);
+                }
+                .button-reset:active {
+                    background-color: $yellow;
+                    color: #fff;
+                    box-shadow: 0 0 30px $yellow;
+                    transform: translateY(4px);
+                }
+            }
+        }
+    }
+
+
+    // Find Match PVP
+    div#find-match {
+        height: 100%;
+
+        main {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            .button {
+                @include createBox;
+                border: 3px solid $border_c;
+                background-color: white;
+                color: $text_c;
+            }
+
+            .content {
+                height: 100%;
+                max-width: 345px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .logo {
+                    max-width: 160px;
+                    width: 100%;
+                    height: 160px;
+                    border: 3px solid $border_c;
+                    border-radius: 25px;
+                    background-image: url('/images/Pvp\ Logo.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    object-fit: cover;
+                    margin-bottom: 1rem;
+                    background-color: $background_c;
+                    box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+                }
+
+                .btn-container {
+                    max-width: 345px;
+                    width: 100%;
+                    gap: 25px;
+                }
+
+                .find-match,
+                .cancel,
+                .menu {
+                    width: 100%;
+                    height: 100%;
+                    padding: 12px;
+                    box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+                }
+
+
+                .cancel:active,
+                .find-match:active,
+                .menu:active {
+                    box-shadow: 0 2px 0 rgba(0, 0, 0, .5);
+                    transform: translateY(4px);
+                }
+
+                .eq-mm-container {
+                    width: 80%;
+                }
+
+                .square {
+                    margin-top: -70px;
+                }
+
+                .eq-title-container {
+                    margin: 10px auto;
+                }
+            }
+        }
+    }
+
+    // Main menu
+    div#main-menu-loading {
+        height: 100%;
+
+        main {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            .button {
+                @include createBox;
+                background-color: white;
+                color: black;
+            }
+
+            .content {
+                height: 100%;
+                max-width: 345px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .logo {
+                    max-width: 160px;
+                    width: 100%;
+                    height: 160px;
+                    border: 3px solid $border_c;
+                    border-radius: 25px;
+                    background-image: url('/images/Logo.png');
+                    background-size: 80%;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    object-fit: cover;
+                    margin-bottom: 1rem;
+                    background-color: $background_c;
+                    box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+                }
+
+                .btn-container {
+                    max-width: 345px;
+                    width: 100%;
+                    gap: 25px;
+                }
+
+                .eq-mm-container {
+                    width: 100%;
+                }
+
+                .square {
+                    margin-top: -70px;
+                }
+
+                .eq-title-container {
+                    margin: 10px auto;
+                }
+            }
+        }
+    }
+
+    // pvp-changes
+    // versus screen
+
+    div#versus-screen {
+        height: 100%;
+
+        main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 95%;
+            gap: 15px;
+
+
+            .container {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                span.versus {
+                    font-size: 50px;
+                    color: white;
+                    font-weight: 900;
+                    margin-bottom: .3rem;
+                }
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 10px;
+
+                    span {
+                        color: white;
+                        font-weight: 700;
+                        margin-bottom: .3rem;
+                    }
+                }
+
+                .player {
+                    text-align: center;
+                    border-radius: 12px;
+                    border: 3px solid $border_c;
+                    color: white;
+                    width: 120px;
+                    height: 120px;
+                    background-image: url('/images/Pvp\ Logo.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    object-fit: cover;
+                    box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+
+                    &.one {
+                        background-color: $yellow;
+                    }
+
+                    &.two {
+                        background-color: $red01;
+                    }
+                }
+
+                .player-mmr {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 3rem;
+                    border-radius: 12px;
+                    border: 3px solid $border_c;
+                    color: $text_c;
+                    background-color: white;
+                    margin-top: .3rem;
+                    box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+
+                    span {
+                        color: #000;
+                        margin: auto 0;
+                    }
+                }
+            }
+
+            .eq-title-container {
+                margin-top: 1rem;
+                width: 100%;
+            }
+        }
+    }
+
+
+    // pvp-changes
+    // win lose announcement
+
+    div#win-lose {
+        height: 100%;
+
+        main {
+            height: 100%;
+            position: relative;
+            display: flex;
+
+            .container {
+                width: 100%;
+                height: 93%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                .match-status {
+                    h1 {
+                        color: white;
+                        font-size: 100px;
+                        margin: 0;
+                    }
+                }
+
+                .player-information {
+                    max-width: 150px;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 15px;
+
+                    .span-lose {
+                        font-size: 35px;
+                        font-weight: 900;
+                        color: red;
+                    }
+
+                    .player-name {
+                        color: white;
+                        font-weight: 700;
+                    }
+
+                    .player {
+                        border-radius: 12px;
+                        border: 3px solid $border_c;
+                        width: 150px;
+                        height: 150px;
+                        background-color: $yellow!important;
+                        background-image: url('/images/Pvp\ Logo.png');
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        background-position: center center;
+                        object-fit: cover;
+                        box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+
+                        &.one {
+                            background-color: $blue01;
+                        }
+
+                        &.two {
+                            background-color: $red01;
+                        }
+                    }
+
+                    .info {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        width: 100%;
+                        height: 50px;
+                        border-radius: 12px;
+                        border: 3px solid $border_c;
+                        color: $text_c;
+                        background-color: white;
+                        padding: 0 15px;
+                        box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+                    }
+
+                }
+            }
+        }
+
+        .main-menu {
+            justify-content: center !important;
+        }
+
+        .main-menu:active {
+            box-shadow: 0 2px 0 rgba(0, 0, 0, .5);
+            transform: translateY(4px);
+        }
+    }
+
+// Classic-mode Summary
+
+    div#main-default-summary {
+        height: 100%;
+
+        main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100%;
+            gap: 15px;
+            
+            .logo {
+                max-width: 160px;
+                width: 100%;
+                height: 160px;
+                border: 3px solid $border_c;
+                border-radius: 25px;
+                background-image: url('/images/Classic\ Mode\ Logo.png');
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-position: center center;
+                object-fit: cover;
+                margin-bottom: 1rem;
+                background-color: $background_c;
+                box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+            }
+            
+            .summary-span-container, .summary-button-container{
+                max-width: 345px;
+                width: 100%;
+                gap: 15px;
+
+                span , button{
+                    font-weight: 400;
+                    padding: 15px;
+                    border: 3px solid $border_c;
+                    border-radius: 12px;
+                    width: 100%;
+                }
+                
+                span {
+                    background: #000;
+                    color: $white;
+                    border: 3px solid #000;
+                }
+
+                button {
+                    box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
+                    background: $white;
+                    color: $text_c;
+                }
+
+                button:active {
+                    box-shadow: 0 2px 0 rgba(0, 0, 0, .5);
+                    transform: translateY(4px);
+                }
+            }
+
+            .container {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .eq-title-container {
+                margin-top: 1rem;
+                width: 100%;
+            }
+        }
+    }
+
+}

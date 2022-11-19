@@ -6,8 +6,7 @@ const pvp = require('./utilities/pvpService');
 
     const io = require('socket.io')(3000, {
         cors: {
-            // origin: ['http://127.0.0.1:8000', 'http://127.0.0.1:3000']
-            origin: ['http://192.168.1.6:8000', 'http://192.168.1.6:3000']
+            origin: ['http://192.168.1.9:8000', 'http://192.168.1.9:3000']
         }
     });
 
@@ -19,7 +18,7 @@ const pvp = require('./utilities/pvpService');
         equationIntervals = {},
         matchCountdown = {},
         lobby = [],
-        origin = 'http://192.168.1.6:8000';
+        origin = 'http://192.168.1.9:8000';
 
     const equation = eq.generateDOM();
 
@@ -159,6 +158,11 @@ const pvp = require('./utilities/pvpService');
 
         // ARENA STRAT----------------------------------------------------------------------------
         socket.on('join-room', (room_id) => {
+
+            if(!matches.hasOwnProperty(room_id)){
+                return;
+            }
+            
             matches[room_id].playerReady++;
             console.log(matches[room_id].playerReady);
 
