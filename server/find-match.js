@@ -159,6 +159,11 @@ const pvp = require('./utilities/pvpService');
 
         // ARENA STRAT----------------------------------------------------------------------------
         socket.on('join-room', (room_id) => {
+
+            if(!matches.hasOwnProperty(room_id)){
+                return;
+            }
+            
             matches[room_id].playerReady++;
             console.log(matches[room_id].playerReady);
 

@@ -62,15 +62,24 @@ const equation = {
             operation = this.randomOperation();
 
         switch (operation) {
+
             case 'addition':
-                a = this.randomNumber(9, 90);
-                b = this.randomNumber(9, 90);
+                // lower the number
+                a = this.randomNumber(1, 9);
+                b = this.randomNumber(1, 9);
+
+                // a = this.randomNumber(9, 90);
+                // b = this.randomNumber(9, 90);
                 answer = a + b;
                 break;
 
             case 'subtraction':
-                a = this.randomNumber(10, 99);
-                b = this.randomNumber(a > 10 ? 10 : 0, a);
+                // lower the number
+                a = this.randomNumber(1, 9);
+                b = this.randomNumber(a > 1 ? 1 : 0, a);
+
+                // a = this.randomNumber(10, 99);
+                // b = this.randomNumber(a > 10 ? 10 : 0, a);
                 answer = a - b;
                 break;
 

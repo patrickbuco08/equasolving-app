@@ -10,10 +10,10 @@
 
         <div class="eq-header flex flex-jc-sb">
             <div class="left-side flex flex-vert flex-ai-fs flex-jc-sb">
-                <button type="button" class="header-btn" id="settings">
+                <button class="header-btn" id="settings">
                     <img src="{{ asset('images/Settings.png') }}" alt="settings">
                 </button>
-                <button type="button" class="header-btn" id="profile">
+                <button class="header-btn" id="profile">
                     <img src="{{ asset('images/User Profile.png') }}" alt="profile">
                 </button>
             </div>
@@ -22,14 +22,12 @@
                     <img src="{{ asset('images/Logo.png') }}" alt="EquaSolve-Logo">
                 </div>
             </div>
-            {{-- {{auth()->user()->classicModeDetails}} --}}
             <div class="right-side flex flex-vert flex-ai-fe flex-jc-sb">
-                @auth
                 <div class="input-container">
                     <span class="mmr">MMR:</span>
                     <input readonly type="text" class="eq-mmr" id="mmr"
                         placeholder="{{auth()->user()->pvpModeDetails->mmr}}">
-                    <span class="mmr-2">MMR:</span>
+                    <span class="mmr-2">MMR: </span>
                 </div>
                 <div class="input-container">
                     <span class="trophy">Trophy:</span>
@@ -37,19 +35,6 @@
                         placeholder="{{auth()->user()->classicModeDetails->trophies}}">
                     <div class="img-container"></div>
                 </div>
-                @endauth
-                @guest
-                <div class="input-container">
-                    <span class="mmr">MMR:</span>
-                    <input readonly type="text" class="eq-mmr" id="mmr" placeholder="0">
-                    <span class="mmr-2">MMR:</span>
-                </div>
-                <div class="input-container">
-                    <span class="trophy">Trophy:</span>
-                    <input readonly type="text" class="eq-trophy" id="trophy" placeholder="0">
-                    <div class="img-container"></div>
-                </div>
-                @endguest
             </div>
         </div>
 
@@ -79,7 +64,7 @@
         </div>
 
         <div class="main-menu-container">
-            <div class="menu flex flex-vert flex-jc-sb">
+            <div class="menu flex flex-vert">
                 <div id="menu-btn-1" class="classic-btn menu-btn flex ">
                     <div class="img-container">
                         <img src="{{ asset('images/Classic Mode Logo.png') }}" alt="Classic-logo">
@@ -109,9 +94,13 @@
                 </div>
             </div>
         </div>
+
     </div>
 </section>
 
+<div class="eq-version flex flex-jc-c">
+    <span>Version Alpha.</span>
+</div>
 @endsection
 
 @section('scripts')

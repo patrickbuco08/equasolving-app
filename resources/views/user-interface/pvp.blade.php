@@ -6,7 +6,7 @@
 
 @section('content')
 <section id="content-section">
-    <div class="eq-content-area vh-100">
+    <div class="eq-content-area">
         <div id="pvp">
             <div class="pvpOverlay" style="display: none">
                 <span>READY</span>
@@ -32,24 +32,24 @@
             </header>
             <main>
                 <div class="game-area">
-                    <div class="equation equation-1">
-                        <span class="circle"></span>
+                    <div class="equation equation-1 active">
+                        <span class="circle selected-1"></span>
                         <span id="equation-1">999+999=???</span>
                     </div>
-                    <div class="equation equation-2">
-                        <span class="circle"></span>
+                    <div class="equation equation-2 active">
+                        <span class="circle selected-2"></span>
                         <span id="equation-2">999+999=???</span>
                     </div>
-                    <div class="equation equation-3">
-                        <span class="circle"></span>
+                    <div class="equation equation-3 active">
+                        <span class="circle selected-3"></span>
                         <span id="equation-3">999+999=???</span>
                     </div>
-                    <div class="equation equation-4">
-                        <span class="circle"></span>
+                    <div class="equation equation-4 active">
+                        <span class="circle selected-4"></span>
                         <span id="equation-4">999+999=???</span>
                     </div>
-                    {{-- <div class="big-square">
-                    </div> --}}
+                    <div class="big-square">
+                    </div>
                 </div>
                 <div class="reset">
                     <div class="button-reset">RESET</div>

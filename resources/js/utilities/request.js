@@ -3,7 +3,7 @@ import $ from "jquery";
 const origin = window.location.origin,
     token = $('meta[name="csrf_token"]').attr('content');
 
-const createUserUsingNickname = async () => { 
+const createUserUsingNickname = async () => {
     const nickname = $('input[name="set-nickname"]').val();
     try {
         $('button[name="add-nickname"]').text('Saving....').attr('disabled', true);
@@ -31,9 +31,9 @@ const createUserUsingNickname = async () => {
     } finally {
         $('button[name="add-nickname"]').text('Submit');
     }
- }
+}
 
-const getAuthenticatedUser = async () => { 
+const getAuthenticatedUser = async () => {
     try {
         const response = await axios.get(`${origin}/user/check-auth`);
         console.log(response.data);
@@ -46,11 +46,15 @@ const getAuthenticatedUser = async () => {
             return null;
         }
     }
- }
+}
 
-const renderHome = async () => { 
-    window.location.href=`${origin}/`;
-    return false;
+const renderHome = async () => {
+    window.location.href = `${origin}/`;
+
+}
+
+
+const renderHomeSkeleton = async() => { 
     try {
         const response = await axios.get(`${origin}/skeleton/home`);
         return response.data;
@@ -59,8 +63,8 @@ const renderHome = async () => {
     }
  }
 
-const renderFindMatch = async () => { 
-    window.location.href=`${origin}/find-match`;
+const renderFindMatch = async () => {
+    window.location.href = `${origin}/find-match`;
     return true;
     try {
         const response = await axios.get(`${origin}/skeleton/find-match`);
@@ -68,46 +72,68 @@ const renderFindMatch = async () => {
     } catch (error) {
         return "Sorry, something went wrong...";
     }
- }
+}
 
-const renderShop = async () => { 
+const renderLoader = async (text) => {
+    try {
+        const response = await axios.get(`${origin}/skeleton/loader/${text}`);
+        return response.data;
+    } catch (error) {
+        return "Sorry, something went wrong...";
+    }
+}
+
+const renderShop = async () => {
     try {
         const response = await axios.get(`${origin}/skeleton/shop`);
         return response.data;
     } catch (error) {
         return "Sorry, something went wrong...";
     }
- }
+}
 
-const renderSetNickname = async () => { 
+const renderSetNickname = async () => {
     try {
         const response = await axios.get(`${origin}/skeleton/nickname`);
         return response.data;
     } catch (error) {
         return "Sorry, something went wrong...";
     }
- }
+}
 
-const renderClassic = async () => { 
-    window.location.href=`${origin}/classic`;
+const renderClassic = async () => {
+    window.location.href = `${origin}/classic`;
+}
+
+const renderClassicSkeleton = async () => {
     try {
         const response = await axios.get(`${origin}/skeleton/classic`);
         return response.data;
     } catch (error) {
         return "Sorry, something went wrong...";
     }
+}
+
+const renderClassicSummary = async (level = 0, trophies = 0) => { 
+    try {
+        const response = await axios.get(`${origin}/skeleton/classic-summary/${level}/${trophies}`);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return "Sorry, something went wrong...";
+    }
  }
 
-const renderMatchHistory = async () => { 
+const renderMatchHistory = async () => {
     try {
         const response = await axios.get(`${origin}/skeleton/match-history`);
         return response.data;
     } catch (error) {
         return "Sorry, something went wrong...";
     }
- }
+}
 
-const logoutUser = async () => { 
+const logoutUser = async () => {
     try {
         $('#logout-text').text('Logging out...');
         const response = await axios({
@@ -123,15 +149,24 @@ const logoutUser = async () => {
         console.log('Sorry, something went wrong...');
         console.log(error.response)
     }
- }
+}
 
- export {
+const sleep = (milliseconds) => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+export {
     createUserUsingNickname,
     getAuthenticatedUser,
-    renderHome,
-    renderFindMatch,
+    logoutUser,
     renderClassic,
-    renderShop,
+    renderClassicSkeleton,
+    renderClassicSummary,
+    renderFindMatch,
+    renderHome,
+    renderHomeSkeleton,
+    renderLoader,
     renderMatchHistory,
-    logoutUser
- }
+    renderShop,
+    sleep
+}

@@ -19,16 +19,20 @@ import {
     const origin = window.location.origin;
     const socket = io(`http://${window.location.hostname}:3000`), welcomeText = $('.welcome-text').text()
     let isConnected = false, user = null;
-    console.log(window.location);
+
+
     socket.on("connection", async (data) => { 
         user = await getAuthenticatedUser();
         user.socketID = socket.id;
-        $('div.find-match').children('span').text('Find Match');
+        $('.welcome-text').text('PVP Match!');
         isConnected = true;
         console.log('CONNECTED!');
      });
 
      socket.on("match-found", (roomID, versusScreen) => {
+        console.log('match found');
+        sfx.correct.play();
+        console.log(versusScreen);
         $('div#root').html(versusScreen);
 
         // move to arena
@@ -49,12 +53,20 @@ import {
         console.log('arena', data);
      })
 
+     //find match
     $(document).on('click', 'div.find-match', function (e) { 
         e.preventDefault();
-        
+
+        // don't allow user to find match if his account is not from google, intead redirect him to google login
+        if(!$(this).hasClass('authenticated')){
+            console.log('not authenticated, please login using google account');
+            window.location.href = `${origin}/google-login`;
+            return true;
+        }
+
         if(!user || !isConnected){
-            alert('something went wrong...');
-            return;
+            console.log('undefined user or not connected');
+            return false;
         }
 
         const userData = {
@@ -66,14 +78,18 @@ import {
 
         $(this).css('display', 'none');
         $('div.cancel').css('display', 'inherit');
+        $('.welcome-text').text('Finding Match...');
+
         socket.emit("find-match", userData);
     });
 
-    $('div.cancel').click(function (e) { 
+    $('div.cancel').on("click", function (e) { 
         e.preventDefault();
 
         $(this).css('display', 'none');
         $('div.find-match').css('display', 'inherit');
+        $('.welcome-text').text('PVP Match!');
+        
         socket.emit("cancel-find-match", user);
     });
 

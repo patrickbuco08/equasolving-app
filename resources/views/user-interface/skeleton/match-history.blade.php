@@ -1,4 +1,4 @@
-<div id="main-default-summary">
+<div id="main-default-summary" style="display: block">
     <div class="ms-content-area">
             <div class="eq-header flex flex-jc-fs width-100 maxwidth-400 margin-auto">
                 <div class="game-logo flex flex-jc-c">
@@ -36,7 +36,7 @@
                         </button>
                     </div>
                     @endauth
-                    <button class="header-btn height-60px" id="render-home">
+                    <button class="header-btn height-60px" id="render-home-skeleton">
                         <span>Menu</span>
                     </button>
                 </div>
@@ -96,6 +96,6 @@
 </div>
 <script>
     (() => {
-        $('div#main-default-summary').show();
+        // $('div#main-default-summary').show();
 })();
 </script>

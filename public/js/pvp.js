@@ -20463,7 +20463,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  // ANIMATION IS MISSING
 
 _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-  var socket, user, animation, classPatern, answers, canAnswerEquation;
+  var socket, user, animation, classPatern, answers, canAnswerEquation, pvpBgMusic;
   return _regeneratorRuntime().wrap(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
@@ -20481,7 +20481,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
             failed: 'animated headShake',
             ends: 'animationend AnimationEnd mozAnimationEnd webkitAnimationEnd'
           }, classPatern = 'selected-1 selected-2 selected-3 selected-4';
-          answers = [], canAnswerEquation = true; // validate
+          answers = [], canAnswerEquation = true, pvpBgMusic = null; // validate
 
           if (!(!user || !user.room_id)) {
             _context2.next = 9;
@@ -20495,9 +20495,15 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           socket.emit('join-room', user.room_id); //success: already joined
 
           socket.on('room-joined', function (data) {
-            _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].pvp.play();
+            // 
+            console.log('room joined', data);
             Object(_utilities_pvpService__WEBPACK_IMPORTED_MODULE_2__["createUserDOM"])(data);
-            Object(_utilities_pvpService__WEBPACK_IMPORTED_MODULE_2__["generateEquation"])(data.equation);
+            Object(_utilities_pvpService__WEBPACK_IMPORTED_MODULE_2__["generateEquation"])(data.equation); //play music if the game is already started
+
+            if (data.time < 90) {
+              console.log('play the music');
+              pvpBgMusic = _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].pvp.play();
+            }
           }); // initial countdown
 
           socket.on('initial-countdown', function (ic) {
@@ -20506,13 +20512,14 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
             jquery__WEBPACK_IMPORTED_MODULE_0___default()('.pvpOverlay span').text(ic - 1);
             _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].tick.play();
 
-            if (ic == 0) {
+            if (ic == 1) {
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('.pvpOverlay').css('display', 'none');
+              pvpBgMusic = _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].pvp.play();
             }
           }); //get countdown
 
           socket.on('countdown', function (cd) {
-            if (cd <= 10) {
+            if (cd <= 5) {
               _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].tick.play();
             }
 
@@ -20548,23 +20555,46 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           });
           socket.on("finished", /*#__PURE__*/function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(userData) {
-              var response;
+              var response, your_score, enemy_score;
               return _regeneratorRuntime().wrap(function _callee$(_context) {
                 while (1) {
                   switch (_context.prev = _context.next) {
                     case 0:
-                      _context.next = 2;
+                      console.log(userData);
+                      _context.next = 3;
                       return axios({
                         method: 'POST',
                         url: "".concat(window.location.origin, "/skeleton/win-lose-announcement"),
                         data: userData
                       });
 
-                    case 2:
+                    case 3:
                       response = _context.sent;
+                      _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].pvp.fade(1, 0, 1000, pvpBgMusic);
+                      your_score = 0, enemy_score = 0;
+
+                      if (userData.player_one.id == user.id) {
+                        your_score = userData.player_one.points;
+                        enemy_score = userData.player_two.points;
+                      } else {
+                        your_score = userData.player_two.points;
+                        enemy_score = userData.player_one.points;
+                      } //draw
+
+
+                      if (your_score == enemy_score) {
+                        _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].win.play();
+                      } else {
+                        if (your_score > enemy_score) {
+                          _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].win.play();
+                        } else {
+                          _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].lose.play();
+                        }
+                      }
+
                       jquery__WEBPACK_IMPORTED_MODULE_0___default()('div#root').html(response.data);
 
-                    case 4:
+                    case 9:
                     case "end":
                       return _context.stop();
                   }
@@ -20736,7 +20766,7 @@ var createUserDOM = function createUserDOM(users) {
   $('div.points-holder.two').attr('id', "player-".concat(player_two.id, "-points")).html(player_two.points > 1 ? "".concat(player_two.points, " points") : "".concat(player_two.points, " point"));
 };
 
-var generateEquation = function generateEquation() {
+var generateEquation = function generateEquation(eq) {
   var equations = eq,
       htmlDOM = '',
       index = 1;
@@ -20764,8 +20794,8 @@ var generateEquation = function generateEquation() {
 
     htmlDOM += "<div class=\"equation equation-".concat(index, "\" data-answer=").concat(equation.answer, ">\n            <span class=\"circle\"></span>\n            <span id=\"equation-1\">").concat(equation.a).concat(operation).concat(equation.b, "=???</span>\n        </div>");
     index++;
-  }); // htmlDOM += `<div class="big-square"></div>`;
-
+  });
+  htmlDOM += "<div class=\"big-square\"></div>";
   $('div.game-area').html(htmlDOM);
 };
 
@@ -20812,19 +20842,24 @@ var getParam = function getParam() {
 /*!*******************************************!*\
   !*** ./resources/js/utilities/request.js ***!
   \*******************************************/
-/*! exports provided: createUserUsingNickname, getAuthenticatedUser, renderHome, renderFindMatch, renderClassic, renderShop, renderMatchHistory, logoutUser */
+/*! exports provided: createUserUsingNickname, getAuthenticatedUser, logoutUser, renderClassic, renderClassicSkeleton, renderClassicSummary, renderFindMatch, renderHome, renderHomeSkeleton, renderLoader, renderMatchHistory, renderShop, sleep */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createUserUsingNickname", function() { return createUserUsingNickname; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAuthenticatedUser", function() { return getAuthenticatedUser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderHome", function() { return renderHome; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderFindMatch", function() { return renderFindMatch; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderClassic", function() { return renderClassic; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderShop", function() { return renderShop; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderMatchHistory", function() { return renderMatchHistory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logoutUser", function() { return logoutUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderClassic", function() { return renderClassic; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderClassicSkeleton", function() { return renderClassicSkeleton; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderClassicSummary", function() { return renderClassicSummary; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderFindMatch", function() { return renderFindMatch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderHome", function() { return renderHome; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderHomeSkeleton", function() { return renderHomeSkeleton; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderLoader", function() { return renderLoader; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderMatchHistory", function() { return renderMatchHistory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderShop", function() { return renderShop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sleep", function() { return sleep; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -20948,29 +20983,18 @@ var getAuthenticatedUser = /*#__PURE__*/function () {
 
 var renderHome = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-    var response;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             window.location.href = "".concat(origin, "/");
-            return _context3.abrupt("return", false);
 
-          case 5:
-            response = _context3.sent;
-            return _context3.abrupt("return", response.data);
-
-          case 9:
-            _context3.prev = 9;
-            _context3.t0 = _context3["catch"](2);
-            return _context3.abrupt("return", "Sorry, something went wrong...");
-
-          case 12:
+          case 1:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[2, 9]]);
+    }, _callee3);
   }));
 
   return function renderHome() {
@@ -20978,73 +21002,73 @@ var renderHome = /*#__PURE__*/function () {
   };
 }();
 
-var renderFindMatch = /*#__PURE__*/function () {
+var renderHomeSkeleton = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
     var response;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            window.location.href = "".concat(origin, "/find-match");
-            return _context4.abrupt("return", true);
+            _context4.prev = 0;
+            _context4.next = 3;
+            return axios.get("".concat(origin, "/skeleton/home"));
 
-          case 5:
+          case 3:
             response = _context4.sent;
             return _context4.abrupt("return", response.data);
 
-          case 9:
-            _context4.prev = 9;
-            _context4.t0 = _context4["catch"](2);
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
             return _context4.abrupt("return", "Sorry, something went wrong...");
 
-          case 12:
+          case 10:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[2, 9]]);
+    }, _callee4, null, [[0, 7]]);
   }));
 
-  return function renderFindMatch() {
+  return function renderHomeSkeleton() {
     return _ref4.apply(this, arguments);
   };
 }();
 
-var renderShop = /*#__PURE__*/function () {
+var renderFindMatch = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
     var response;
     return _regeneratorRuntime().wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
-            _context5.prev = 0;
-            _context5.next = 3;
-            return axios.get("".concat(origin, "/skeleton/shop"));
+            window.location.href = "".concat(origin, "/find-match");
+            return _context5.abrupt("return", true);
 
-          case 3:
+          case 5:
             response = _context5.sent;
             return _context5.abrupt("return", response.data);
 
-          case 7:
-            _context5.prev = 7;
-            _context5.t0 = _context5["catch"](0);
+          case 9:
+            _context5.prev = 9;
+            _context5.t0 = _context5["catch"](2);
             return _context5.abrupt("return", "Sorry, something went wrong...");
 
-          case 10:
+          case 12:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5, null, [[0, 7]]);
+    }, _callee5, null, [[2, 9]]);
   }));
 
-  return function renderShop() {
+  return function renderFindMatch() {
     return _ref5.apply(this, arguments);
   };
 }();
 
-var renderSetNickname = /*#__PURE__*/function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+var renderLoader = /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(text) {
     var response;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
       while (1) {
@@ -21052,7 +21076,7 @@ var renderSetNickname = /*#__PURE__*/function () {
           case 0:
             _context6.prev = 0;
             _context6.next = 3;
-            return axios.get("".concat(origin, "/skeleton/nickname"));
+            return axios.get("".concat(origin, "/skeleton/loader/").concat(text));
 
           case 3:
             response = _context6.sent;
@@ -21071,46 +21095,45 @@ var renderSetNickname = /*#__PURE__*/function () {
     }, _callee6, null, [[0, 7]]);
   }));
 
-  return function renderSetNickname() {
+  return function renderLoader(_x) {
     return _ref6.apply(this, arguments);
   };
 }();
 
-var renderClassic = /*#__PURE__*/function () {
+var renderShop = /*#__PURE__*/function () {
   var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
     var response;
     return _regeneratorRuntime().wrap(function _callee7$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
-            window.location.href = "".concat(origin, "/classic");
-            _context7.prev = 1;
-            _context7.next = 4;
-            return axios.get("".concat(origin, "/skeleton/classic"));
+            _context7.prev = 0;
+            _context7.next = 3;
+            return axios.get("".concat(origin, "/skeleton/shop"));
 
-          case 4:
+          case 3:
             response = _context7.sent;
             return _context7.abrupt("return", response.data);
 
-          case 8:
-            _context7.prev = 8;
-            _context7.t0 = _context7["catch"](1);
+          case 7:
+            _context7.prev = 7;
+            _context7.t0 = _context7["catch"](0);
             return _context7.abrupt("return", "Sorry, something went wrong...");
 
-          case 11:
+          case 10:
           case "end":
             return _context7.stop();
         }
       }
-    }, _callee7, null, [[1, 8]]);
+    }, _callee7, null, [[0, 7]]);
   }));
 
-  return function renderClassic() {
+  return function renderShop() {
     return _ref7.apply(this, arguments);
   };
 }();
 
-var renderMatchHistory = /*#__PURE__*/function () {
+var renderSetNickname = /*#__PURE__*/function () {
   var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
     var response;
     return _regeneratorRuntime().wrap(function _callee8$(_context8) {
@@ -21119,7 +21142,7 @@ var renderMatchHistory = /*#__PURE__*/function () {
           case 0:
             _context8.prev = 0;
             _context8.next = 3;
-            return axios.get("".concat(origin, "/skeleton/match-history"));
+            return axios.get("".concat(origin, "/skeleton/nickname"));
 
           case 3:
             response = _context8.sent;
@@ -21138,21 +21161,147 @@ var renderMatchHistory = /*#__PURE__*/function () {
     }, _callee8, null, [[0, 7]]);
   }));
 
-  return function renderMatchHistory() {
+  return function renderSetNickname() {
     return _ref8.apply(this, arguments);
   };
 }();
 
-var logoutUser = /*#__PURE__*/function () {
+var renderClassic = /*#__PURE__*/function () {
   var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
-    var response;
     return _regeneratorRuntime().wrap(function _callee9$(_context9) {
       while (1) {
         switch (_context9.prev = _context9.next) {
           case 0:
-            _context9.prev = 0;
+            window.location.href = "".concat(origin, "/classic");
+
+          case 1:
+          case "end":
+            return _context9.stop();
+        }
+      }
+    }, _callee9);
+  }));
+
+  return function renderClassic() {
+    return _ref9.apply(this, arguments);
+  };
+}();
+
+var renderClassicSkeleton = /*#__PURE__*/function () {
+  var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
+    var response;
+    return _regeneratorRuntime().wrap(function _callee10$(_context10) {
+      while (1) {
+        switch (_context10.prev = _context10.next) {
+          case 0:
+            _context10.prev = 0;
+            _context10.next = 3;
+            return axios.get("".concat(origin, "/skeleton/classic"));
+
+          case 3:
+            response = _context10.sent;
+            return _context10.abrupt("return", response.data);
+
+          case 7:
+            _context10.prev = 7;
+            _context10.t0 = _context10["catch"](0);
+            return _context10.abrupt("return", "Sorry, something went wrong...");
+
+          case 10:
+          case "end":
+            return _context10.stop();
+        }
+      }
+    }, _callee10, null, [[0, 7]]);
+  }));
+
+  return function renderClassicSkeleton() {
+    return _ref10.apply(this, arguments);
+  };
+}();
+
+var renderClassicSummary = /*#__PURE__*/function () {
+  var _ref11 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
+    var level,
+        trophies,
+        response,
+        _args11 = arguments;
+    return _regeneratorRuntime().wrap(function _callee11$(_context11) {
+      while (1) {
+        switch (_context11.prev = _context11.next) {
+          case 0:
+            level = _args11.length > 0 && _args11[0] !== undefined ? _args11[0] : 0;
+            trophies = _args11.length > 1 && _args11[1] !== undefined ? _args11[1] : 0;
+            _context11.prev = 2;
+            _context11.next = 5;
+            return axios.get("".concat(origin, "/skeleton/classic-summary/").concat(level, "/").concat(trophies));
+
+          case 5:
+            response = _context11.sent;
+            return _context11.abrupt("return", response.data);
+
+          case 9:
+            _context11.prev = 9;
+            _context11.t0 = _context11["catch"](2);
+            console.log(_context11.t0);
+            return _context11.abrupt("return", "Sorry, something went wrong...");
+
+          case 13:
+          case "end":
+            return _context11.stop();
+        }
+      }
+    }, _callee11, null, [[2, 9]]);
+  }));
+
+  return function renderClassicSummary() {
+    return _ref11.apply(this, arguments);
+  };
+}();
+
+var renderMatchHistory = /*#__PURE__*/function () {
+  var _ref12 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
+    var response;
+    return _regeneratorRuntime().wrap(function _callee12$(_context12) {
+      while (1) {
+        switch (_context12.prev = _context12.next) {
+          case 0:
+            _context12.prev = 0;
+            _context12.next = 3;
+            return axios.get("".concat(origin, "/skeleton/match-history"));
+
+          case 3:
+            response = _context12.sent;
+            return _context12.abrupt("return", response.data);
+
+          case 7:
+            _context12.prev = 7;
+            _context12.t0 = _context12["catch"](0);
+            return _context12.abrupt("return", "Sorry, something went wrong...");
+
+          case 10:
+          case "end":
+            return _context12.stop();
+        }
+      }
+    }, _callee12, null, [[0, 7]]);
+  }));
+
+  return function renderMatchHistory() {
+    return _ref12.apply(this, arguments);
+  };
+}();
+
+var logoutUser = /*#__PURE__*/function () {
+  var _ref13 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
+    var response;
+    return _regeneratorRuntime().wrap(function _callee13$(_context13) {
+      while (1) {
+        switch (_context13.prev = _context13.next) {
+          case 0:
+            _context13.prev = 0;
             jquery__WEBPACK_IMPORTED_MODULE_0___default()('#logout-text').text('Logging out...');
-            _context9.next = 4;
+            _context13.next = 4;
             return axios({
               method: 'POST',
               url: "".concat(origin, "/ajax-logout"),
@@ -21162,30 +21311,36 @@ var logoutUser = /*#__PURE__*/function () {
             });
 
           case 4:
-            response = _context9.sent;
+            response = _context13.sent;
             console.log(response);
             window.location.href = origin;
-            _context9.next = 13;
+            _context13.next = 13;
             break;
 
           case 9:
-            _context9.prev = 9;
-            _context9.t0 = _context9["catch"](0);
+            _context13.prev = 9;
+            _context13.t0 = _context13["catch"](0);
             console.log('Sorry, something went wrong...');
-            console.log(_context9.t0.response);
+            console.log(_context13.t0.response);
 
           case 13:
           case "end":
-            return _context9.stop();
+            return _context13.stop();
         }
       }
-    }, _callee9, null, [[0, 9]]);
+    }, _callee13, null, [[0, 9]]);
   }));
 
   return function logoutUser() {
-    return _ref9.apply(this, arguments);
+    return _ref13.apply(this, arguments);
   };
 }();
+
+var sleep = function sleep(milliseconds) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, milliseconds);
+  });
+};
 
 
 

@@ -117,7 +117,7 @@ var createUserDOM = function createUserDOM(users) {
   $('div.points-holder.two').attr('id', "player-".concat(player_two.id, "-points")).html(player_two.points > 1 ? "".concat(player_two.points, " points") : "".concat(player_two.points, " point"));
 };
 
-var generateEquation = function generateEquation() {
+var generateEquation = function generateEquation(eq) {
   var equations = eq,
       htmlDOM = '',
       index = 1;
@@ -145,8 +145,8 @@ var generateEquation = function generateEquation() {
 
     htmlDOM += "<div class=\"equation equation-".concat(index, "\" data-answer=").concat(equation.answer, ">\n            <span class=\"circle\"></span>\n            <span id=\"equation-1\">").concat(equation.a).concat(operation).concat(equation.b, "=???</span>\n        </div>");
     index++;
-  }); // htmlDOM += `<div class="big-square"></div>`;
-
+  });
+  htmlDOM += "<div class=\"big-square\"></div>";
   $('div.game-area').html(htmlDOM);
 };
 

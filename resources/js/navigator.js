@@ -5,6 +5,7 @@
      createUserUsingNickname,
      renderMatchHistory,
      renderHome,
+     renderHomeSkeleton,
      renderClassic,
      renderFindMatch,
      logoutUser
@@ -22,12 +23,12 @@
      const sfxSwitch = localStorage.getItem("equasolve_sfx") == "true" ? true : false;
 
      setTimeout(() => {
-        // play only if page is on the landing page
+         // play only if page is on the landing page
          if (window.location.pathname == "/" || window.location.pathname == "/find-match") {
              console.log('play');
              if (BgMusicSwitch) {
-                menuBgMusic = sfx.menu.play();
-            }
+                 menuBgMusic = sfx.menu.play();
+             }
          }
      }, 100);
 
@@ -36,8 +37,8 @@
 
      $("#musicOnOff").on('click', function () {
 
-        if(window.location.pathname != "/") return;
-        console.log('trigger settings on landing page');
+         if (window.location.pathname != "/") return;
+         console.log('trigger settings on landing page');
 
          const musicFXisOn = localStorage.getItem("equasolve_music_fx") === "true" ? true : false;
          localStorage.setItem("equasolve_music_fx", musicFXisOn ? "false" : "true");
@@ -53,8 +54,8 @@
 
      $("#SFXOnOff").on('click', function (e) {
 
-        if(window.location.pathname != "/") return;
-        console.log('trigger settings on landing page');
+         if (window.location.pathname != "/") return;
+         console.log('trigger settings on landing page');
 
          const isSfxOn = () => {
              return localStorage.getItem("equasolve_sfx") === "true";
@@ -146,6 +147,15 @@
              const home = await renderHome();
              $('div#root').html(home);
          });
+
+     });
+
+     //render home
+     $(document).on('click', '#render-home-skeleton', async function (e) {
+         e.preventDefault();
+         sfx.tap.play();
+         const home = await renderHomeSkeleton();
+         $('div#root').html(home);
 
      });
 

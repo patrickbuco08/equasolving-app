@@ -1,6 +1,9 @@
 import $ from "jquery";
-import { Howler } from "howler";
 import sfx from '../sfx';
+
+import {
+    renderClassicSummary
+} from "./request";
 
 export const equation = {
     answers: [],
@@ -49,11 +52,10 @@ export const equation = {
         return numbers;
     },
     randomOperation: function () {
-        if(this.level + 1 <= 10){
+        if (this.level + 1 <= 10) {
             const rand = Math.random() * (this.operations.length - 2) | 0;
             return this.operations[rand];
-        }
-        else {
+        } else {
             const rand = Math.random() * this.operations.length | 0;
             return this.operations[rand];
         }
@@ -71,24 +73,22 @@ export const equation = {
 
         switch (operation) {
             case 'addition':
-                if(this.level + 1 <= 5){
+                if (this.level + 1 <= 5) {
                     a = this.randomNumber(1, 9);
                     b = this.randomNumber(1, 9);
-                }
-                else {
+                } else {
                     a = this.randomNumber(9, 90);
                     b = this.randomNumber(9, 90);
                 }
-                
+
                 answer = a + b;
                 break;
 
             case 'subtraction':
-                if(this.level + 1 <= 5){
+                if (this.level + 1 <= 5) {
                     a = this.randomNumber(1, 9);
                     b = this.randomNumber(a > 1 ? 1 : 0, a);
-                }
-                else {
+                } else {
                     a = this.randomNumber(10, 99);
                     b = this.randomNumber(a > 10 ? 10 : 0, a);
                 }
@@ -132,7 +132,7 @@ export const equation = {
     generateDOM: function () {
         let equations = [],
             numberOfEquation = 4,
-            htmlDOMLvl = '',
+            index = 1,
             htmlDOM = '';
 
         while (numberOfEquation) {
@@ -142,10 +142,10 @@ export const equation = {
             numberOfEquation--;
 
         }
-        let countOfData = 1;
+
         equations.forEach(equation => {
             let operation = '';
-            
+
             switch (equation.operation) {
                 case 'addition':
                     operation = '+';
@@ -160,22 +160,21 @@ export const equation = {
                     operation = '/';
                     break;
             }
-            if(countOfData == 2){
-                htmlDOM += `<div class="row-${countOfData}-${countOfData+1}">`;
-            }
-            htmlDOM += `<div class="row" id="row-${countOfData}"><span class="data" id="data-${countOfData}" data-answer=${equation.answer} >${equation.a}${operation}${equation.b}=?</span></div>`;
-            
-            if(countOfData == 3){
-                htmlDOM += `</div>`;
-            }
-            
-            countOfData++;
+
+            htmlDOM += `<div class="equation equation-${index}" data-answer=${equation.answer}>
+            <span class="circle"></span>
+            <span id="equation-1">${equation.a}${operation}${equation.b}=???</span>
+            </div>`;
+            index++;
         });
-        this.answers = []
-        $('div.game-grid').html(htmlDOM);
+        htmlDOM += `<div class="big-square"></div>`;
+
+        this.answers = []; //reset answer
+
+        $('div.game-area').html(htmlDOM);
         this.level++;
-        htmlDOMLvl = 'Level: '+ this.level;
-        $('div.level span#level').html(htmlDOMLvl);
+        $('div.level span').html(`Level: ${this.level}`);
+        console.log('what happened?');
     }
 
 }
@@ -184,13 +183,12 @@ export const timer = {
     minutes: 0,
     seconds: 22,
     timerLoop: null,
+    trophies: 0,
+    trophiesCountDown: 5,
     init: function () {
         const countDownTimer = this.countDownTimer.bind(this);
         this.timerLoop = setInterval(countDownTimer, 1000);
         this.countDownTimer();
-
-        
-
     },
     run: function () {
         clearInterval(this.timerLoop);
@@ -200,42 +198,15 @@ export const timer = {
     },
     pause: function () {
         clearInterval(this.timerLoop);
-        clearInterval(gameTimer.timerLoop);
         console.log("game pause");
     },
     continue: function () {
         this.init();
-        gameTimer.init();
     },
     quit: function () {
         this.minutes = 0;
         this.seconds = 0;
         this.createDisplay();
-    },
-    playagain: function (){
-        this.minutes = 0;
-        this.seconds = 22;
-        gameTimer.minutes = 0;
-        gameTimer.seconds = 0;
-        $('div#main-default-summary').removeClass("fadein-animation");
-        $('div#main-default-summary').hide();
-        $('.eq-content-area').show();
-        this.continue();
-        
-    },
-    loading: function(){
-        if($("#content-section").hasClass("start")){
-            setTimeout(() => { 
-                $('#main-default-loading').hide();
-                $('body#main-default').removeClass('flex-jc-c-imp');
-                $('div#main-default-summary').hide();
-                $('.eq-content-area').show();
-                $('#content-section').removeClass('start');
-                timer.continue();
-              }, 3000);
-            }
-        
-        
     },
     countDownTimer: function () {
         let newSeconds = this.minutes * 60 + this.seconds;
@@ -248,11 +219,6 @@ export const timer = {
         console.log(`CountDownTimer | minute: ${this.minutes} | seconds: ${this.seconds}`)
     },
     createDisplay: function () {
-        if(!$('body#main-default').hasClass('flex-jc-c-imp')){
-            setTimeout(() => { 
-                this.loading();
-                  }, 3000)
-        }
         if (this.isGameOver()) {
             this.setGameOver();
             return;
@@ -260,37 +226,37 @@ export const timer = {
 
         if (this.seconds < 10) {
             if (this.seconds == 0 && this.minutes > 0) {
-                $('div .timer-container input#timer').val(`${this.minutes}: 0${this.seconds}`);
+                $('span#countdown-timer').text(`${this.minutes}: 0${this.seconds}`);
                 setTimeout(() => {
-                    $('div .timer-container input#timer').val(`${this.minutes}: ${this.seconds}`);
+                    $('span#countdown-timer').text(`${this.minutes}: ${this.seconds}`);
                 }, 1000);
                 return;
             }
-            $('div .timer-container input#timer').val(`${this.minutes}: 0${this.seconds}`);
+            $('span#countdown-timer').text(`${this.minutes}: 0${this.seconds}`);
             return;
         }
 
-        $('div .timer-container input#timer').val(`${this.minutes}: ${this.seconds}`);
+        $('span#countdown-timer').text(`${this.minutes}: ${this.seconds}`);
+
+        this.trophiesCountDown--;
+
+        if (this.trophiesCountDown == 0) {
+            this.trophies++; //add trophy
+            this.trophiesCountDown = 5; //bring back the countdown
+            $('span#trophies-holder').text(`${this.trophies} ${ this.trophies <= 1 ? 'pt' : 'pts' }`);
+        }
+
     },
     isGameOver: function () {
         return this.minutes <= 0 && this.seconds <= 0;
     },
-    setGameOver: function () {
+    setGameOver: async function () {
+        clearInterval(this.timerLoop);
         sfx.classic.pause();
         sfx.win.play();
-        $('.eq-content-area').hide();
-        $('div#main-default-summary').addClass("fadein-animation");
-        $('div#main-default-summary').show();
-        $('body#main-default').addClass("flex-jc-c-imp");
 
-        // setTimeout(() => { 
-
-        //  }, 3000)
-        gameTimer.trophyCount();
-        $('span#summary-trophy').text(`Trophy: ` + gameTimer.trophy);
-        $('span#summary-level').text(`Level: ` + equation.level);
-        clearInterval(this.timerLoop);
-        clearInterval(gameTimer.timerLoop);
+        const summaryUI = await renderClassicSummary(equation.level, this.trophies);
+        $('div#root').html(summaryUI);
     },
     addTime: function (additionalTime = 3) {
         if ((additionalTime + this.seconds) > 60) {
@@ -320,64 +286,4 @@ export const timer = {
         }
         timer.run();
     }
-
 };
-
-export const gameTimer = {
-    minutes: 0,
-    seconds: 0,
-    trophy: 0,
-    addtrophycounter: 1,
-    timerLoop: null,
-    init: function () {
-        const countUpTimer = this.countUpTimer.bind(this);
-
-        this.timerLoop = setInterval(countUpTimer, 1000);
-        this.countUpTimer();
-    },
-    run: function () {
-        clearInterval(this.timerLoop);
-        const countUpTimer = this.countUpTimer.bind(this);
-        this.timerLoop = setInterval(countUpTimer, 1000);
-        timer.createDisplay();
-    },
-    countUpTimer: function () {
-        let newSeconds = this.minutes * 60 + this.seconds;
-        newSeconds++;
-
-        this.seconds = newSeconds % 60;
-        this.minutes = Math.floor(newSeconds / 60);
-
-        this.createDisplay();
-        console.log(`CountUpTimer | minute: ${this.minutes} | seconds: ${this.seconds}`)
-    },
-    trophyCount: function () {
-        let numberofSeconds = this.minutes * 60 + this.seconds;
-        this.trophy = Math.floor(numberofSeconds / 30);
-        
-        if(this.addtrophycounter == this.trophy){
-            $('span#add-trophy').addClass(`add-trophy-absolute move-up-animation`);
-            setTimeout(() => {
-                $('span#add-trophy').removeClass(`add-trophy-absolute move-up-animation`);
-            }, 1500);
-            this.addtrophycounter++;
-        }
-    },
-    createDisplay: function () {
-        this.trophyCount();
-        $('div .timer-container input#trophy').val(`${this.trophy}`);
-        
-        return;
-        
-    },
-
-};
-
-export function sorted(arr) {
-    let second_index;
-    for (let first_index = 0; first_index < arr.length; first_index++) {
-        second_index = first_index + 1;
-        if (arr[second_index] - arr[first_index] < 0) return false;
-    }
-    return true;
-}

@@ -1,5 +1,5 @@
-<section id="content-section">
-    <div class="eq-content-area vh-100">
+<section id="content-section" class="content-mid">
+    <div class="eq-content-area">
         <div id="win-lose">
             <main>
                 <div class="container">
@@ -12,19 +12,14 @@
                     </div>
                     <div class="player-information">
                         <span class="player-name">{{ $player['name'] }}</span>
-                        <div class="player one"></div>
-                        <div class="info mmr"><b>MMR: </b> {{ $player['mmr'] }}</div>
-                        <div class="info points"><b>POINTS: </b> {{ $player['points'] }}</div>
-                        <div class="info mmr"><b>NEW MMR: </b> {{ $player['updated_mmr'] }}</div>
+                        <div class="player one flex flex-ai-c flex-jc-c"><span class="span-lose">X X</span></div>
+                        <div class="info mmr"><span><b>MMR: </b>{{ $player['mmr'] }}</span></div>
+                        <div class="info points"><span><b>Points: </b> {{ $player['points'] }}</span></div>
+                        <div class="info trophy"><span><b>NEW MMR: </b>{{ $player['updated_mmr'] }}</span></div>
+                        <div class="info main-menu" id="render-home"><span><b>Menu Menu</b></span></div>
                     </div>
                 </div>
-                <div class="menu" id="render-home">
-                    <span>MENU</span>
-                </div>
             </main>
-            <footer>
-                <p>Version Alpha.</p>
-            </footer>
         </div>
     </div>
 </section>

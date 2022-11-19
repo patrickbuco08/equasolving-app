@@ -1,7 +1,6 @@
 import {
     equation,
     timer,
-    gameTimer
 } from "./utilities/classicService";
 import {
     Howler

@@ -18,7 +18,7 @@ const createUserDOM = (users) => {
     $('div.points-holder.two').attr('id', `player-${player_two.id}-points`).html(player_two.points > 1 ? `${player_two.points} points` : `${player_two.points} point`);
 }
 
-const generateEquation = () => {
+const generateEquation = (eq) => {
     let equations = eq,
         htmlDOM = '',
         index = 1;
@@ -49,7 +49,7 @@ const generateEquation = () => {
         index++;
     });
 
-    // htmlDOM += `<div class="big-square"></div>`;
+    htmlDOM += `<div class="big-square"></div>`;
     $('div.game-area').html(htmlDOM);
 }
 
