@@ -33,11 +33,7 @@ import sfx from "./sfx";
     setTimeout(() => {
 
         if (BgMusicSwitch) {
-<<<<<<< HEAD
-            sfx.classic.play(); //palitan mo ng sfx.classic.play();
-=======
             sfx.classic.play();
->>>>>>> main
         }
 
     }, 800);

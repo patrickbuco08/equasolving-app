@@ -14581,13 +14581,8 @@ var equation = {
   }
 };
 var timer = {
-<<<<<<< HEAD
   minutes: 0,
   seconds: 22,
-=======
-  minutes: 2,
-  seconds: 30,
->>>>>>> main
   timerLoop: null,
   init: function init() {
     var countDownTimer = this.countDownTimer.bind(this);

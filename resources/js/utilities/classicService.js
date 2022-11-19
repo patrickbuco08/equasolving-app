@@ -181,13 +181,8 @@ export const equation = {
 }
 
 export const timer = {
-<<<<<<< HEAD
     minutes: 0,
     seconds: 22,
-=======
-    minutes: 2,
-    seconds: 30,
->>>>>>> main
     timerLoop: null,
     init: function () {
         const countDownTimer = this.countDownTimer.bind(this);

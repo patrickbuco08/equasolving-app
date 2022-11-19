@@ -14339,11 +14339,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   jquery__WEBPACK_IMPORTED_MODULE_2___default()('body#main-default').addClass('flex-jc-c-imp');
   setTimeout(function () {
     if (BgMusicSwitch) {
-<<<<<<< HEAD
-      _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].classic.play(); //palitan mo ng sfx.classic.play();
-=======
       _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].classic.play();
->>>>>>> main
     }
   }, 800); //initialize timer
 
@@ -14814,13 +14810,8 @@ var equation = {
   }
 };
 var timer = {
-<<<<<<< HEAD
   minutes: 0,
   seconds: 22,
-=======
-  minutes: 2,
-  seconds: 30,
->>>>>>> main
   timerLoop: null,
   init: function init() {
     var countDownTimer = this.countDownTimer.bind(this);
