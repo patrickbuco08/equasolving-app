@@ -170,16 +170,16 @@
                                     <span class="us"></span>
                                 </div>
                             </div>
-                            <div class="flex flex-hori flex-ai-c flex-jc-sb">
-                                <h4>Music:</h4>
+                            <div class="flex flex-hori flex-ai-c flex-jc-se">
+                                <h3 style = "width:40px">Music:</h3>
                             <span class="header-btn" id="musicOnOff">
-                                <img id="musicImg" src="{{ asset('images/music-on.png') }}" alt="BGMusic">
+                                <img id="musicImg" style = "width: 35px;height: 35px" src="{{ asset('images/music-on.png') }}" alt="BGMusic">
                             </span>
                             </div>
-                            <div class="flex flex-hori flex-ai-c flex-jc-sb">
-                                <h4>SFX:</h4>
+                            <div class="flex flex-hori flex-ai-c flex-jc-se">
+                                <h3 style = "width:40px">SFX:</h3>
                             <span class="header-btn" id="SFXOnOff">
-                                <img id="sfxImg" src="{{ asset('images/music-on.png') }}" alt="BGMusic">
+                                <img id="sfxImg" style = "width: 35px;height: 35px" src="{{ asset('images/music-on.png') }}" alt="BGMusic">
                             </span>
                             </div>
                         </div>
