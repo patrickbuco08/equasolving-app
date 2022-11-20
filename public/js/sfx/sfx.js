@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -3444,14 +3444,14 @@ var sfx = {
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!***********************************!*\
   !*** multi ./resources/js/sfx.js ***!
   \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\kishu\OneDrive\Documents\GitHub\equasolving-app-classic\resources\js\sfx.js */"./resources/js/sfx.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\EquaSolve\app\resources\js\sfx.js */"./resources/js/sfx.js");
 
 
 /***/ })

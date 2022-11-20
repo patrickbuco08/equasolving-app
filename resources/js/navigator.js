@@ -15,12 +15,16 @@
      Howler
  } from "howler";
 
+ import { modalSettings, modalClassicTutorial, modalPvpTutorial } from "./utilities/modalService";
+
  // navigator
  (async () => {
      console.log('init navigator');
      let menuBgMusic = null;
      const BgMusicSwitch = localStorage.getItem("equasolve_music_fx") == "true" ? true : false;
-     const sfxSwitch = localStorage.getItem("equasolve_sfx") == "true" ? true : false;
+     const isSfxOn = () => {
+        return localStorage.getItem("equasolve_sfx") === "true";
+    }
 
      setTimeout(() => {
          // play only if page is on the landing page
@@ -32,10 +36,7 @@
          }
      }, 100);
 
-     $("#musicImg").attr('src', `/images/music-${BgMusicSwitch ? 'on' : 'off'}.png`);
-     $("#sfxImg").attr('src', `/images/music-${sfxSwitch ? 'on' : 'off'}.png`);
-
-     $("#musicOnOff").on('click', function () {
+     $(document).on('click', '#musicOnOff', function () {
 
          if (window.location.pathname != "/") return;
          console.log('trigger settings on landing page');
@@ -52,29 +53,60 @@
 
      });
 
-     $("#SFXOnOff").on('click', function (e) {
+     $(document).on('click', '#SFXOnOff', function (e) {
 
          if (window.location.pathname != "/") return;
          console.log('trigger settings on landing page');
 
-         const isSfxOn = () => {
-             return localStorage.getItem("equasolve_sfx") === "true";
-         }
+         console.log(isSfxOn());
+         
          localStorage.setItem("equasolve_sfx", isSfxOn() ? "false" : "true");
-         Howler.mute(!musicFXisOn());
-         $("#sfxImg").attr('src', `/images/music-${musicFXisOn() ? 'on' : 'off'}.png`);
+         $("#sfxImg").attr('src', `/images/music-${isSfxOn() ? 'on' : 'off'}.png`);
      });
 
+    //  fx settings
      $(document).on("click", '#settings', function (e) {
          e.preventDefault();
-         $("#settings-modal").show();
+         sfx.tap.play();
+
+         console.log('check it trigerred');
+         const modalContent = $('section#overlay div.modal-content');
+
+         modalContent.html(modalSettings);
+
+         $('section#overlay').show();
+
      });
 
-     $(document).on('click', '#close', function (e) {
-         e.preventDefault();
-         $("#settings-modal").hide();
-     });
+    //  read classic tutorial
+    $(document).on("click", "button#classic-tutorial", function (e) { 
+        e.preventDefault();
 
+        sfx.tap.play();
+        const modalContent = $('section#overlay div.modal-content');
+        modalContent.html(modalClassicTutorial);
+
+    });
+
+    // read pvp tutorial
+    $(document).on("click", "button#pvp-tutorial", function (e) { 
+        e.preventDefault();
+
+        sfx.tap.play();
+        const modalContent = $('section#overlay div.modal-content');
+        modalContent.html(modalPvpTutorial);
+        
+    });
+
+    // done reading tutorials
+    $(document).on("click", "button#done-tutorial", function (e) { 
+        e.preventDefault();
+
+        sfx.tap.play();
+        const modalContent = $('section#overlay div.modal-content');
+        modalContent.html(modalSettings);
+        
+    });
 
      //validation sa pag input ng nickname
      $(document).on('keyup', 'input[name="set-nickname"]', function (e) {
@@ -114,8 +146,14 @@
          e.preventDefault();
 
          $(this).on('click', false);
-
          sfx.tap.play();
+
+         if($(this).hasClass('reconnect')){
+            const roomID = $(this).data('room');
+            window.location.href = `${origin}/pvp?room=${roomID}`
+            return;
+         }
+
          sfx.tap.on("end", async () => {
              const findMatch = await renderFindMatch();
              $('div#root').html(findMatch);
@@ -126,7 +164,7 @@
      // click shop
      $(document).on('click', '#menu-btn-3', async function (e) {
          e.preventDefault();
-
+         sfx.tap.play();
          const shop = await renderShop();
          $('div#root').html(shop);
      });
@@ -158,6 +196,13 @@
          $('div#root').html(home);
 
      });
+
+    //  reconnect
+    $(document).on("click", "div#reconnect", function (e) { 
+        e.preventDefault();
+        alert('hello');
+
+    });
 
      //logout
      $(document).on('click', 'div#logout', async function (e) {

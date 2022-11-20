@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -14376,11 +14376,11 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
             failed: 'animated headShake',
             ends: 'animationend AnimationEnd mozAnimationEnd webkitAnimationEnd'
           }, classPatern = 'selected-1 selected-2 selected-3 selected-4';
-          setTimeout(function () {
-            if (BgMusicSwitch) {
-              _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].classic.play();
-            }
-          }, 200);
+
+          if (BgMusicSwitch) {
+            _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].classic.play();
+          }
+
           _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"].init(); // init timer
 
           _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["equation"].generateDOM(); // generate equation
@@ -14458,7 +14458,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
             _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"].quit();
           }); // toggle background music
 
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#musicOnOff").on('click', function () {
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()(document).on('click', '#musicOnOff', function () {
             if (window.location.pathname != "/classic") return;
             console.log('trigger settings on classic');
             var musicFXisOn = localStorage.getItem("equasolve_music_fx") === "true" ? true : false;
@@ -14474,7 +14474,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
             }
           }); // toggle sound FX
 
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()("#SFXOnOff").on('click', function (e) {
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()(document).on('click', '#SFXOnOff', function (e) {
             if (window.location.pathname != "/classic") return;
             console.log('trigger settings on classic');
 
@@ -14793,7 +14793,7 @@ var timer = {
   seconds: 20,
   timerLoop: null,
   trophies: 0,
-  trophiesCountDown: 5,
+  trophiesCountDown: 30,
   init: function init() {
     var countDownTimer = this.countDownTimer.bind(this);
     this.timerLoop = setInterval(countDownTimer, 1000);
@@ -14852,7 +14852,7 @@ var timer = {
     if (this.trophiesCountDown == 0) {
       this.trophies++; //add trophy
 
-      this.trophiesCountDown = 5; //bring back the countdown
+      this.trophiesCountDown = 30; //bring back the countdown
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('span#trophies-holder').text("".concat(this.trophies, " ").concat(this.trophies <= 1 ? 'pt' : 'pts'));
     }
@@ -14870,14 +14870,15 @@ var timer = {
               clearInterval(this.timerLoop);
               _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].classic.pause();
               _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].win.play();
-              _context.next = 5;
+              console.log('save game', this.trophies);
+              _context.next = 6;
               return Object(_request__WEBPACK_IMPORTED_MODULE_2__["renderClassicSummary"])(equation.level, this.trophies);
 
-            case 5:
+            case 6:
               summaryUI = _context.sent;
               jquery__WEBPACK_IMPORTED_MODULE_0___default()('div#root').html(summaryUI);
 
-            case 7:
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -14932,7 +14933,7 @@ var timer = {
 /*!*******************************************!*\
   !*** ./resources/js/utilities/request.js ***!
   \*******************************************/
-/*! exports provided: createUserUsingNickname, getAuthenticatedUser, logoutUser, renderClassic, renderClassicSkeleton, renderClassicSummary, renderFindMatch, renderHome, renderHomeSkeleton, renderLoader, renderMatchHistory, renderShop, sleep */
+/*! exports provided: createUserUsingNickname, getAuthenticatedUser, logoutUser, renderClassic, renderClassicSkeleton, renderClassicSummary, renderFindMatch, renderHome, renderHomeSkeleton, renderLoader, renderMatchHistory, renderShop, equipTheme, purchaseTheme, sleep */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14949,6 +14950,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderLoader", function() { return renderLoader; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderMatchHistory", function() { return renderMatchHistory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderShop", function() { return renderShop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "equipTheme", function() { return equipTheme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "purchaseTheme", function() { return purchaseTheme; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sleep", function() { return sleep; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
@@ -15432,11 +15435,92 @@ var sleep = function sleep(milliseconds) {
   });
 };
 
+var equipTheme = /*#__PURE__*/function () {
+  var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(id) {
+    var response;
+    return _regeneratorRuntime().wrap(function _callee14$(_context14) {
+      while (1) {
+        switch (_context14.prev = _context14.next) {
+          case 0:
+            _context14.prev = 0;
+            _context14.next = 3;
+            return axios({
+              method: 'POST',
+              url: "".concat(origin, "/user/equip-theme"),
+              data: {
+                id: id,
+                _token: token
+              }
+            });
+
+          case 3:
+            response = _context14.sent;
+            return _context14.abrupt("return", response.data);
+
+          case 7:
+            _context14.prev = 7;
+            _context14.t0 = _context14["catch"](0);
+            return _context14.abrupt("return", "Sorry, something went wrong...");
+
+          case 10:
+          case "end":
+            return _context14.stop();
+        }
+      }
+    }, _callee14, null, [[0, 7]]);
+  }));
+
+  return function equipTheme(_x2) {
+    return _ref14.apply(this, arguments);
+  };
+}();
+
+var purchaseTheme = /*#__PURE__*/function () {
+  var _ref15 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(id) {
+    var response;
+    return _regeneratorRuntime().wrap(function _callee15$(_context15) {
+      while (1) {
+        switch (_context15.prev = _context15.next) {
+          case 0:
+            _context15.prev = 0;
+            _context15.next = 3;
+            return axios({
+              method: 'POST',
+              url: "".concat(origin, "/user/purchase-theme"),
+              data: {
+                id: id,
+                _token: token
+              }
+            });
+
+          case 3:
+            response = _context15.sent;
+            console.log(response.data);
+            return _context15.abrupt("return", true);
+
+          case 8:
+            _context15.prev = 8;
+            _context15.t0 = _context15["catch"](0);
+            return _context15.abrupt("return", null);
+
+          case 11:
+          case "end":
+            return _context15.stop();
+        }
+      }
+    }, _callee15, null, [[0, 8]]);
+  }));
+
+  return function purchaseTheme(_x3) {
+    return _ref15.apply(this, arguments);
+  };
+}();
+
 
 
 /***/ }),
 
-/***/ 7:
+/***/ 8:
 /*!******************************************!*\
   !*** multi ./resources/js/newClassic.js ***!
   \******************************************/

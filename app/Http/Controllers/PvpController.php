@@ -68,7 +68,7 @@ class PvpController extends Controller
             ]);
 
             // for player one
-            $player_one = User::find($data['contestant_one']['id'])->first();
+            $player_one = User::find($data['contestant_one']['id']);
             $player_one->update([
                 'in_game' => false,
                 'room_id' => null

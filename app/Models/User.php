@@ -44,6 +44,22 @@ class User extends Authenticatable
         return $this->hasMany(GameBackground::class);
     }
 
+    public function selectedBackground()
+    {
+    
+        $themes = [
+            '1' => 'main-default',
+            '2' => 'main-cloud',
+            '3' => 'main-sun',
+            '4' =>  'main-mid'
+        ];
+        $currentBG = $this->ownedBackgrounds()->where('activated', true)->first();
+
+        return $themes[$currentBG->background_id];
+
+    }
+
+
     public function classicModeDetails()
     {
         return $this->hasOne(UserClassicModeDetail::class);

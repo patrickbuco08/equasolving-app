@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -14293,235 +14293,6 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./resources/js/classic.js":
-/*!*********************************!*\
-  !*** ./resources/js/classic.js ***!
-  \*********************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utilities/classicService */ "./resources/js/utilities/classicService.js");
-/* harmony import */ var howler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! howler */ "./node_modules/howler/dist/howler.js");
-/* harmony import */ var howler__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(howler__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _sfx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sfx */ "./resources/js/sfx.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-
-
-
-(function () {
-  var successFX = 'animated bounce',
-      failedFX = 'animated headShake',
-      fxEnds = 'animationend AnimationEnd mozAnimationEnd webkitAnimationEnd';
-  var BgMusicSwitch = localStorage.getItem("equasolve_music_fx") == "true" ? true : false;
-  var sfxSwitch = localStorage.getItem("equasolve_sfx") == "true" ? true : false;
-  setTimeout(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()('section#content-section').removeClass('d-none');
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()('div#main-default-loading').removeClass('d-none');
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()('div#footer').removeClass('d-none');
-  }, 500);
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()('body').addClass("fade-in");
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()('div#main-default-summary').hide();
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()('.eq-content-area').hide();
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()('#main-default-loading').show();
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()('body#main-default').addClass('flex-jc-c-imp');
-  setTimeout(function () {
-    if (BgMusicSwitch) {
-      _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].classic.play();
-    }
-  }, 800); //initialize timer
-
-  _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"].init();
-  gameTimer.init();
-  _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["equation"].generateDOM();
-  var i = 0;
-  var sequence = ['first', 'second', 'third', 'fourth'];
-
-  if (jquery__WEBPACK_IMPORTED_MODULE_2___default()("#content-section").hasClass("start")) {
-    _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"].pause();
-    _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"].loading();
-  }
-
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()(document).on('click', 'span.data', function () {
-    if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).hasClass('active') && jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).hasClass('' + i - 1 + '')) {
-      i--;
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()('span.data.' + '' + i).removeClass('active');
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()('span.data').removeClass('' + i + '');
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()('span.data').removeClass('' + sequence[i] + '');
-      _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["equation"].answers.splice(i);
-      return;
-    } else if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).hasClass('active') || jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).hasClass('0 1 2 3') || jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).hasClass('first second third fourth')) {
-      return;
-    }
-
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).addClass('active');
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).addClass('' + i + '');
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).addClass('' + sequence[i] + '');
-    _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].tap.play();
-    _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["equation"].setAnswer(jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).data('answer'));
-    console.log(_utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["equation"].answers);
-    i++;
-
-    if (_utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["equation"].answers.length == 4) {
-      if (_utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["equation"].isAnswerSorted()) {
-        jquery__WEBPACK_IMPORTED_MODULE_2___default()('input#timer').addClass("text-success green");
-        setTimeout(function () {
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()('input#timer').removeClass("text-success green");
-        }, 1000);
-        jquery__WEBPACK_IMPORTED_MODULE_2___default()('span#add-time').addClass("add-time-absolute move-up-animation");
-        setTimeout(function () {
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()('span#add-time').removeClass("add-time-absolute move-up-animation");
-        }, 1500);
-        jquery__WEBPACK_IMPORTED_MODULE_2___default()('div#classic-logo').addClass("text-success ".concat(successFX, " green")).one(fxEnds, function () {
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()('div#classic-logo').removeClass("text-success ".concat(successFX, " green"));
-        });
-        _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"].addTime(5);
-        _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["equation"].generateDOM();
-        i = 0;
-        _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].correct.play();
-      } else {
-        jquery__WEBPACK_IMPORTED_MODULE_2___default()('div#classic-logo').addClass("text-danger ".concat(failedFX, " red")).one(fxEnds, function () {
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()('div#classic-logo').removeClass("text-danger ".concat(failedFX, " red"));
-        });
-        jquery__WEBPACK_IMPORTED_MODULE_2___default()('input#timer').addClass("text-danger red");
-        setTimeout(function () {
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()('input#timer').removeClass("text-danger red");
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()('span.data').removeClass('active');
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()('span.data').removeClass('first second third fourth');
-        }, 1000);
-        jquery__WEBPACK_IMPORTED_MODULE_2___default()('span#minus-time').addClass("minus-time-absolute move-up-animation");
-        setTimeout(function () {
-          jquery__WEBPACK_IMPORTED_MODULE_2___default()('span#minus-time').removeClass("minus-time-absolute move-up-animation");
-        }, 1500);
-        _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"].deductTime(3);
-        _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["equation"].answers = [];
-        jquery__WEBPACK_IMPORTED_MODULE_2___default()('span.data').removeClass('0 1 2 3');
-        i = 0;
-        _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].incorrect.play();
-      }
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()('#reset').click(function (e) {
-    e.preventDefault();
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()('span.data').removeClass('active');
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()('span.data').removeClass('0 1 2 3');
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()('span.data').removeClass('first second third fourth');
-    _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["equation"].answers = [];
-    i = 0;
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()('#exit-game').click(function (e) {
-    e.preventDefault();
-    console.log('where');
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#exit-modal").show();
-    _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"].pause();
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()('#settings').click(function (e) {
-    e.preventDefault();
-    _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"].pause();
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()('#cancel').click(function (e) {
-    e.preventDefault();
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#exit-modal").hide();
-    _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"]["continue"]();
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()('#close').click(function (e) {
-    e.preventDefault();
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#settings-modal").hide();
-    _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"]["continue"]();
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()('#exit').click(function (e) {
-    e.preventDefault();
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#exit-modal").hide();
-    _utilities_classicService__WEBPACK_IMPORTED_MODULE_0__["timer"].quit();
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()("#musicOnOff").on('click', function () {
-    if (window.location.pathname != "/classic") return;
-    console.log('trigger settings on classic');
-    var musicFXisOn = localStorage.getItem("equasolve_music_fx") === "true" ? true : false;
-    localStorage.setItem("equasolve_music_fx", musicFXisOn ? "false" : "true");
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#musicImg").attr('src', "/images/music-".concat(!musicFXisOn ? 'on' : 'off', ".png"));
-
-    if (musicFXisOn) {
-      console.log('we pause');
-      _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].classic.pause();
-    } else {
-      console.log('we play');
-      _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].classic.play();
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()("#SFXOnOff").on('click', function (e) {
-    if (window.location.pathname != "/classic") return;
-    console.log('trigger settings on classic');
-
-    var isSfxOn = function isSfxOn() {
-      return localStorage.getItem("equasolve_sfx") === "true";
-    };
-
-    localStorage.setItem("equasolve_sfx", isSfxOn() ? "false" : "true");
-    howler__WEBPACK_IMPORTED_MODULE_1__["Howler"].mute(!musicFXisOn());
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()("#sfxImg").attr('src', "/images/music-".concat(musicFXisOn() ? 'on' : 'off', ".png"));
-  });
-
-  var renderMainMenu = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var origin, response;
-      return _regeneratorRuntime().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              origin = window.location.origin;
-              _context.next = 3;
-              return axios.get("".concat(origin, "/skeleton/home"));
-
-            case 3:
-              response = _context.sent;
-              jquery__WEBPACK_IMPORTED_MODULE_2___default()('div#root').html(response.data);
-
-            case 5:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-
-    return function renderMainMenu() {
-      return _ref.apply(this, arguments);
-    };
-  }();
-
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()('#main-menu').click(function (e) {
-    e.preventDefault(); //renderMainMenu();
-
-    var origin = window.location.origin;
-    window.location.href = "".concat(origin);
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()('#play-again').click(function (e) {
-    e.preventDefault();
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()('div#root').animate({
-      opacity: 0
-    }, 500);
-    setTimeout(function () {
-      var origin = window.location.origin;
-      window.location.href = "".concat(origin, "/classic");
-    }, 1000);
-  });
-})();
-
-/***/ }),
-
 /***/ "./resources/js/sfx.js":
 /*!*****************************!*\
   !*** ./resources/js/sfx.js ***!
@@ -14594,21 +14365,20 @@ var sfx = {
 
 /***/ }),
 
-/***/ "./resources/js/utilities/classicService.js":
-/*!**************************************************!*\
-  !*** ./resources/js/utilities/classicService.js ***!
-  \**************************************************/
-/*! exports provided: equation, timer */
+/***/ "./resources/js/shop.js":
+/*!******************************!*\
+  !*** ./resources/js/shop.js ***!
+  \******************************/
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "equation", function() { return equation; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timer", function() { return timer; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _sfx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../sfx */ "./resources/js/sfx.js");
-/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./request */ "./resources/js/utilities/request.js");
+/* harmony import */ var _utilities_modalService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utilities/modalService */ "./resources/js/utilities/modalService.js");
+/* harmony import */ var _utilities_request__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utilities/request */ "./resources/js/utilities/request.js");
+/* harmony import */ var _sfx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sfx */ "./resources/js/sfx.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
@@ -14617,286 +14387,79 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 
 
 
-var equation = {
-  answers: [],
-  level: 0,
-  countArr: 0,
-  operations: ['addition', 'subtraction', 'multiplication', 'division'],
-  setAnswer: function setAnswer(answer) {
-    this.answers.push(answer);
-  },
-  numberMapper: function numberMapper(min, max, type) {
-    var numberMap = {};
 
-    if (type == 'random-symmetry') {
-      var symmetry = ['odd', 'even'];
-      type = symmetry[Math.floor(Math.random() * 2)];
-    }
+(function () {
+  // modalPurchaseTheme,
+  // modalEquipConfirmation,
+  // modalInsufficientTheme,
+  // modalSettings,
+  // modalThemeEquiped,
+  // modalThemePurchased,
+  var backgroundID = 0,
+      type = null,
+      theme = '';
+  var modalContent = jquery__WEBPACK_IMPORTED_MODULE_0___default()('section#overlay div.modal-content');
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on("click", ".theme-for-sale", function (e) {
+    e.preventDefault();
+    console.log(this);
+    backgroundID = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('id'), theme = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('theme');
+    type = null;
+    console.log(theme);
+    console.log('background id', backgroundID);
+    _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].tap.play();
 
-    var numbers = this.generateNumbers(min, max, type);
-
-    for (var i = 0; i < numbers.length; i++) {
-      numberMap[numbers[i]] = [];
-
-      for (var j = 2; j < numbers[i]; j++) {
-        if (numbers[i] % j == 0) {
-          numberMap[numbers[i]] = [].concat(_toConsumableArray(numberMap[numbers[i]]), [j]);
-        }
-      }
-    }
-
-    for (var key in numberMap) {
-      if (numberMap[key].length <= 0) {
-        delete numberMap[key];
-      }
-    }
-
-    return numberMap;
-  },
-  generateNumbers: function generateNumbers(min, max, type) {
-    var numbers = [],
-        symmetry = type == 'odd' ? 1 : 0;
-
-    for (min; min <= max; min++) {
-      if (min % 2 == symmetry) {
-        numbers = [].concat(_toConsumableArray(numbers), [min]);
-      }
-    }
-
-    return numbers;
-  },
-  randomOperation: function randomOperation() {
-    if (this.level + 1 <= 10) {
-      var rand = Math.random() * (this.operations.length - 2) | 0;
-      return this.operations[rand];
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass('locked-theme')) {
+      //not owned, ask to purchase theme
+      modalContent.html(_utilities_modalService__WEBPACK_IMPORTED_MODULE_1__["modalPurchaseTheme"]);
+      type = 'modalPurchaseTheme';
     } else {
-      var _rand = Math.random() * this.operations.length | 0;
-
-      return this.operations[_rand];
-    }
-  },
-  randomNumber: function randomNumber(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  },
-  generateEquation: function generateEquation() {
-    var a = 0,
-        b = 0,
-        answer = 0,
-        operation = this.randomOperation();
-
-    switch (operation) {
-      case 'addition':
-        if (this.level + 1 <= 5) {
-          a = this.randomNumber(1, 9);
-          b = this.randomNumber(1, 9);
-        } else {
-          a = this.randomNumber(9, 90);
-          b = this.randomNumber(9, 90);
-        }
-
-        answer = a + b;
-        break;
-
-      case 'subtraction':
-        if (this.level + 1 <= 5) {
-          a = this.randomNumber(1, 9);
-          b = this.randomNumber(a > 1 ? 1 : 0, a);
-        } else {
-          a = this.randomNumber(10, 99);
-          b = this.randomNumber(a > 10 ? 10 : 0, a);
-        }
-
-        answer = a - b;
-        break;
-
-      case 'multiplication':
-        a = this.randomNumber(3, 20);
-        b = this.randomNumber(2, 10);
-        answer = a * b;
-        break;
-
-      case 'division':
-        var obj = this.numberMapper(3, 99, 'random-symmetry');
-        var keys = Object.keys(obj);
-        var dividend = parseInt(keys[equation.randomNumber(0, keys.length - 1)]);
-        var divisor = obj[dividend][this.randomNumber(0, obj[dividend].length - 1)];
-        a = dividend;
-        b = divisor;
-        answer = a / b;
-        break;
-    }
-
-    return {
-      a: a,
-      b: b,
-      operation: operation,
-      answer: answer
-    };
-  },
-  isAnswerSorted: function sorted(answers) {
-    var second_index;
-
-    for (var first_index = 0; first_index < this.answers.length; first_index++) {
-      second_index = first_index + 1;
-      if (this.answers[second_index] - this.answers[first_index] < 0) return false;
-    }
-
-    return true;
-  },
-  generateDOM: function generateDOM() {
-    var equations = [],
-        numberOfEquation = 4,
-        index = 1,
-        htmlDOM = '';
-
-    while (numberOfEquation) {
-      var _equation = this.generateEquation();
-
-      equations = [].concat(_toConsumableArray(equations), [_equation]);
-      numberOfEquation--;
-    }
-
-    equations.forEach(function (equation) {
-      var operation = '';
-
-      switch (equation.operation) {
-        case 'addition':
-          operation = '+';
-          break;
-
-        case 'subtraction':
-          operation = '-';
-          break;
-
-        case 'multiplication':
-          operation = 'x';
-          break;
-
-        case 'division':
-          operation = '/';
-          break;
+      //owned
+      if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass('default')) {
+        //default, ask to re equip
+        modalContent.html(_utilities_modalService__WEBPACK_IMPORTED_MODULE_1__["modalEquipConfirmation"]);
+        type = 'modalEquipConfirmation';
       }
-
-      htmlDOM += "<div class=\"equation equation-".concat(index, "\" data-answer=").concat(equation.answer, ">\n            <span class=\"circle\"></span>\n            <span id=\"equation-1\">").concat(equation.a).concat(operation).concat(equation.b, "=???</span>\n            </div>");
-      index++;
-    });
-    htmlDOM += "<div class=\"big-square\"></div>";
-    this.answers = []; //reset answer
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('div.game-area').html(htmlDOM);
-    this.level++;
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('div.level span').html("Level: ".concat(this.level));
-    console.log('what happened?');
-  }
-};
-var timer = {
-  minutes: 0,
-  seconds: 20,
-  timerLoop: null,
-  trophies: 0,
-  trophiesCountDown: 30,
-  init: function init() {
-    var countDownTimer = this.countDownTimer.bind(this);
-    this.timerLoop = setInterval(countDownTimer, 1000);
-    this.countDownTimer();
-  },
-  run: function run() {
-    clearInterval(this.timerLoop);
-    var countDownTimer = this.countDownTimer.bind(this);
-    this.timerLoop = setInterval(countDownTimer, 1000);
-    this.createDisplay();
-  },
-  pause: function pause() {
-    clearInterval(this.timerLoop);
-    console.log("game pause");
-  },
-  "continue": function _continue() {
-    this.init();
-  },
-  quit: function quit() {
-    this.minutes = 0;
-    this.seconds = 0;
-    this.createDisplay();
-  },
-  countDownTimer: function countDownTimer() {
-    var newSeconds = this.minutes * 60 + this.seconds;
-    newSeconds--;
-    this.seconds = newSeconds % 60;
-    this.minutes = Math.floor(newSeconds / 60);
-    this.createDisplay();
-    console.log("CountDownTimer | minute: ".concat(this.minutes, " | seconds: ").concat(this.seconds));
-  },
-  createDisplay: function createDisplay() {
-    var _this = this;
-
-    if (this.isGameOver()) {
-      this.setGameOver();
-      return;
     }
 
-    if (this.seconds < 10) {
-      if (this.seconds == 0 && this.minutes > 0) {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()('span#countdown-timer').text("".concat(this.minutes, ": 0").concat(this.seconds));
-        setTimeout(function () {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('span#countdown-timer').text("".concat(_this.minutes, ": ").concat(_this.seconds));
-        }, 1000);
-        return;
-      }
+    if (!type) return;
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('section#overlay').show();
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on("click", "button#modal-cancel", function (e) {
+    e.preventDefault(); // sfx.tap.play();
 
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('span#countdown-timer').text("".concat(this.minutes, ": 0").concat(this.seconds));
-      return;
-    }
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('section#overlay').hide();
+  }); //equip theme
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('span#countdown-timer').text("".concat(this.minutes, ": ").concat(this.seconds));
-    this.trophiesCountDown--;
-
-    if (this.trophiesCountDown == 0) {
-      this.trophies++; //add trophy
-
-      this.trophiesCountDown = 30; //bring back the countdown
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('span#trophies-holder').text("".concat(this.trophies, " ").concat(this.trophies <= 1 ? 'pt' : 'pts'));
-    }
-  },
-  isGameOver: function isGameOver() {
-    return this.minutes <= 0 && this.seconds <= 0;
-  },
-  setGameOver: function () {
-    var _setGameOver = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var summaryUI;
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on("click", "button#equip", /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
+      var shopUI;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              clearInterval(this.timerLoop);
-              _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].classic.pause();
-              _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].win.play();
-              console.log('save game', this.trophies);
-              _context.next = 6;
-              return Object(_request__WEBPACK_IMPORTED_MODULE_2__["renderClassicSummary"])(equation.level, this.trophies);
+              e.preventDefault();
+              _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].tap.play();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('disabled', true).text('Please wait...');
+              _context.next = 5;
+              return Object(_utilities_request__WEBPACK_IMPORTED_MODULE_2__["equipTheme"])(backgroundID);
 
-            case 6:
-              summaryUI = _context.sent;
-              jquery__WEBPACK_IMPORTED_MODULE_0___default()('div#root').html(summaryUI);
+            case 5:
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').attr('id', theme); //render shop UI
+
+              _context.next = 8;
+              return Object(_utilities_request__WEBPACK_IMPORTED_MODULE_2__["renderShop"])();
 
             case 8:
+              shopUI = _context.sent;
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('div#root').html(shopUI);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('disabled', false).text('Equip');
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('section#overlay').hide();
+
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -14904,46 +14467,129 @@ var timer = {
       }, _callee, this);
     }));
 
-    function setGameOver() {
-      return _setGameOver.apply(this, arguments);
-    }
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }()); // purchase
 
-    return setGameOver;
-  }(),
-  addTime: function addTime() {
-    var additionalTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 3;
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on("click", "button#purchase", /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
+      var purchaseResult, shopUI;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              e.preventDefault();
+              _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].tap.play();
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('disabled', true).text('Please wait...');
+              _context2.next = 5;
+              return Object(_utilities_request__WEBPACK_IMPORTED_MODULE_2__["purchaseTheme"])(backgroundID);
 
-    if (additionalTime + this.seconds > 60) {
-      console.log('this seconds', this.seconds);
-      this.minutes += Math.floor((additionalTime + this.seconds) / 60);
-      this.seconds = additionalTime % 60;
-    } else {
-      console.log('from else', this.seconds);
-      this.seconds = this.seconds + additionalTime;
-    }
+            case 5:
+              purchaseResult = _context2.sent;
 
-    timer.run();
-  },
-  deductTime: function deductTime() {
-    var deductionTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 3;
+              if (!purchaseResult) {
+                _context2.next = 15;
+                break;
+              }
 
-    if (timer.seconds - deductionTime < 0 && timer.minutes == 0) {
-      timer.setGameOver();
-      return;
-    }
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').attr('id', theme); //render shop UI
 
-    if (this.seconds - deductionTime < 0) {
-      this.seconds = 60 - (deductionTime - this.seconds);
-      this.minutes = this.minutes - 1;
-      console.log('sec true', this.seconds);
-    } else {
-      this.seconds = this.seconds - deductionTime;
-      console.log('sec false', this.seconds);
-    }
+              _context2.next = 10;
+              return Object(_utilities_request__WEBPACK_IMPORTED_MODULE_2__["renderShop"])();
 
-    timer.run();
-  }
+            case 10:
+              shopUI = _context2.sent;
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('div#root').html(shopUI);
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()('section#overlay').hide();
+              _context2.next = 16;
+              break;
+
+            case 15:
+              modalContent.html(_utilities_modalService__WEBPACK_IMPORTED_MODULE_1__["modalInsufficientTheme"]);
+
+            case 16:
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('disabled', false).text('Purchase');
+
+            case 17:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, this);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }());
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on("click", "button#okay", function (e) {
+    e.preventDefault();
+    _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].tap.play();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('section#overlay').hide();
+  });
+})();
+
+/***/ }),
+
+/***/ "./resources/js/utilities/modalService.js":
+/*!************************************************!*\
+  !*** ./resources/js/utilities/modalService.js ***!
+  \************************************************/
+/*! exports provided: modalPurchaseTheme, modalEquipConfirmation, modalInsufficientTheme, modalSettings, modalThemeEquiped, modalThemePurchased, modalClassicTutorial, modalPvpTutorial */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalPurchaseTheme", function() { return modalPurchaseTheme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalEquipConfirmation", function() { return modalEquipConfirmation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalInsufficientTheme", function() { return modalInsufficientTheme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalSettings", function() { return modalSettings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalThemeEquiped", function() { return modalThemeEquiped; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalThemePurchased", function() { return modalThemePurchased; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalClassicTutorial", function() { return modalClassicTutorial; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalPvpTutorial", function() { return modalPvpTutorial; });
+// purchase theme
+var modalPurchaseTheme = function modalPurchaseTheme() {
+  return "<div id=\"unlock-theme\" class=\"unlock-theme\">\n    <div class=\"eq-mm-container\">\n        <div class=\"eq-title-container\">\n            <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                <h3 class=\"welcome-text\">\n                    Purchase Theme?\n                </h3>\n            </div>\n            <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                <div class=\"square-left flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n                <div class=\"square-right flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class=\"modal-button-container flex flex-hori flex-jc-sb\">\n        <button class=\"purchase-btn\" id=\"purchase\">Purchase</button>\n        <button class=\"cancel-btn\" id=\"modal-cancel\">Cancel</button>\n    </div>\n</div>";
+}; // insufficient theme
+
+
+var modalInsufficientTheme = function modalInsufficientTheme() {
+  return "<div id=\"error-modal\" class=\"error-modal\">\n    <div class=\"eq-mm-container\">\n        <div class=\"eq-title-container\">\n            <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                <h3 class=\"welcome-text\">\n                    Insufficient trophies..\n                </h3>\n            </div>\n            <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                <div class=\"square-left flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n                <div class=\"square-right flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n    <button class=\"okay-btn\" id=\"okay\">Okay</button>\n</div>";
+}; // theme purchased
+
+
+var modalThemePurchased = function modalThemePurchased() {
+  return "<div id=\"success-modal\" class=\"success-modal\">\n    <div class=\"eq-mm-container\">\n        <div class=\"eq-title-container\">\n            <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                <h3 class=\"welcome-text\">\n                    Theme Purchased!\n                </h3>\n            </div>\n            <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                <div class=\"square-left flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n                <div class=\"square-right flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n    <button class=\"okay-btn\" id=\"okay\">Okay</button>\n</div>";
+}; // equip theme confirmation
+
+
+var modalEquipConfirmation = function modalEquipConfirmation() {
+  return "<div id=\"equip-modal\" class=\"equip-modal\">\n    <div class=\"eq-mm-container\">\n        <div class=\"eq-title-container\">\n            <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                <h3 class=\"welcome-text\">\n                    Equip theme?\n                </h3>\n            </div>\n            <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                <div class=\"square-left flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n                <div class=\"square-right flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class=\"modal-button-container flex flex-hori flex-jc-sb\">\n        <button class=\"equip-btn\" id=\"equip\">Equip</button>\n        <button class=\"cancel-btn\" id=\"modal-cancel\">Cancel</button>\n    </div>\n</div>";
+}; // theme equiped
+
+
+var modalThemeEquiped = function modalThemeEquiped() {
+  return "<div id=\"theme-equip-modal\" class=\"theme-equip-modal\">\n    <div class=\"eq-mm-container\">\n        <div class=\"eq-title-container\">\n            <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                <h3 class=\"welcome-text\">\n                    Theme Equiped!\n                </h3>\n            </div>\n            <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                <div class=\"square-left flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n                <div class=\"square-right flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n    <button class=\"okay-btn\" id=\"okay\">Okay</button>\n</div>";
+}; // settings
+
+
+var modalSettings = function modalSettings() {
+  var BgMusicSwitch = localStorage.getItem("equasolve_music_fx") == "true" ? true : false;
+  var sfxSwitch = localStorage.getItem("equasolve_sfx") == "true" ? true : false;
+  return "\n    <div id=\"settings-fx\" class=\"settings\">\n        <div class=\"eq-mm-container\">\n            <div class=\"eq-title-container\">\n                <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                    <h3 class=\"welcome-text\">\n                        Settings\n                    </h3>\n                </div>\n                <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                    <div class=\"square-left flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                    <div class=\"square-right flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                </div>\n                <div class=\"flex flex-hori flex-ai-c flex-jc-se\">\n                    <h3 style=\"width:40px\">Music:</h3>\n                    <span class=\"header-btn\" id=\"musicOnOff\">\n                        <img id=\"musicImg\" style=\"width: 35px;height: 35px\"\n                            src=\"/images/music-".concat(BgMusicSwitch ? 'on' : 'off', ".png\" alt=\"BGMusic\">\n                    </span>\n                </div>\n                <div class=\"flex flex-hori flex-ai-c flex-jc-se\">\n                    <h3 style=\"width:40px\">SFX:</h3>\n                    <span class=\"header-btn\" id=\"SFXOnOff\">\n                        <img id=\"sfxImg\" style=\"width: 35px;height: 35px\"\n                            src=\"/images/music-").concat(sfxSwitch ? 'on' : 'off', ".png\" alt=\"BGMusic\">\n                    </span>\n                </div>\n            </div>\n        </div>\n        <button class=\"okay-btn\" id=\"classic-tutorial\">Classic Tutorial</button>\n        <button class=\"okay-btn\" id=\"pvp-tutorial\" style=\"margin-top: .5rem\">PVP Tutorial</button>\n        <button class=\"okay-btn\" id=\"modal-cancel\" style=\"margin-top: .5rem\">Close</button>\n    </div>\n");
 };
+
+var modalClassicTutorial = function modalClassicTutorial() {
+  return "\n    <div id=\"settings-classic-tutorial\" class=\"settings\">\n        <div class=\"eq-mm-container\">\n            <div class=\"eq-title-container\">\n                <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                    <h3 class=\"welcome-text\">\n                        Classic Tutorial\n                    </h3>\n                </div>\n                <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                    <div class=\"square-left flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                    <div class=\"square-right flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                </div>\n                <div class=\"flex flex-hori flex-ai-c flex-jc-se\" style=\"margin-top: 1rem\">\n                    <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\"\n                        style=\"padding: .5rem; text-align: center\">\n                        <h4 class=\"welcome-text\" style=\"text\">\n                            Classic mode is as timer based continuous gameplay.\n                            Each player starts with 20s on the clock. Player solves the equations, while\n                            referring to the answer player should tap each item in an increasing manner.\n                            Every correct answer adds 5s on the clock while every mistake deducts 3s.\n                            Player can try unlimited times until the clock is exhausted.\n                            Every 30s worth of gameplay rewards 1 trophy. <br /> <br/>\n\n                            Levels of difficulty:\n                            Level 1 -5 : Single digit, Additions and Subtractrions equation only\n                            Level 6-10: Two digits, Additions and Subtractrions equation\n                            Level 11 and above: Two digits per equation (4 Basic Arithmetic Equations\n                            involved)\n                        </h4>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <button class=\"okay-btn\" id=\"done-tutorial\">OK</button>\n    </div>\n";
+};
+
+var modalPvpTutorial = function modalPvpTutorial() {
+  return "\n    <div id=\"settings-pvp-tutorial\" class=\"settings\">\n        <div class=\"eq-mm-container\">\n            <div class=\"eq-title-container\">\n                <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                    <h3 class=\"welcome-text\">\n                        PVP Tutorial\n                    </h3>\n                </div>\n                <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                    <div class=\"square-left flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                    <div class=\"square-right flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                </div>\n                <div class=\"flex flex-hori flex-ai-c flex-jc-se\" style=\"margin-top: 1rem\">\n                    <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\"\n                        style=\"padding: .5rem; text-align: center\">\n                        <h4 class=\"welcome-text\" style=\"text\">\n                            In PVP mode player is randomly matched to a player within the same MMR\n                            range. Each player solves the equations, while referring to the answer\n                            player should tap each item in an increasing manner. <br/><br/>\n                            If a player gets the answer correctly the score is automatically awarded.<br/><br/>\n                            If a player gets the answer wrong the other player still gets to try and get\n                            the point.<br/><br/>\n                            If both player gets the answer wrong no one gets the point.<br/><br/>\n                            Battle time limit is 1m and 30s. Winning player gets the additional MMR\n                            while the Losing player gets a deduction.\n                        </h4>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <button class=\"okay-btn\" id=\"done-tutorial\">OK</button>\n    </div>\n\n";
+};
+
+
 
 /***/ }),
 
@@ -15538,14 +15184,14 @@ var purchaseTheme = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ 7:
-/*!***************************************!*\
-  !*** multi ./resources/js/classic.js ***!
-  \***************************************/
+/***/ 11:
+/*!************************************!*\
+  !*** multi ./resources/js/shop.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\EquaSolve\app\resources\js\classic.js */"./resources/js/classic.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\EquaSolve\app\resources\js\shop.js */"./resources/js/shop.js");
 
 
 /***/ })

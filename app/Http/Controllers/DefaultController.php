@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Match;
+use App\Models\Background;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,7 +48,32 @@ class DefaultController extends Controller
 
     public function shop()
     {
-        return view('user-interface.shop');
+        
+        $userBackgrounds = auth()->user()->ownedBackgrounds;
+        $backgrounds = Background::all();
+
+
+        foreach ($backgrounds as $background) {
+            if($userBackgrounds->contains('background_id', $background->id)){
+                $background->isOwned = true;
+
+                $userBackground = $userBackgrounds->where('background_id', $background->id)->first();
+
+                if($userBackground->activated){
+                    $background->isActivated = true;
+                }else{
+                    $background->isActivated = false;
+                }
+
+            }else{
+                $background->isOwned = false;
+                $background->isActivated = false;
+            }
+        }
+        
+        return view('user-interface.shop', [
+            'backgrounds' => $backgrounds
+        ]);
     }
 
     public function classic()

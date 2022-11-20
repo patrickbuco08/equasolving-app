@@ -10,7 +10,7 @@ class Background extends Model
     use HasFactory;
     
     protected $fillable = [
-        'name', 'photo', 'price'
+        'name', 'css_theme', 'theme_id', 'price'
     ];
 
     protected $hidden = [

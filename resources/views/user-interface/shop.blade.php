@@ -27,12 +27,12 @@
             <div class="right-side flex flex-vert flex-ai-fe flex-jc-sb">
                 <div class="input-container hide">
                     <span class="mmr">MMR:</span>
-                    <input readonly type="text" class="eq-mmr" id="mmr" placeholder="210">
+                    <input readonly type="text" class="eq-mmr" id="mmr" placeholder="{{auth()->user()->pvpModeDetails->mmr}}">
                     <span class="mmr-2">MMR: </span>
                 </div>
                 <div class="input-container">
                     <span class="trophy">Trophy:</span>
-                    <input readonly type="text" class="eq-trophy" id="trophy" placeholder="1200">
+                    <input readonly type="text" class="eq-trophy" id="trophy" placeholder="{{auth()->user()->classicModeDetails->trophies}}">
                     <div class="img-container"></div>
                 </div>
             </div>
@@ -60,44 +60,26 @@
 
         <div class="game-theme-container">
             <div class="theme-menu flex flex-vert flex-jc-sb">
-                <div class="active-theme">
-                    <div id="default-theme" class="menu-btn flex">
-                        <div class="img-container">
-                            <img src="/images/cloud-theme.png" alt="Cloud-theme">
-                        </div>
-                        <div class="text-container flex flex-ai-fs flex-vert flex-jc-c">
+                @foreach ($backgrounds as $background)
 
-                            <div class="upper-text flex flex-hori flex-jc-sb">
-                                <h2>Default</h2>
-                                <span class="us"></span>
-                            </div>
-                            <p>Available Colors:</p>
-
-                            <div class="color-container flex">
-                                <span class="colors" id="color-1"></span>
-                                <span class="colors" id="color-2"></span>
-                                <span class="colors" id="color-3"></span>
-                                <span class="colors" id="color-4"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="locked-theme">
+                <div class="@if($background->isOwned) active-theme @else locked-theme @endif @if($background->isActivated) default @endif theme-for-sale"
+                    data-id="{{$background->id}}" data-theme="{{$background->css_theme}}">
                     <div class="input-container">
                         <span class="trophy">Trophy:</span>
-                        <input readonly type="text" class="eq-trophy" id="trophy" placeholder="1200">
+                        <input readonly type="text" class="eq-trophy" id="trophy" placeholder="{{ $background->price }}">
                         <div class="img-container2"></div>
                     </div>
-                    <div id="cloud-theme" class="menu-btn flex">
+                    <div id="{{$background->theme_id}}" class="menu-btn flex">
                         <div class="img-container">
                             <img src="/images/Logo.png" alt="Classic-logo">
                         </div>
                         <div class="text-container flex flex-ai-fs flex-vert flex-jc-c">
+
                             <div class="upper-text flex flex-hori flex-jc-sb">
-                                <h2>Clouds</h2>
+                                <h2>{{$background->name}}</h2>
                                 <span class="us"></span>
                             </div>
-                            <p>Available Colors:</p>
+                            <p>Available Colors: @if($background->isActivated) (default) @endif</p>
 
                             <div class="color-container flex">
                                 <span class="colors" id="color-1"></span>
@@ -108,67 +90,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="locked-theme">
-                    <div class="input-container">
-                        <span class="trophy">Trophy:</span>
-                        <input readonly type="text" class="eq-trophy" id="trophy" placeholder="1200">
-                        <div class="img-container2"></div>
-                    </div>
-                    <div id="sun-theme" class="menu-btn flex">
-                        <div class="img-container">
-                            <img src="/images/Logo.png" alt="Classic-logo">
-                        </div>
-                        <div class="text-container flex flex-ai-fs flex-vert flex-jc-c">
-                            <div class="upper-text flex flex-hori flex-jc-sb">
-                                <h2>Sun and Moon</h2>
-                                <span class="us"></span>
-                            </div>
-                            <p>Available Colors:</p>
-                            <div class="color-container flex">
-                                <span class="colors" id="color-1"></span>
-                                <span class="colors" id="color-2"></span>
-                                <span class="colors" id="color-3"></span>
-                                <span class="colors" id="color-4"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="locked-theme">
-                    <div class="input-container">
-                        <span class="trophy">Trophy:</span>
-                        <input readonly type="text" class="eq-trophy" id="trophy" placeholder="1200">
-                        <div class="img-container2"></div>
-                    </div>
-                    <div id="night-theme" class="menu-btn flex">
-                        <div class="img-container">
-                            <img src="/images/Logo.png" alt="Classic-logo">
-                        </div>
-                        <div class="text-container flex flex-ai-fs flex-vert flex-jc-c">
-                            <div class="upper-text flex flex-hori flex-jc-sb">
-                                <h2>Night Shade</h2>
-                                <span class="us"></span>
-                            </div>
-                            <p>Available Colors:</p>
-                            <div class="color-container flex">
-                                <span class="colors" id="color-1"></span>
-                                <span class="colors" id="color-2"></span>
-                                <span class="colors" id="color-3"></span>
-                                <span class="colors" id="color-4"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
+
+
     </div>
 </section>
 
 <div class="eq-version flex flex-jc-c">
     <span>Version Alpha.</span>
 </div>
-
 @endsection
 
 @section('scripts')
-
+{{-- <script src="{{ asset('js/shop.js') }}"></script> --}}
 @endsection

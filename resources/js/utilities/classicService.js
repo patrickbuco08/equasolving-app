@@ -181,10 +181,10 @@ export const equation = {
 
 export const timer = {
     minutes: 0,
-    seconds: 22,
+    seconds: 20,
     timerLoop: null,
     trophies: 0,
-    trophiesCountDown: 5,
+    trophiesCountDown: 30,
     init: function () {
         const countDownTimer = this.countDownTimer.bind(this);
         this.timerLoop = setInterval(countDownTimer, 1000);
@@ -242,7 +242,7 @@ export const timer = {
 
         if (this.trophiesCountDown == 0) {
             this.trophies++; //add trophy
-            this.trophiesCountDown = 5; //bring back the countdown
+            this.trophiesCountDown = 30; //bring back the countdown
             $('span#trophies-holder').text(`${this.trophies} ${ this.trophies <= 1 ? 'pt' : 'pts' }`);
         }
 
@@ -254,6 +254,8 @@ export const timer = {
         clearInterval(this.timerLoop);
         sfx.classic.pause();
         sfx.win.play();
+
+        console.log('save game', this.trophies);
 
         const summaryUI = await renderClassicSummary(equation.level, this.trophies);
         $('div#root').html(summaryUI);

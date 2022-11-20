@@ -7,7 +7,9 @@
     "/js/newClassic.js": "/js/newClassic.js",
     "/js/pvp.js": "/js/pvp.js",
     "/js/sfx/sfx.js": "/js/sfx/sfx.js",
+    "/js/shop.js": "/js/shop.js",
     "/js/utilities/classicService.js": "/js/utilities/classicService.js",
+    "/js/utilities/modalService.js": "/js/utilities/modalService.js",
     "/js/utilities/pvpService.js": "/js/utilities/pvpService.js",
     "/js/utilities/request.js": "/js/utilities/request.js"
 }

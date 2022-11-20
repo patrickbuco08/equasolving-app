@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Match;
+use App\Models\Background;
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -115,6 +116,72 @@ class UserController extends Controller
             $query->where('user_id', $id);
         })->get();
         return $matches->load('participants', 'participants.user:id,name,email');
+    }
+
+    public function equipTheme(Request $request)
+    {
+
+        try {
+            DB::beginTransaction();
+
+            auth()->user()->ownedBackgrounds()->update([
+                'activated' => 0
+            ]);
+    
+            auth()->user()->ownedBackgrounds->where('background_id', $request->id)->first()->update([
+                'activated' => true
+            ]);
+            DB::commit();
+            return response()->json("success", 204);
+        } catch (\Throwable $th) {
+            return response()->json($th, 409);
+        }
+
+    }
+
+    public function purchaseTheme(Request $request)
+    {
+        // return $request->id;
+
+        $user = auth()->user();
+        $selectedBackground = Background::where('id', $request->id)->first();
+        $current_trophies = $user->classicModeDetails->trophies;
+
+        
+
+        try {
+            DB::beginTransaction();
+
+            if($selectedBackground->price > $current_trophies){
+                throw new Exception("not enough trophies", 1);
+            }
+
+            $user->ownedBackgrounds()->update([
+                'activated' => 0
+            ]);
+
+            $user->classicModeDetails()->update([
+                'trophies' => $current_trophies - $selectedBackground->price
+            ]);
+
+            $userBgExist = $user->ownedBackgrounds->where('background_id', $request->id)->first();
+
+            if($userBgExist){
+                $userBgExist->update([
+                    'activated' => 1
+                ]);
+            }else{
+                $user->ownedBackgrounds()->create([
+                    'background_id' => $request->id,
+                    'activated' => true
+                ]);
+            }
+
+            DB::commit();
+            return response()->json("success", 201);
+        } catch (\Throwable $th) {
+            return response()->json($th, 403);
+        }
     }
 
 

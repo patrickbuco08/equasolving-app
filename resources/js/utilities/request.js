@@ -155,6 +155,39 @@ const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 
+const equipTheme = async (id) => { 
+    try {
+        const response = await axios({
+            method: 'POST',
+            url: `${origin}/user/equip-theme`,
+            data: {
+                id: id,
+                _token: token
+            }
+        });
+        return response.data;
+    } catch (error) {
+        return "Sorry, something went wrong...";
+    }
+ }
+
+ const purchaseTheme = async (id) => { 
+    try {
+        const response = await axios({
+            method: 'POST',
+            url: `${origin}/user/purchase-theme`,
+            data: {
+                id: id,
+                _token: token
+            }
+        });
+        console.log(response.data);
+        return true
+    } catch (error) {
+        return null;
+    }
+  }
+
 export {
     createUserUsingNickname,
     getAuthenticatedUser,
@@ -168,5 +201,7 @@ export {
     renderLoader,
     renderMatchHistory,
     renderShop,
+    equipTheme,
+    purchaseTheme,
     sleep
 }

@@ -7,7 +7,7 @@ const pvp = require('./utilities/pvpService');
     const io = require('socket.io')(3000, {
         cors: {
             // origin: ['http://127.0.0.1:8000', 'http://127.0.0.1:3000']
-            origin: ['http://192.168.1.11:8000', 'http://192.168.1.11:3000','http://192.168.1.13:8000']
+            origin: ['http://192.168.1.215:8000', 'http://192.168.1.215:3000']
         }
     });
 
@@ -19,7 +19,7 @@ const pvp = require('./utilities/pvpService');
         equationIntervals = {},
         matchCountdown = {},
         lobby = [],
-        origin = 'http://192.168.1.13:8000';
+        origin = 'http://192.168.1.215:8000';
 
     const equation = eq.generateDOM();
 

@@ -196,7 +196,7 @@ var getParam = function getParam() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\kishu\OneDrive\Documents\GitHub\equasolving-app-classic\resources\js\utilities\pvpService.js */"./resources/js/utilities/pvpService.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\EquaSolve\app\resources\js\utilities\pvpService.js */"./resources/js/utilities/pvpService.js");
 
 
 /***/ })

@@ -32,13 +32,9 @@ import {
         },
         classPatern = 'selected-1 selected-2 selected-3 selected-4';
 
-    setTimeout(() => {
-
         if (BgMusicSwitch) {
             sfx.classic.play();
         }
-
-    }, 200);
 
 
     timer.init(); // init timer
@@ -134,7 +130,7 @@ import {
     });
 
     // toggle background music
-    $("#musicOnOff").on('click', function () {
+    $(document).on('click', '#musicOnOff', function () {
 
         if (window.location.pathname != "/classic") return;
         console.log('trigger settings on classic');
@@ -155,7 +151,7 @@ import {
     });
 
     // toggle sound FX
-    $("#SFXOnOff").on('click', function (e) {
+    $(document).on('click', '#SFXOnOff', function (e) {
 
         if (window.location.pathname != "/classic") return;
         console.log('trigger settings on classic');

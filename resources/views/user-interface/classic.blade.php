@@ -1,6 +1,7 @@
 @extends('layouts.app', ['title' => 'Classic'])
 
 @section('styles')
+<link rel="stylesheet" href="{{ asset('css/classic/style.css') }}">
 @endsection
 
 @section('content')

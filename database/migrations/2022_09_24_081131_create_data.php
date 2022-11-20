@@ -168,23 +168,27 @@ class CreateData extends Migration
     {
         return [
             [
-                'name' => 'background-default.jpg',
-                'photo' => 'background-default.jpg',
+                'name' => 'Default',
+                'css_theme' => 'main-default',
+                'theme_id' => 'default-theme',
                 'price' => 10
             ],
             [
-                'name' => 'background-1.jpg',
-                'photo' => 'background-1.jpg',
+                'name' => 'Clouds',
+                'css_theme' => 'main-cloud',
+                'theme_id' => 'cloud-theme',
                 'price' => 20
             ],
             [
-                'name' => 'background-2.jpg',
-                'photo' => 'background-2.jpg',
+                'name' => 'Sun and Moon',
+                'css_theme' => 'main-sun',
+                'theme_id' => 'sun-theme',
                 'price' => 50
             ],
             [
-                'name' => 'background-3.jpg',
-                'photo' => 'background-3.jpg',
+                'name' => 'Night Shade',
+                'css_theme' => 'main-mid',
+                'theme_id' => 'night-theme',
                 'price' => 100
             ]
         ];

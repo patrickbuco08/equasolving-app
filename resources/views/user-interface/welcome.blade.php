@@ -74,7 +74,18 @@
                         <p>This mode will determine your speed and solving skills.</p>
                     </div>
                 </div>
-                <div id="menu-btn-2" class="pvp-btn menu-btn flex ">
+                @if (auth()->user()->in_game)
+                <div id="menu-btn-2" class="pvp-btn menu-btn flex reconnect" data-room="{{auth()->user()->room_id}}">
+                    <div class="img-container">
+                        <img src="{{ asset('images/Pvp Logo.png') }}" alt="PVP-logo">
+                    </div>
+                    <div class="text-container flex flex-ai-fs flex-vert flex-jc-c">
+                        <h2>Reconnect</h2>
+                        <p>Play against other players and earn trophies</p>
+                    </div>
+                </div>
+                @else
+                <div id="menu-btn-2" class="pvp-btn menu-btn flex">
                     <div class="img-container">
                         <img src="{{ asset('images/Pvp Logo.png') }}" alt="PVP-logo">
                     </div>
@@ -83,6 +94,7 @@
                         <p>Play against other players and earn trophies</p>
                     </div>
                 </div>
+                @endif
                 <div id="menu-btn-3" class="shop-btn menu-btn flex ">
                     <div class="img-container">
                         <img src="{{ asset('images/Shop logo.png') }}" alt="Shop-logo">

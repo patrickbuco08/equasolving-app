@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Background;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,14 +64,36 @@ class SkeletonController extends Controller
             }]);
 
         return view('user-interface.skeleton.match-history', [
-            'matches' => collect($user->matches)->slice(0, 10)->sortBy('created_at'),
+            'matches' => collect($user->matches)->slice(0, 10),
             'user' => $user
         ]);
     }
 
     public function shop()
     {
-        return view('user-interface.skeleton.shop');
+        $userBackgrounds = auth()->user()->ownedBackgrounds;
+        $backgrounds = Background::all();
+
+        foreach ($backgrounds as $background) {
+            if($userBackgrounds->contains('background_id', $background->id)){
+                $background->isOwned = true;
+
+                $userBackground = $userBackgrounds->where('background_id', $background->id)->first();
+
+                if($userBackground->activated){
+                    $background->isActivated = true;
+                }else{
+                    $background->isActivated = false;
+                }
+            }else{
+                $background->isOwned = false;
+                $background->isActivated = false;
+            }
+        }
+
+        return view('user-interface.skeleton.shop', [
+            'backgrounds' => $backgrounds 
+        ]);
     }
 
     public function versusScreen(Request $request)

@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -14308,6 +14308,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utilities_request__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utilities/request */ "./resources/js/utilities/request.js");
 /* harmony import */ var howler__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! howler */ "./node_modules/howler/dist/howler.js");
 /* harmony import */ var howler__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(howler__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utilities_modalService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utilities/modalService */ "./resources/js/utilities/modalService.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
@@ -14319,10 +14320,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
  // navigator
 
 _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
-  var menuBgMusic, BgMusicSwitch, sfxSwitch;
+  var menuBgMusic, BgMusicSwitch, isSfxOn;
   return _regeneratorRuntime().wrap(function _callee12$(_context12) {
     while (1) {
       switch (_context12.prev = _context12.next) {
@@ -14330,7 +14332,11 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() 
           console.log('init navigator');
           menuBgMusic = null;
           BgMusicSwitch = localStorage.getItem("equasolve_music_fx") == "true" ? true : false;
-          sfxSwitch = localStorage.getItem("equasolve_sfx") == "true" ? true : false;
+
+          isSfxOn = function isSfxOn() {
+            return localStorage.getItem("equasolve_sfx") === "true";
+          };
+
           setTimeout(function () {
             // play only if page is on the landing page
             if (window.location.pathname == "/" || window.location.pathname == "/find-match") {
@@ -14341,9 +14347,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() 
               }
             }
           }, 100);
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#musicImg").attr('src', "/images/music-".concat(BgMusicSwitch ? 'on' : 'off', ".png"));
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sfxImg").attr('src', "/images/music-".concat(sfxSwitch ? 'on' : 'off', ".png"));
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#musicOnOff").on('click', function () {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('click', '#musicOnOff', function () {
             if (window.location.pathname != "/") return;
             console.log('trigger settings on landing page');
             var musicFXisOn = localStorage.getItem("equasolve_music_fx") === "true" ? true : false;
@@ -14356,25 +14360,42 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() 
               _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].menu.play();
             }
           });
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()("#SFXOnOff").on('click', function (e) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('click', '#SFXOnOff', function (e) {
             if (window.location.pathname != "/") return;
             console.log('trigger settings on landing page');
-
-            var isSfxOn = function isSfxOn() {
-              return localStorage.getItem("equasolve_sfx") === "true";
-            };
-
+            console.log(isSfxOn());
             localStorage.setItem("equasolve_sfx", isSfxOn() ? "false" : "true");
-            howler__WEBPACK_IMPORTED_MODULE_3__["Howler"].mute(!musicFXisOn());
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sfxImg").attr('src', "/images/music-".concat(musicFXisOn() ? 'on' : 'off', ".png"));
-          });
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sfxImg").attr('src', "/images/music-".concat(isSfxOn() ? 'on' : 'off', ".png"));
+          }); //  fx settings
+
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on("click", '#settings', function (e) {
             e.preventDefault();
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#settings-modal").show();
-          });
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('click', '#close', function (e) {
+            _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].tap.play();
+            console.log('check it trigerred');
+            var modalContent = jquery__WEBPACK_IMPORTED_MODULE_0___default()('section#overlay div.modal-content');
+            modalContent.html(_utilities_modalService__WEBPACK_IMPORTED_MODULE_4__["modalSettings"]);
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()('section#overlay').show();
+          }); //  read classic tutorial
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on("click", "button#classic-tutorial", function (e) {
             e.preventDefault();
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()("#settings-modal").hide();
+            _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].tap.play();
+            var modalContent = jquery__WEBPACK_IMPORTED_MODULE_0___default()('section#overlay div.modal-content');
+            modalContent.html(_utilities_modalService__WEBPACK_IMPORTED_MODULE_4__["modalClassicTutorial"]);
+          }); // read pvp tutorial
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on("click", "button#pvp-tutorial", function (e) {
+            e.preventDefault();
+            _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].tap.play();
+            var modalContent = jquery__WEBPACK_IMPORTED_MODULE_0___default()('section#overlay div.modal-content');
+            modalContent.html(_utilities_modalService__WEBPACK_IMPORTED_MODULE_4__["modalPvpTutorial"]);
+          }); // done reading tutorials
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on("click", "button#done-tutorial", function (e) {
+            e.preventDefault();
+            _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].tap.play();
+            var modalContent = jquery__WEBPACK_IMPORTED_MODULE_0___default()('section#overlay div.modal-content');
+            modalContent.html(_utilities_modalService__WEBPACK_IMPORTED_MODULE_4__["modalSettings"]);
           }); //validation sa pag input ng nickname
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('keyup', 'input[name="set-nickname"]', function (e) {
@@ -14438,6 +14459,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() 
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('click', '#menu-btn-2', /*#__PURE__*/function () {
             var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(e) {
+              var roomID;
               return _regeneratorRuntime().wrap(function _callee4$(_context4) {
                 while (1) {
                   switch (_context4.prev = _context4.next) {
@@ -14445,6 +14467,17 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() 
                       e.preventDefault();
                       jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).on('click', false);
                       _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].tap.play();
+
+                      if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass('reconnect')) {
+                        _context4.next = 7;
+                        break;
+                      }
+
+                      roomID = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('room');
+                      window.location.href = "".concat(origin, "/pvp?room=").concat(roomID);
+                      return _context4.abrupt("return");
+
+                    case 7:
                       _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].tap.on("end", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
                         var findMatch;
                         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
@@ -14466,7 +14499,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() 
                         }, _callee3);
                       })));
 
-                    case 4:
+                    case 8:
                     case "end":
                       return _context4.stop();
                   }
@@ -14487,14 +14520,15 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() 
                   switch (_context5.prev = _context5.next) {
                     case 0:
                       e.preventDefault();
-                      _context5.next = 3;
+                      _sfx__WEBPACK_IMPORTED_MODULE_1__["default"].tap.play();
+                      _context5.next = 4;
                       return Object(_utilities_request__WEBPACK_IMPORTED_MODULE_2__["renderShop"])();
 
-                    case 3:
+                    case 4:
                       shop = _context5.sent;
                       jquery__WEBPACK_IMPORTED_MODULE_0___default()('div#root').html(shop);
 
-                    case 5:
+                    case 6:
                     case "end":
                       return _context5.stop();
                   }
@@ -14605,7 +14639,12 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() 
             return function (_x6) {
               return _ref10.apply(this, arguments);
             };
-          }()); //logout
+          }()); //  reconnect
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on("click", "div#reconnect", function (e) {
+            e.preventDefault();
+            alert('hello');
+          }); //logout
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('click', 'div#logout', /*#__PURE__*/function () {
             var _ref11 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(e) {
@@ -14644,7 +14683,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() 
             };
           }());
 
-        case 20:
+        case 21:
         case "end":
           return _context12.stop();
       }
@@ -14726,11 +14765,72 @@ var sfx = {
 
 /***/ }),
 
+/***/ "./resources/js/utilities/modalService.js":
+/*!************************************************!*\
+  !*** ./resources/js/utilities/modalService.js ***!
+  \************************************************/
+/*! exports provided: modalPurchaseTheme, modalEquipConfirmation, modalInsufficientTheme, modalSettings, modalThemeEquiped, modalThemePurchased, modalClassicTutorial, modalPvpTutorial */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalPurchaseTheme", function() { return modalPurchaseTheme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalEquipConfirmation", function() { return modalEquipConfirmation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalInsufficientTheme", function() { return modalInsufficientTheme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalSettings", function() { return modalSettings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalThemeEquiped", function() { return modalThemeEquiped; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalThemePurchased", function() { return modalThemePurchased; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalClassicTutorial", function() { return modalClassicTutorial; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalPvpTutorial", function() { return modalPvpTutorial; });
+// purchase theme
+var modalPurchaseTheme = function modalPurchaseTheme() {
+  return "<div id=\"unlock-theme\" class=\"unlock-theme\">\n    <div class=\"eq-mm-container\">\n        <div class=\"eq-title-container\">\n            <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                <h3 class=\"welcome-text\">\n                    Purchase Theme?\n                </h3>\n            </div>\n            <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                <div class=\"square-left flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n                <div class=\"square-right flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class=\"modal-button-container flex flex-hori flex-jc-sb\">\n        <button class=\"purchase-btn\" id=\"purchase\">Purchase</button>\n        <button class=\"cancel-btn\" id=\"modal-cancel\">Cancel</button>\n    </div>\n</div>";
+}; // insufficient theme
+
+
+var modalInsufficientTheme = function modalInsufficientTheme() {
+  return "<div id=\"error-modal\" class=\"error-modal\">\n    <div class=\"eq-mm-container\">\n        <div class=\"eq-title-container\">\n            <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                <h3 class=\"welcome-text\">\n                    Insufficient trophies..\n                </h3>\n            </div>\n            <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                <div class=\"square-left flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n                <div class=\"square-right flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n    <button class=\"okay-btn\" id=\"okay\">Okay</button>\n</div>";
+}; // theme purchased
+
+
+var modalThemePurchased = function modalThemePurchased() {
+  return "<div id=\"success-modal\" class=\"success-modal\">\n    <div class=\"eq-mm-container\">\n        <div class=\"eq-title-container\">\n            <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                <h3 class=\"welcome-text\">\n                    Theme Purchased!\n                </h3>\n            </div>\n            <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                <div class=\"square-left flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n                <div class=\"square-right flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n    <button class=\"okay-btn\" id=\"okay\">Okay</button>\n</div>";
+}; // equip theme confirmation
+
+
+var modalEquipConfirmation = function modalEquipConfirmation() {
+  return "<div id=\"equip-modal\" class=\"equip-modal\">\n    <div class=\"eq-mm-container\">\n        <div class=\"eq-title-container\">\n            <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                <h3 class=\"welcome-text\">\n                    Equip theme?\n                </h3>\n            </div>\n            <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                <div class=\"square-left flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n                <div class=\"square-right flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class=\"modal-button-container flex flex-hori flex-jc-sb\">\n        <button class=\"equip-btn\" id=\"equip\">Equip</button>\n        <button class=\"cancel-btn\" id=\"modal-cancel\">Cancel</button>\n    </div>\n</div>";
+}; // theme equiped
+
+
+var modalThemeEquiped = function modalThemeEquiped() {
+  return "<div id=\"theme-equip-modal\" class=\"theme-equip-modal\">\n    <div class=\"eq-mm-container\">\n        <div class=\"eq-title-container\">\n            <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                <h3 class=\"welcome-text\">\n                    Theme Equiped!\n                </h3>\n            </div>\n            <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                <div class=\"square-left flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n                <div class=\"square-right flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n    <button class=\"okay-btn\" id=\"okay\">Okay</button>\n</div>";
+}; // settings
+
+
+var modalSettings = function modalSettings() {
+  var BgMusicSwitch = localStorage.getItem("equasolve_music_fx") == "true" ? true : false;
+  var sfxSwitch = localStorage.getItem("equasolve_sfx") == "true" ? true : false;
+  return "\n    <div id=\"settings-fx\" class=\"settings\">\n        <div class=\"eq-mm-container\">\n            <div class=\"eq-title-container\">\n                <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                    <h3 class=\"welcome-text\">\n                        Settings\n                    </h3>\n                </div>\n                <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                    <div class=\"square-left flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                    <div class=\"square-right flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                </div>\n                <div class=\"flex flex-hori flex-ai-c flex-jc-se\">\n                    <h3 style=\"width:40px\">Music:</h3>\n                    <span class=\"header-btn\" id=\"musicOnOff\">\n                        <img id=\"musicImg\" style=\"width: 35px;height: 35px\"\n                            src=\"/images/music-".concat(BgMusicSwitch ? 'on' : 'off', ".png\" alt=\"BGMusic\">\n                    </span>\n                </div>\n                <div class=\"flex flex-hori flex-ai-c flex-jc-se\">\n                    <h3 style=\"width:40px\">SFX:</h3>\n                    <span class=\"header-btn\" id=\"SFXOnOff\">\n                        <img id=\"sfxImg\" style=\"width: 35px;height: 35px\"\n                            src=\"/images/music-").concat(sfxSwitch ? 'on' : 'off', ".png\" alt=\"BGMusic\">\n                    </span>\n                </div>\n            </div>\n        </div>\n        <button class=\"okay-btn\" id=\"classic-tutorial\">Classic Tutorial</button>\n        <button class=\"okay-btn\" id=\"pvp-tutorial\" style=\"margin-top: .5rem\">PVP Tutorial</button>\n        <button class=\"okay-btn\" id=\"modal-cancel\" style=\"margin-top: .5rem\">Close</button>\n    </div>\n");
+};
+
+var modalClassicTutorial = function modalClassicTutorial() {
+  return "\n    <div id=\"settings-classic-tutorial\" class=\"settings\">\n        <div class=\"eq-mm-container\">\n            <div class=\"eq-title-container\">\n                <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                    <h3 class=\"welcome-text\">\n                        Classic Tutorial\n                    </h3>\n                </div>\n                <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                    <div class=\"square-left flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                    <div class=\"square-right flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                </div>\n                <div class=\"flex flex-hori flex-ai-c flex-jc-se\" style=\"margin-top: 1rem\">\n                    <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\"\n                        style=\"padding: .5rem; text-align: center\">\n                        <h4 class=\"welcome-text\" style=\"text\">\n                            Classic mode is as timer based continuous gameplay.\n                            Each player starts with 20s on the clock. Player solves the equations, while\n                            referring to the answer player should tap each item in an increasing manner.\n                            Every correct answer adds 5s on the clock while every mistake deducts 3s.\n                            Player can try unlimited times until the clock is exhausted.\n                            Every 30s worth of gameplay rewards 1 trophy. <br /> <br/>\n\n                            Levels of difficulty:\n                            Level 1 -5 : Single digit, Additions and Subtractrions equation only\n                            Level 6-10: Two digits, Additions and Subtractrions equation\n                            Level 11 and above: Two digits per equation (4 Basic Arithmetic Equations\n                            involved)\n                        </h4>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <button class=\"okay-btn\" id=\"done-tutorial\">OK</button>\n    </div>\n";
+};
+
+var modalPvpTutorial = function modalPvpTutorial() {
+  return "\n    <div id=\"settings-pvp-tutorial\" class=\"settings\">\n        <div class=\"eq-mm-container\">\n            <div class=\"eq-title-container\">\n                <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                    <h3 class=\"welcome-text\">\n                        PVP Tutorial\n                    </h3>\n                </div>\n                <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                    <div class=\"square-left flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                    <div class=\"square-right flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                </div>\n                <div class=\"flex flex-hori flex-ai-c flex-jc-se\" style=\"margin-top: 1rem\">\n                    <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\"\n                        style=\"padding: .5rem; text-align: center\">\n                        <h4 class=\"welcome-text\" style=\"text\">\n                            In PVP mode player is randomly matched to a player within the same MMR\n                            range. Each player solves the equations, while referring to the answer\n                            player should tap each item in an increasing manner. <br/><br/>\n                            If a player gets the answer correctly the score is automatically awarded.<br/><br/>\n                            If a player gets the answer wrong the other player still gets to try and get\n                            the point.<br/><br/>\n                            If both player gets the answer wrong no one gets the point.<br/><br/>\n                            Battle time limit is 1m and 30s. Winning player gets the additional MMR\n                            while the Losing player gets a deduction.\n                        </h4>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <button class=\"okay-btn\" id=\"done-tutorial\">OK</button>\n    </div>\n\n";
+};
+
+
+
+/***/ }),
+
 /***/ "./resources/js/utilities/request.js":
 /*!*******************************************!*\
   !*** ./resources/js/utilities/request.js ***!
   \*******************************************/
-/*! exports provided: createUserUsingNickname, getAuthenticatedUser, logoutUser, renderClassic, renderClassicSkeleton, renderClassicSummary, renderFindMatch, renderHome, renderHomeSkeleton, renderLoader, renderMatchHistory, renderShop, sleep */
+/*! exports provided: createUserUsingNickname, getAuthenticatedUser, logoutUser, renderClassic, renderClassicSkeleton, renderClassicSummary, renderFindMatch, renderHome, renderHomeSkeleton, renderLoader, renderMatchHistory, renderShop, equipTheme, purchaseTheme, sleep */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14747,6 +14847,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderLoader", function() { return renderLoader; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderMatchHistory", function() { return renderMatchHistory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderShop", function() { return renderShop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "equipTheme", function() { return equipTheme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "purchaseTheme", function() { return purchaseTheme; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sleep", function() { return sleep; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
@@ -15230,18 +15332,99 @@ var sleep = function sleep(milliseconds) {
   });
 };
 
+var equipTheme = /*#__PURE__*/function () {
+  var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(id) {
+    var response;
+    return _regeneratorRuntime().wrap(function _callee14$(_context14) {
+      while (1) {
+        switch (_context14.prev = _context14.next) {
+          case 0:
+            _context14.prev = 0;
+            _context14.next = 3;
+            return axios({
+              method: 'POST',
+              url: "".concat(origin, "/user/equip-theme"),
+              data: {
+                id: id,
+                _token: token
+              }
+            });
+
+          case 3:
+            response = _context14.sent;
+            return _context14.abrupt("return", response.data);
+
+          case 7:
+            _context14.prev = 7;
+            _context14.t0 = _context14["catch"](0);
+            return _context14.abrupt("return", "Sorry, something went wrong...");
+
+          case 10:
+          case "end":
+            return _context14.stop();
+        }
+      }
+    }, _callee14, null, [[0, 7]]);
+  }));
+
+  return function equipTheme(_x2) {
+    return _ref14.apply(this, arguments);
+  };
+}();
+
+var purchaseTheme = /*#__PURE__*/function () {
+  var _ref15 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(id) {
+    var response;
+    return _regeneratorRuntime().wrap(function _callee15$(_context15) {
+      while (1) {
+        switch (_context15.prev = _context15.next) {
+          case 0:
+            _context15.prev = 0;
+            _context15.next = 3;
+            return axios({
+              method: 'POST',
+              url: "".concat(origin, "/user/purchase-theme"),
+              data: {
+                id: id,
+                _token: token
+              }
+            });
+
+          case 3:
+            response = _context15.sent;
+            console.log(response.data);
+            return _context15.abrupt("return", true);
+
+          case 8:
+            _context15.prev = 8;
+            _context15.t0 = _context15["catch"](0);
+            return _context15.abrupt("return", null);
+
+          case 11:
+          case "end":
+            return _context15.stop();
+        }
+      }
+    }, _callee15, null, [[0, 8]]);
+  }));
+
+  return function purchaseTheme(_x3) {
+    return _ref15.apply(this, arguments);
+  };
+}();
+
 
 
 /***/ }),
 
-/***/ 8:
+/***/ 9:
 /*!*****************************************!*\
   !*** multi ./resources/js/navigator.js ***!
   \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\kishu\OneDrive\Documents\GitHub\equasolving-app-classic\resources\js\navigator.js */"./resources/js/navigator.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\EquaSolve\app\resources\js\navigator.js */"./resources/js/navigator.js");
 
 
 /***/ })

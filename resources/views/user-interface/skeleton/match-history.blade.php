@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ asset('css/classic/style.css') }}">
 <div id="main-default-summary" style="display: block">
     <div class="ms-content-area">
             <div class="eq-header flex flex-jc-fs width-100 maxwidth-400 margin-auto">

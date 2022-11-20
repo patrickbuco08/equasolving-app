@@ -11011,7 +11011,7 @@ return jQuery;
 /*!*******************************************!*\
   !*** ./resources/js/utilities/request.js ***!
   \*******************************************/
-/*! exports provided: createUserUsingNickname, getAuthenticatedUser, logoutUser, renderClassic, renderClassicSkeleton, renderClassicSummary, renderFindMatch, renderHome, renderHomeSkeleton, renderLoader, renderMatchHistory, renderShop, sleep */
+/*! exports provided: createUserUsingNickname, getAuthenticatedUser, logoutUser, renderClassic, renderClassicSkeleton, renderClassicSummary, renderFindMatch, renderHome, renderHomeSkeleton, renderLoader, renderMatchHistory, renderShop, equipTheme, purchaseTheme, sleep */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11028,6 +11028,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderLoader", function() { return renderLoader; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderMatchHistory", function() { return renderMatchHistory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderShop", function() { return renderShop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "equipTheme", function() { return equipTheme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "purchaseTheme", function() { return purchaseTheme; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sleep", function() { return sleep; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
@@ -11511,6 +11513,87 @@ var sleep = function sleep(milliseconds) {
   });
 };
 
+var equipTheme = /*#__PURE__*/function () {
+  var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(id) {
+    var response;
+    return _regeneratorRuntime().wrap(function _callee14$(_context14) {
+      while (1) {
+        switch (_context14.prev = _context14.next) {
+          case 0:
+            _context14.prev = 0;
+            _context14.next = 3;
+            return axios({
+              method: 'POST',
+              url: "".concat(origin, "/user/equip-theme"),
+              data: {
+                id: id,
+                _token: token
+              }
+            });
+
+          case 3:
+            response = _context14.sent;
+            return _context14.abrupt("return", response.data);
+
+          case 7:
+            _context14.prev = 7;
+            _context14.t0 = _context14["catch"](0);
+            return _context14.abrupt("return", "Sorry, something went wrong...");
+
+          case 10:
+          case "end":
+            return _context14.stop();
+        }
+      }
+    }, _callee14, null, [[0, 7]]);
+  }));
+
+  return function equipTheme(_x2) {
+    return _ref14.apply(this, arguments);
+  };
+}();
+
+var purchaseTheme = /*#__PURE__*/function () {
+  var _ref15 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(id) {
+    var response;
+    return _regeneratorRuntime().wrap(function _callee15$(_context15) {
+      while (1) {
+        switch (_context15.prev = _context15.next) {
+          case 0:
+            _context15.prev = 0;
+            _context15.next = 3;
+            return axios({
+              method: 'POST',
+              url: "".concat(origin, "/user/purchase-theme"),
+              data: {
+                id: id,
+                _token: token
+              }
+            });
+
+          case 3:
+            response = _context15.sent;
+            console.log(response.data);
+            return _context15.abrupt("return", true);
+
+          case 8:
+            _context15.prev = 8;
+            _context15.t0 = _context15["catch"](0);
+            return _context15.abrupt("return", null);
+
+          case 11:
+          case "end":
+            return _context15.stop();
+        }
+      }
+    }, _callee15, null, [[0, 8]]);
+  }));
+
+  return function purchaseTheme(_x3) {
+    return _ref15.apply(this, arguments);
+  };
+}();
+
 
 
 /***/ }),
@@ -11522,7 +11605,7 @@ var sleep = function sleep(milliseconds) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\kishu\OneDrive\Documents\GitHub\equasolving-app-classic\resources\js\utilities\request.js */"./resources/js/utilities/request.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\EquaSolve\app\resources\js\utilities\request.js */"./resources/js/utilities/request.js");
 
 
 /***/ })

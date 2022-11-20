@@ -26,7 +26,7 @@
                 </div>
                 <div class="input-container">
                     <span class="trophy">Trophy:</span>
-                    <input readonly type="text" class="eq-trophy" id="trophy" placeholder="1200">
+                    <input readonly type="text" class="eq-trophy" id="trophy" placeholder="{{auth()->user()->classicModeDetails->trophies}}">
                     <div class="img-container"></div>
                 </div>
             </div>

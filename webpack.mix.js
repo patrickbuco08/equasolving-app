@@ -20,12 +20,14 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/utilities/request.js', 'public/js/utilities')
     .js('resources/js/utilities/pvpService.js', 'public/js/utilities')
     .js('resources/js/utilities/classicService.js', 'public/js/utilities')
+    .js('resources/js/utilities/modalService.js', 'public/js/utilities')
     .js('resources/js/sfx.js', 'public/js/sfx/')
     .js('resources/js/pvp.js', 'public/js/')
     .js('resources/js/classic.js', 'public/js/')
     .js('resources/js/newClassic.js', 'public/js/')
     .js('resources/js/navigator.js', 'public/js/')
     .js('resources/js/find-match.js', 'public/js/')
+    .js('resources/js/shop.js', 'public/js/')
 
 
 
