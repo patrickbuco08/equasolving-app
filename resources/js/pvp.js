@@ -142,7 +142,7 @@ import {
     $(document).on('click', 'div.equation', function (e) {
         e.preventDefault();
         const answer = $(this).data('answer'),
-            lastAnswer = answers.at(-1),
+        lastAnswer = equation.answers.slice(-1)[0] ?? null,
             patternUI = $(this).children('span.circle');
         console.log(answer);
 

@@ -58,10 +58,23 @@
          if (window.location.pathname != "/") return;
          console.log('trigger settings on landing page');
 
+         let equsolve_sfx = "true", img = 'on';
+
          console.log(isSfxOn());
-         
-         localStorage.setItem("equasolve_sfx", isSfxOn() ? "false" : "true");
-         $("#sfxImg").attr('src', `/images/music-${isSfxOn() ? 'on' : 'off'}.png`);
+         sfx.tap.volume(1);
+
+         if(isSfxOn()){
+
+            equsolve_sfx = "false";
+            img = "off";
+            sfx.tap.volume(0);
+
+         }
+
+         localStorage.setItem("equasolve_sfx", equsolve_sfx);
+         $("#sfxImg").attr('src', `/images/music-${img}.png`);
+         sfx.tap.play();
+
      });
 
     //  fx settings

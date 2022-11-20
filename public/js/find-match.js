@@ -20600,7 +20600,8 @@ var sfx = {
   }),
   tap: new howler__WEBPACK_IMPORTED_MODULE_0__["Howl"]({
     src: ['/sfx/tap.mp3'],
-    loop: false
+    loop: false,
+    volume: localStorage.getItem("equasolve_sfx") === "true" ? 1 : 0
   }),
   classic: new howler__WEBPACK_IMPORTED_MODULE_0__["Howl"]({
     src: ['/sfx/classic.mp3'],

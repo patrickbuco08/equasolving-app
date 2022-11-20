@@ -20610,9 +20610,11 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           }); //answer equation
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('click', 'div.equation', function (e) {
+            var _equation$answers$sli;
+
             e.preventDefault();
             var answer = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('answer'),
-                lastAnswer = answers.at(-1),
+                lastAnswer = (_equation$answers$sli = equation.answers.slice(-1)[0]) !== null && _equation$answers$sli !== void 0 ? _equation$answers$sli : null,
                 patternUI = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).children('span.circle');
             console.log(answer); //your previous answer is wrong
 
@@ -20698,7 +20700,8 @@ var sfx = {
   }),
   tap: new howler__WEBPACK_IMPORTED_MODULE_0__["Howl"]({
     src: ['/sfx/tap.mp3'],
-    loop: false
+    loop: false,
+    volume: localStorage.getItem("equasolve_sfx") === "true" ? 1 : 0
   }),
   classic: new howler__WEBPACK_IMPORTED_MODULE_0__["Howl"]({
     src: ['/sfx/classic.mp3'],

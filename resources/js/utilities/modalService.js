@@ -270,9 +270,34 @@ const modalPvpTutorial = () => {
         </div>
         <button class="okay-btn" id="done-tutorial">OK</button>
     </div>
-
 `;
  }
+
+ const modalExitGame = () => { 
+    return `<div class="eq-mm-container">
+        <div class="eq-title-container">
+            <div class="eq-title-area flex flex-vert flex-jc-sb flex-ai-c">
+                <h3 class="welcome-text">
+                    Do you want to exit game??
+                </h3>
+            </div>
+            <div class="square flex flex-hori flex-jc-sb exit-context-box ">
+                <div class="square-left flex flex-vert flex-jc-sb">
+                    <span class="us"></span>
+                    <span class="us"></span>
+                </div>
+                <div class="square-right flex flex-vert flex-jc-sb">
+                    <span class="us"></span>
+                    <span class="us"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-button-container flex flex-hori flex-jc-sb">
+        <button class="purchase-btn" id="exit">Exit</button>
+        <button class="cancel-btn" id="modal-cancel">Cancel</button>
+    </div>`;
+  }
 
 export {
     modalPurchaseTheme,
@@ -282,5 +307,6 @@ export {
     modalThemeEquiped,
     modalThemePurchased,
     modalClassicTutorial,
-    modalPvpTutorial
+    modalPvpTutorial,
+    modalExitGame
 }

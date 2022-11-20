@@ -50,7 +50,7 @@
     </div>
 </section>
 
-<div id="exit-modal" class="modal">
+{{-- <div id="exit-modal" class="modal">
     <div class="modal-content">
       <div class="eq-mm-container">
                   <div class="eq-title-container">
@@ -78,4 +78,4 @@
   
       </div>
   
-  </div>
+  </div> --}}

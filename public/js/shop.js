@@ -14330,7 +14330,8 @@ var sfx = {
   }),
   tap: new howler__WEBPACK_IMPORTED_MODULE_0__["Howl"]({
     src: ['/sfx/tap.mp3'],
-    loop: false
+    loop: false,
+    volume: localStorage.getItem("equasolve_sfx") === "true" ? 1 : 0
   }),
   classic: new howler__WEBPACK_IMPORTED_MODULE_0__["Howl"]({
     src: ['/sfx/classic.mp3'],
@@ -14429,8 +14430,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('section#overlay').show();
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on("click", "button#modal-cancel", function (e) {
-    e.preventDefault(); // sfx.tap.play();
-
+    e.preventDefault();
+    _sfx__WEBPACK_IMPORTED_MODULE_3__["default"].tap.play();
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('section#overlay').hide();
   }); //equip theme
 
@@ -14536,7 +14537,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /*!************************************************!*\
   !*** ./resources/js/utilities/modalService.js ***!
   \************************************************/
-/*! exports provided: modalPurchaseTheme, modalEquipConfirmation, modalInsufficientTheme, modalSettings, modalThemeEquiped, modalThemePurchased, modalClassicTutorial, modalPvpTutorial */
+/*! exports provided: modalPurchaseTheme, modalEquipConfirmation, modalInsufficientTheme, modalSettings, modalThemeEquiped, modalThemePurchased, modalClassicTutorial, modalPvpTutorial, modalExitGame */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14549,6 +14550,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalThemePurchased", function() { return modalThemePurchased; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalClassicTutorial", function() { return modalClassicTutorial; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalPvpTutorial", function() { return modalPvpTutorial; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalExitGame", function() { return modalExitGame; });
 // purchase theme
 var modalPurchaseTheme = function modalPurchaseTheme() {
   return "<div id=\"unlock-theme\" class=\"unlock-theme\">\n    <div class=\"eq-mm-container\">\n        <div class=\"eq-title-container\">\n            <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                <h3 class=\"welcome-text\">\n                    Purchase Theme?\n                </h3>\n            </div>\n            <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                <div class=\"square-left flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n                <div class=\"square-right flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class=\"modal-button-container flex flex-hori flex-jc-sb\">\n        <button class=\"purchase-btn\" id=\"purchase\">Purchase</button>\n        <button class=\"cancel-btn\" id=\"modal-cancel\">Cancel</button>\n    </div>\n</div>";
@@ -14586,7 +14588,11 @@ var modalClassicTutorial = function modalClassicTutorial() {
 };
 
 var modalPvpTutorial = function modalPvpTutorial() {
-  return "\n    <div id=\"settings-pvp-tutorial\" class=\"settings\">\n        <div class=\"eq-mm-container\">\n            <div class=\"eq-title-container\">\n                <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                    <h3 class=\"welcome-text\">\n                        PVP Tutorial\n                    </h3>\n                </div>\n                <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                    <div class=\"square-left flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                    <div class=\"square-right flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                </div>\n                <div class=\"flex flex-hori flex-ai-c flex-jc-se\" style=\"margin-top: 1rem\">\n                    <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\"\n                        style=\"padding: .5rem; text-align: center\">\n                        <h4 class=\"welcome-text\" style=\"text\">\n                            In PVP mode player is randomly matched to a player within the same MMR\n                            range. Each player solves the equations, while referring to the answer\n                            player should tap each item in an increasing manner. <br/><br/>\n                            If a player gets the answer correctly the score is automatically awarded.<br/><br/>\n                            If a player gets the answer wrong the other player still gets to try and get\n                            the point.<br/><br/>\n                            If both player gets the answer wrong no one gets the point.<br/><br/>\n                            Battle time limit is 1m and 30s. Winning player gets the additional MMR\n                            while the Losing player gets a deduction.\n                        </h4>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <button class=\"okay-btn\" id=\"done-tutorial\">OK</button>\n    </div>\n\n";
+  return "\n    <div id=\"settings-pvp-tutorial\" class=\"settings\">\n        <div class=\"eq-mm-container\">\n            <div class=\"eq-title-container\">\n                <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                    <h3 class=\"welcome-text\">\n                        PVP Tutorial\n                    </h3>\n                </div>\n                <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                    <div class=\"square-left flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                    <div class=\"square-right flex flex-vert flex-jc-sb\">\n                        <span class=\"us\"></span>\n                        <span class=\"us\"></span>\n                    </div>\n                </div>\n                <div class=\"flex flex-hori flex-ai-c flex-jc-se\" style=\"margin-top: 1rem\">\n                    <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\"\n                        style=\"padding: .5rem; text-align: center\">\n                        <h4 class=\"welcome-text\" style=\"text\">\n                            In PVP mode player is randomly matched to a player within the same MMR\n                            range. Each player solves the equations, while referring to the answer\n                            player should tap each item in an increasing manner. <br/><br/>\n                            If a player gets the answer correctly the score is automatically awarded.<br/><br/>\n                            If a player gets the answer wrong the other player still gets to try and get\n                            the point.<br/><br/>\n                            If both player gets the answer wrong no one gets the point.<br/><br/>\n                            Battle time limit is 1m and 30s. Winning player gets the additional MMR\n                            while the Losing player gets a deduction.\n                        </h4>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <button class=\"okay-btn\" id=\"done-tutorial\">OK</button>\n    </div>\n";
+};
+
+var modalExitGame = function modalExitGame() {
+  return "<div class=\"eq-mm-container\">\n        <div class=\"eq-title-container\">\n            <div class=\"eq-title-area flex flex-vert flex-jc-sb flex-ai-c\">\n                <h3 class=\"welcome-text\">\n                    Do you want to exit game??\n                </h3>\n            </div>\n            <div class=\"square flex flex-hori flex-jc-sb exit-context-box \">\n                <div class=\"square-left flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n                <div class=\"square-right flex flex-vert flex-jc-sb\">\n                    <span class=\"us\"></span>\n                    <span class=\"us\"></span>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class=\"modal-button-container flex flex-hori flex-jc-sb\">\n        <button class=\"purchase-btn\" id=\"exit\">Exit</button>\n        <button class=\"cancel-btn\" id=\"modal-cancel\">Cancel</button>\n    </div>";
 };
 
 

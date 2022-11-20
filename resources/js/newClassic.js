@@ -3,9 +3,6 @@ import {
     timer,
     gameTimer
 } from "./utilities/classicService";
-import {
-    Howler
-} from "howler";
 import $ from "jquery";
 import sfx from "./sfx";
 
@@ -13,6 +10,9 @@ import {
     renderClassicSkeleton,
     sleep
 } from "./utilities/request";
+import {
+    modalExitGame
+} from "./utilities/modalService";
 
 (async () => {
 
@@ -32,9 +32,9 @@ import {
         },
         classPatern = 'selected-1 selected-2 selected-3 selected-4';
 
-        if (BgMusicSwitch) {
-            sfx.classic.play();
-        }
+    if (BgMusicSwitch) {
+        sfx.classic.play();
+    }
 
 
     timer.init(); // init timer
@@ -45,7 +45,7 @@ import {
         e.preventDefault();
 
         const answer = $(this).data('answer'),
-            lastAnswer = equation.answers.at(-1),
+            lastAnswer = equation.answers.slice(-1)[0] ? equation.answers.slice(-1)[0] : null,
             patternUI = $(this).children('span.circle');
 
         console.log(answer);
@@ -111,21 +111,25 @@ import {
     $('#exit-game').on("click", function (e) {
         e.preventDefault();
 
-        $("#exit-modal").show();
+        sfx.tap.play();
+        const modalContent = $('section#overlay div.modal-content');
+        modalContent.html(modalExitGame);
+        $('section#overlay').show();
         timer.pause();
     });
 
     //cancel exit modal
-    $('#cancel').on("click", function (e) {
+    $(document).on("click", "button#modal-cancel", function (e) {
         e.preventDefault();
-        $("#exit-modal").hide();
+
+        if (window.location.pathname != "/classic") return;
         timer.continue();
     });
 
     // exit the game
-    $('#exit').on("click", function (e) {
+    $(document).on("click", "button#exit", function (e) {
         e.preventDefault();
-        $("#exit-modal").hide();
+        $('section#overlay').hide();
         timer.quit();
     });
 

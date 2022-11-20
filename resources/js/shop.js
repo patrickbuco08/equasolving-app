@@ -55,7 +55,7 @@ import sfx from "./sfx";
 
     $(document).on("click", "button#modal-cancel", function (e) { 
         e.preventDefault();
-        // sfx.tap.play();
+        sfx.tap.play();
         $('section#overlay').hide();
     });
 
