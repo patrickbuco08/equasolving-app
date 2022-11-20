@@ -56,23 +56,23 @@
      $(document).on('click', '#SFXOnOff', function (e) {
 
          if (window.location.pathname != "/") return;
-         console.log('trigger settings on landing page');
+         let equasolve_sfx = null;
 
-         let equsolve_sfx = "true", img = 'on';
-
-         console.log(isSfxOn());
-         sfx.tap.volume(1);
-
+         //if naka on
          if(isSfxOn()){
-
-            equsolve_sfx = "false";
-            img = "off";
+            //then, off
+            equasolve_sfx = "false";
+            $("#sfxImg").attr('src', `/images/music-off.png`);
             sfx.tap.volume(0);
 
+         }else{
+            //on the sfx
+            equasolve_sfx = "true";
+            $("#sfxImg").attr('src', `/images/music-on.png`);
+            sfx.tap.volume(1);
          }
 
-         localStorage.setItem("equasolve_sfx", equsolve_sfx);
-         $("#sfxImg").attr('src', `/images/music-${img}.png`);
+         localStorage.setItem("equasolve_sfx", equasolve_sfx);
          sfx.tap.play();
 
      });
@@ -185,6 +185,7 @@
      // render match history
      $(document).on('click', '#profile', async function (e) {
          e.preventDefault();
+         sfx.tap.volume(localStorage.getItem("equasolve_sfx") === "true" ? 1 : 0);
          sfx.tap.play();
          const matchHistory = await renderMatchHistory();
          $('div#root').html(matchHistory);

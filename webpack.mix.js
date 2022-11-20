@@ -13,11 +13,7 @@ const mix = require('laravel-mix');
 
 mix.webpackConfig({ node: { fs: 'empty' }});
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ])
-    .js('resources/js/utilities/request.js', 'public/js/utilities')
+mix.js('resources/js/utilities/request.js', 'public/js/utilities')
     .js('resources/js/utilities/pvpService.js', 'public/js/utilities')
     .js('resources/js/utilities/classicService.js', 'public/js/utilities')
     .js('resources/js/utilities/modalService.js', 'public/js/utilities')
@@ -28,6 +24,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/navigator.js', 'public/js/')
     .js('resources/js/find-match.js', 'public/js/')
     .js('resources/js/shop.js', 'public/js/')
+    .sass('resources/css/style.scss', 'public/css/style_v2')
 
 
 

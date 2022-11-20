@@ -9,8 +9,7 @@
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "pvp": "nodemon server/app.js",
-        "findMatch": "nodemon server/find-match.js"
+        "equasolve-server": "nodemon server/find-match.js"
     },
     "devDependencies": {
         "axios": "^1.1.3",

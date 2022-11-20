@@ -1,6 +1,4 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
     "/js/classic.js": "/js/classic.js",
     "/js/find-match.js": "/js/find-match.js",
     "/js/navigator.js": "/js/navigator.js",
@@ -11,5 +9,6 @@
     "/js/utilities/classicService.js": "/js/utilities/classicService.js",
     "/js/utilities/modalService.js": "/js/utilities/modalService.js",
     "/js/utilities/pvpService.js": "/js/utilities/pvpService.js",
-    "/js/utilities/request.js": "/js/utilities/request.js"
+    "/js/utilities/request.js": "/js/utilities/request.js",
+    "/css/style_v2/style.css": "/css/style_v2/style.css"
 }

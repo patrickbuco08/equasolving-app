@@ -21,16 +21,12 @@
 </head>
 
 @auth
-
 <body id="{{auth()->user()->selectedBackground()}}">
     @endauth
 
     @guest
-
     <body id="main-default">
         @endguest
-
-
 
         <div id="root" style="width: inherit; height: inherit; display: contents">
             @yield('content')

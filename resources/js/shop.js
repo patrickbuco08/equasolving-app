@@ -55,6 +55,7 @@ import sfx from "./sfx";
 
     $(document).on("click", "button#modal-cancel", function (e) { 
         e.preventDefault();
+        sfx.tap.volume(localStorage.getItem("equasolve_sfx") == "true" ? 1 : 0);
         sfx.tap.play();
         $('section#overlay').hide();
     });

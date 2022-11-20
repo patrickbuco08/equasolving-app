@@ -13,11 +13,21 @@ body {
     box-sizing: inherit;
 }
 
-h1,h2,h3,h4,h5,h6,p,span, a {
-    font-family: 'Arial', 'sans-serif';
+@font-face {
+    font-family: 'Bobble' ;
+    src: url('../fonts//Bubble\ Bobble.ttf');
+    // src: url('/fonts/Bubble\ Bobble.ttf');
+
 }
 
+h1,h2,h3,h4,h5,h6, input[type="text"] {
+    font-family: 'Bobble';
+}
+span, p, a, button, .timer-container input, input#trophy, .input-container input{
+    font-family: 'poppins';
+}
 p {
+
     font-size: $font-xxs;
 }
 
@@ -38,6 +48,12 @@ color: #000;
 
 .hide {
     display: none!important;
+}
+
+// Hidden 
+
+.hidden {
+    overflow: hidden;
 }
 
 // Flex box
