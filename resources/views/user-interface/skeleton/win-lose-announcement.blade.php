@@ -12,7 +12,13 @@
                     </div>
                     <div class="player-information">
                         <span class="player-name">{{ $player['name'] }}</span>
-                        <div class="player one flex flex-ai-c flex-jc-c"><span class="span-lose">X X</span></div>
+                        <div class="player one flex flex-ai-c flex-jc-c">
+                            <span class="span-lose">
+                                @if (!$isDraw && !$player['isWinner'])
+                                    X X
+                                @endif
+                            </span>
+                        </div>
                         <div class="info mmr"><span><b>MMR: </b>{{ $player['mmr'] }}</span></div>
                         <div class="info points"><span><b>Points: </b> {{ $player['points'] }}</span></div>
                         <div class="info trophy"><span><b>NEW MMR: </b>{{ $player['updated_mmr'] }}</span></div>

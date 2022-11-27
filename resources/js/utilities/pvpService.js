@@ -44,7 +44,7 @@ const generateEquation = (eq) => {
         // htmlDOM += `<div class="equation" data-answer=${equation.answer} >${equation.a}${operation}${equation.b}=???</div>`;
         htmlDOM += `<div class="equation equation-${index}" data-answer=${equation.answer}>
             <span class="circle"></span>
-            <span id="equation-1">${equation.a}${operation}${equation.b}=???</span>
+            <span id="equation-1">${equation.a}${operation}${equation.b}</span>
         </div>`;
         index++;
     });

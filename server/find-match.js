@@ -89,7 +89,7 @@ const pvp = require('./utilities/pvpService');
                     playerReady: 0,
                     gameStarted: false,
                     countdown: 4,
-                    time: 90,
+                    time: 600,
                     contestants: {},
                     equation: equation,
                     equationInterval: '',

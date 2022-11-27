@@ -72,6 +72,7 @@ import {
         canAnswerEquation = true;
         answers = [];
         generateEquation(data);
+        $('div.game-area').css('opacity', '1');
     });
 
     //update user score
@@ -95,6 +96,7 @@ import {
     //trigger wrong answer (for you only)
     socket.on('wrong-answer', (isCorrect) => {
         canAnswerEquation = false;
+        $('div.game-area').css('opacity', '0.5');
         console.log(isCorrect);
         sfx.incorrect.play();
     });
@@ -142,7 +144,7 @@ import {
     $(document).on('click', 'div.equation', function (e) {
         e.preventDefault();
         const answer = $(this).data('answer'),
-        lastAnswer = equation.answers.slice(-1)[0] ?? null,
+        lastAnswer = answers.slice(-1)[0] ?? null,
             patternUI = $(this).children('span.circle');
         console.log(answer);
 

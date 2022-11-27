@@ -41,7 +41,7 @@
         <div class="eq-mm-container">
             <div class="eq-title-container">
                 <div class="eq-title-area flex flex-vert flex-jc-sb flex-ai-c">
-                    <h1 class="welcome-text">
+                    <h1 class="welcome-text" id="set-nickname">
                         @auth
                         Hello {{ Str::of(auth()->user()->name)->explode(' ')[0] }}
                         @endauth

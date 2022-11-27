@@ -33,6 +33,37 @@ const createUserUsingNickname = async () => {
     }
 }
 
+const updateNickName = async () => {
+    const nickname = $('input[name="set-nickname"]').val();
+    try {
+        $('button[name="update-nickname"]').text('Saving....').attr('disabled', true);
+        console.log('Please Wait...');
+        const response = await axios({
+            method: 'POST',
+            url: `${origin}/user/update-nickname`,
+            data: {
+                nickname: nickname,
+                _token: token
+            }
+        });
+        console.log(response.data);
+        $('h1#set-nickname').text(nickname);
+        $('section#overlay').hide();
+    } catch (error) {
+        if (error.response) {
+            console.log('error');
+            console.log(error.response);
+        } else if (err.request) {
+            console.log(err.request)
+        } else {
+            // Anything else
+            console.log('Sorry, something went wrong...');
+        }
+    } finally {
+        $('button[name="update-nickname"]').text('Submit');
+    }
+}
+
 const getAuthenticatedUser = async () => {
     try {
         const response = await axios.get(`${origin}/user/check-auth`);
@@ -135,7 +166,7 @@ const renderMatchHistory = async () => {
 
 const logoutUser = async () => {
     try {
-        $('#logout-text').text('Logging out...');
+        $('button#logout').text('Logging out...');
         const response = await axios({
             method: 'POST',
             url: `${origin}/ajax-logout`,
@@ -203,5 +234,6 @@ export {
     renderShop,
     equipTheme,
     purchaseTheme,
+    updateNickName,
     sleep
 }

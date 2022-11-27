@@ -139,8 +139,13 @@ const modalThemeEquiped = () => {
 // settings
 const modalSettings = () => {
 
-    const BgMusicSwitch = localStorage.getItem("equasolve_music_fx") == "true" ? true : false;
-    const sfxSwitch = localStorage.getItem("equasolve_sfx") == "true" ? true : false;
+    const BgMusicSwitch = () => {
+        return localStorage.getItem("equasolve_music_fx") == "true";
+    }
+
+    const isSfxOn = () => {
+        return localStorage.getItem("equasolve_sfx") === "true";
+    }
 
     return `
     <div id="settings-fx" class="settings">
@@ -165,14 +170,14 @@ const modalSettings = () => {
                     <h3 style="width:40px">Music:</h3>
                     <span class="header-btn" id="musicOnOff">
                         <img id="musicImg" style="width: 35px;height: 35px"
-                            src="/images/music-${BgMusicSwitch ? 'on' : 'off'}.png" alt="BGMusic">
+                            src="/images/music-${BgMusicSwitch() ? 'on' : 'off'}.png" alt="BGMusic">
                     </span>
                 </div>
                 <div class="flex flex-hori flex-ai-c flex-jc-se">
                     <h3 style="width:40px">SFX:</h3>
                     <span class="header-btn" id="SFXOnOff">
                         <img id="sfxImg" style="width: 35px;height: 35px"
-                            src="/images/music-${sfxSwitch ? 'on' : 'off'}.png" alt="BGMusic">
+                            src="/images/music-${isSfxOn() ? 'on' : 'off'}.png" alt="BGMusic">
                     </span>
                 </div>
             </div>
@@ -230,7 +235,7 @@ const modalClassicTutorial = () => {
 `;
 }
 
-const modalPvpTutorial = () => { 
+const modalPvpTutorial = () => {
     return `
     <div id="settings-pvp-tutorial" class="settings">
         <div class="eq-mm-container">
@@ -271,9 +276,9 @@ const modalPvpTutorial = () => {
         <button class="okay-btn" id="done-tutorial">OK</button>
     </div>
 `;
- }
+}
 
- const modalExitGame = () => { 
+const modalExitGame = () => {
     return `<div class="eq-mm-container">
         <div class="eq-title-container">
             <div class="eq-title-area flex flex-vert flex-jc-sb flex-ai-c">
@@ -297,7 +302,84 @@ const modalPvpTutorial = () => {
         <button class="purchase-btn" id="exit">Exit</button>
         <button class="cancel-btn" id="modal-cancel">Cancel</button>
     </div>`;
-  }
+}
+
+const logOutConfirmation = () => {
+
+    return `<div class="eq-mm-container">
+        <div class="eq-title-container">
+            <div class="eq-title-area flex flex-vert flex-jc-sb flex-ai-c">
+                <h3 class="welcome-text" style="text-align: center">
+                    Are you sure you wantt to log out?
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="modal-button-container flex flex-hori flex-jc-sb">
+        <button class="purchase-btn" id="logout">Logout</button>
+        <button class="cancel-btn" id="modal-cancel">Cancel</button>
+    </div>`;
+}
+
+const setNickName = (text) => {
+    const trimmedString = text.trimLeft().trimRight();
+    const splittedString = trimmedString.split(" ");
+    const name = splittedString[splittedString.length - 1];
+    
+    return `<div class="eq-mm-container">
+            <div class="eq-set-nickname" style="margin-bottom: .5rem">
+            <div class="eq-nickname-container flex flex-jc-c flex-vert">
+                <div class="eq-title-area flex flex-vert flex-jc-sb flex-ai-c">
+                    <input type="text" class="set-nickname" name="set-nickname" value="${name}" placeholder="Set Nickname"
+                        autocomplete="off" autofocus>
+                </div>
+                <div class="square flex flex-hori flex-jc-sb">
+                    <div class="square-left flex flex-vert flex-jc-sb">
+                        <span class="us"></span>
+                        <span class="us"></span>
+                    </div>
+                    <div class="square-right flex flex-vert flex-jc-sb">
+                        <span class="us"></span>
+                        <span class="us"></span>
+                    </div>
+                </div>
+                <span id="restrictions" class="nickname-restrictions">No Special Characters</span>
+            </div>
+        </div>
+        </div>
+        <div class="modal-button-container flex flex-hori flex-jc-sb">
+            <button type="button" class="purchase-btn" name="update-nickname" disabled>Submit</button>
+            <button class="cancel-btn" id="modal-cancel">Cancel</button>
+        </div>`;
+
+//     return `<div class="eq-set-nickname">
+//     <div class="eq-nickname-container flex flex-jc-c flex-vert">
+//         <div class="eq-title-area flex flex-vert flex-jc-sb flex-ai-c">
+//             <input type="text" class="set-nickname" name="set-nickname" placeholder="Set Nickname"
+//                 autocomplete="off" autofocus>
+//         </div>
+//         <div class="square flex flex-hori flex-jc-sb">
+//             <div class="square-left flex flex-vert flex-jc-sb">
+//                 <span class="us"></span>
+//                 <span class="us"></span>
+//             </div>
+//             <div class="square-right flex flex-vert flex-jc-sb">
+//                 <span class="us"></span>
+//                 <span class="us"></span>
+//             </div>
+//         </div>
+//         <span id="restrictions" class="nickname-restrictions">No Special Characters</span>
+//     </div>
+//     <div class="eq-button-area flex flex-hori flex-jc-sb">
+//         <button type="button" class="eq-submit flex flex-jc-c flex-ai-c" name="add-nickname" disabled>
+//             Submit </button>
+//         <form action={{ route('google.login') }} method="GET">
+//             <button type="submit" class="eq-connect flex flex-jc-c flex-ai-c"> <img
+//                     src="{{ asset('images/google.png') }}" alt=""> Connect </button>
+//         </form>
+//     </div>
+// </div>`;
+}
 
 export {
     modalPurchaseTheme,
@@ -308,5 +390,7 @@ export {
     modalThemePurchased,
     modalClassicTutorial,
     modalPvpTutorial,
-    modalExitGame
+    modalExitGame,
+    logOutConfirmation,
+    setNickName
 }

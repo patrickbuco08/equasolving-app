@@ -33,6 +33,19 @@ class UserController extends Controller
       
     }
 
+    public function updateNickName(Request $request)
+    {
+        sleep(1);
+        try {
+            auth()->user()->update([
+                'name' => $request->nickname
+            ]);
+            return response()->json("success", 204);
+        } catch (\Throwable $th) {
+            return response()->json($th, 409);
+        }
+    }
+
     public function createUsingNickName(Request $request)
     {
         sleep(1);

@@ -31,7 +31,7 @@
                 </div>
                 <div class="flex flex-vert gap-5 profile-buttons">
                     @auth
-                    <div id="logout" class="shop-btn menu-btn flex ">
+                    <div id="logout-confirmation" class="shop-btn menu-btn flex ">
                         <button class="header-btn">
                             <img src="{{ asset('images/Exit.png') }}" alt="Logout">
                         </button>

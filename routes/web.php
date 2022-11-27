@@ -43,9 +43,9 @@ Route::prefix('user')->group(function () {
         Route::get('/match-history/{user}', [UserController::class, 'getMatchHistory'])->name('match-history');
         Route::get('/match-history-v2/{user}', [UserController::class, 'getMatchHistoryv2'])->name('match-history-2');
         Route::post('create-using-nickname', [UserController::class, 'createUsingNickName'])->name('create-using-nickname');
+        Route::post('update-nickname', [UserController::class, 'updateNickName']);
         Route::post('equip-theme', [UserController::class, 'equipTheme']);
         Route::post('purchase-theme', [UserController::class, 'purchaseTheme']);
-
     });
 });
 

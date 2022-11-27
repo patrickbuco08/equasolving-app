@@ -8,29 +8,45 @@
      renderHomeSkeleton,
      renderClassic,
      renderFindMatch,
-     logoutUser
+     logoutUser,
+     updateNickName
  } from "./utilities/request";
 
  import {
-     Howler
- } from "howler";
-
- import { modalSettings, modalClassicTutorial, modalPvpTutorial } from "./utilities/modalService";
+     modalSettings,
+     modalClassicTutorial,
+     modalPvpTutorial,
+     logOutConfirmation,
+     setNickName
+ } from "./utilities/modalService";
 
  // navigator
  (async () => {
      console.log('init navigator');
      let menuBgMusic = null;
-     const BgMusicSwitch = localStorage.getItem("equasolve_music_fx") == "true" ? true : false;
+
+     const BgMusicSwitch = () => {
+        return localStorage.getItem("equasolve_music_fx") == "true";
+     }
+
      const isSfxOn = () => {
-        return localStorage.getItem("equasolve_sfx") === "true";
-    }
+         return localStorage.getItem("equasolve_sfx") === "true";
+     }
+
+     // on bg and sfx if not set 
+     if (localStorage.getItem("equasolve_music_fx") === null) {
+         localStorage.setItem("equasolve_music_fx", "true");
+     }
+
+     if (localStorage.getItem("equasolve_sfx") === null) {
+         localStorage.setItem("equasolve_sfx", "true");
+     }
 
      setTimeout(() => {
          // play only if page is on the landing page
          if (window.location.pathname == "/" || window.location.pathname == "/find-match") {
              console.log('play');
-             if (BgMusicSwitch) {
+             if (BgMusicSwitch()) {
                  menuBgMusic = sfx.menu.play();
              }
          }
@@ -59,17 +75,17 @@
          let equasolve_sfx = null;
 
          //if naka on
-         if(isSfxOn()){
-            //then, off
-            equasolve_sfx = "false";
-            $("#sfxImg").attr('src', `/images/music-off.png`);
-            sfx.tap.volume(0);
+         if (isSfxOn()) {
+             //then, off
+             equasolve_sfx = "false";
+             $("#sfxImg").attr('src', `/images/music-off.png`);
+             sfx.tap.volume(0);
 
-         }else{
-            //on the sfx
-            equasolve_sfx = "true";
-            $("#sfxImg").attr('src', `/images/music-on.png`);
-            sfx.tap.volume(1);
+         } else {
+             //on the sfx
+             equasolve_sfx = "true";
+             $("#sfxImg").attr('src', `/images/music-on.png`);
+             sfx.tap.volume(1);
          }
 
          localStorage.setItem("equasolve_sfx", equasolve_sfx);
@@ -77,7 +93,7 @@
 
      });
 
-    //  fx settings
+     //  fx settings
      $(document).on("click", '#settings', function (e) {
          e.preventDefault();
          sfx.tap.play();
@@ -91,35 +107,37 @@
 
      });
 
-    //  read classic tutorial
-    $(document).on("click", "button#classic-tutorial", function (e) { 
-        e.preventDefault();
+     //  read classic tutorial
+     $(document).on("click", "button#classic-tutorial", function (e) {
+         e.preventDefault();
 
-        sfx.tap.play();
-        const modalContent = $('section#overlay div.modal-content');
-        modalContent.html(modalClassicTutorial);
+         sfx.tap.play();
+         const modalContent = $('section#overlay div.modal-content');
+         modalContent.html(modalClassicTutorial);
 
-    });
+     });
 
-    // read pvp tutorial
-    $(document).on("click", "button#pvp-tutorial", function (e) { 
-        e.preventDefault();
+     // read pvp tutorial
+     $(document).on("click", "button#pvp-tutorial", function (e) {
+         e.preventDefault();
 
-        sfx.tap.play();
-        const modalContent = $('section#overlay div.modal-content');
-        modalContent.html(modalPvpTutorial);
-        
-    });
+         sfx.tap.play();
+         const modalContent = $('section#overlay div.modal-content');
+         modalContent.html(modalPvpTutorial);
 
-    // done reading tutorials
-    $(document).on("click", "button#done-tutorial", function (e) { 
-        e.preventDefault();
+     });
 
-        sfx.tap.play();
-        const modalContent = $('section#overlay div.modal-content');
-        modalContent.html(modalSettings);
-        
-    });
+     // done reading tutorials
+     $(document).on("click", "button#done-tutorial", function (e) {
+         e.preventDefault();
+
+         sfx.tap.play();
+         const modalContent = $('section#overlay div.modal-content');
+         modalContent.html(modalSettings);
+
+     });
+
+    //  creating nickname
 
      //validation sa pag input ng nickname
      $(document).on('keyup', 'input[name="set-nickname"]', function (e) {
@@ -131,15 +149,25 @@
          sfx.tap.play();
 
          $('button[name="add-nickname"]').attr('disabled', !disabledButton);
+         $('button[name="update-nickname"]').attr('disabled', !disabledButton);
 
      });
 
      //submit nickname
      $(document).on('click', 'button[name="add-nickname"]', async function (e) {
          e.preventDefault();
+         alert('hi');
          sfx.tap.play();
          await createUserUsingNickname();
      });
+
+
+    //  for updating nicknme
+    $(document).on('click', 'button[name="update-nickname"]', async function (e) {
+        e.preventDefault();
+        sfx.tap.play();
+        await updateNickName();
+    });
 
      //render classic UI
      $(document).on('click', '#menu-btn-1', function (e) {
@@ -161,10 +189,10 @@
          $(this).on('click', false);
          sfx.tap.play();
 
-         if($(this).hasClass('reconnect')){
-            const roomID = $(this).data('room');
-            window.location.href = `${origin}/pvp?room=${roomID}`
-            return;
+         if ($(this).hasClass('reconnect')) {
+             const roomID = $(this).data('room');
+             window.location.href = `${origin}/pvp?room=${roomID}`
+             return;
          }
 
          sfx.tap.on("end", async () => {
@@ -211,15 +239,34 @@
 
      });
 
-    //  reconnect
-    $(document).on("click", "div#reconnect", function (e) { 
-        e.preventDefault();
-        alert('hello');
+     //  reconnect
+     $(document).on("click", "div#reconnect", function (e) {
+         e.preventDefault();
+         alert('hello');
 
-    });
+     });
+
+     $(document).on("click", "h1#set-nickname", function (e) { 
+        e.preventDefault();
+        sfx.tap.play();
+        const modalContent = $('section#overlay div.modal-content');
+        const renderSetNickname = setNickName($(this).text());
+        modalContent.html(renderSetNickname);
+        $('section#overlay').show();
+     });
+
+     //logout confirmation
+     $(document).on("click", "div#logout-confirmation", function (e) { 
+        e.preventDefault();
+
+        sfx.tap.play();
+        const modalContent = $('section#overlay div.modal-content');
+        modalContent.html(logOutConfirmation);
+        $('section#overlay').show();
+     });
 
      //logout
-     $(document).on('click', 'div#logout', async function (e) {
+     $(document).on('click', 'button#logout', async function (e) {
          e.preventDefault();
          sfx.tap.play();
          sfx.tap.on("end", async () => {

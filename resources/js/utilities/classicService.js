@@ -163,7 +163,7 @@ export const equation = {
 
             htmlDOM += `<div class="equation equation-${index}" data-answer=${equation.answer}>
             <span class="circle"></span>
-            <span id="equation-1">${equation.a}${operation}${equation.b}=???</span>
+            <span id="equation-1">${equation.a}${operation}${equation.b}</span>
             </div>`;
             index++;
         });
@@ -181,7 +181,7 @@ export const equation = {
 
 export const timer = {
     minutes: 0,
-    seconds: 20,
+    seconds: 30,
     timerLoop: null,
     trophies: 0,
     trophiesCountDown: 30,
